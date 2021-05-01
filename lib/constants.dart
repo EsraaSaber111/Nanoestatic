@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/size_config.dart';
 
-const kPrimaryColor = Color(0xFFFF7643);
+
+
+const kBackgroundColor = Color(0XFFE5E5E5);
+
+const kCardInfoBG = Color(0XFF686868);
+const kRatingStarColor = Color(0XFFF4D150);
+const kInputBackgroundColor = Color(0XFFF3F3F3);
+//const kPrimaryColor = Color(0xFFFF7643);
+const kPrimaryColor = Color(0xFF767D82);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
@@ -10,6 +18,8 @@ const kPrimaryGradientColor = LinearGradient(
 );
 const kSecondaryColor = Color(0xFF979797);
 const kTextColor = Color(0xFF757575);
+const kDefaultPadding = 15.0;
+const kBlueColor = Color(0xFF40BAD5);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
@@ -19,6 +29,12 @@ final headingStyle = TextStyle(
   color: Colors.black,
   height: 1.5,
 );
+const kDefaultShadow = BoxShadow(
+  offset: Offset(0, 15),
+  blurRadius: 25,
+  color: Colors.black12, // Black color with 12% opacity
+);
+
 
 const defaultDuration = Duration(milliseconds: 250);
 
@@ -26,9 +42,13 @@ const defaultDuration = Duration(milliseconds: 250);
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 const String kEmailNullError = "Please Enter your email";
+const String kSerilaNullError = "Please Enter product serial";
+const String kPhoneNullError = "Please Enter your phone";
+const String kNoteNullError = "Please Enter your notes";
 const String kInvalidEmailError = "Please Enter Valid Email";
 const String kPassNullError = "Please Enter your password";
 const String kShortPassError = "Password is too short";
+const String kShortPhoneError = "phone is too short";
 const String kMatchPassError = "Passwords don't match";
 const String kNamelNullError = "Please Enter your name";
 const String kPhoneNumberNullError = "Please Enter your phone number";

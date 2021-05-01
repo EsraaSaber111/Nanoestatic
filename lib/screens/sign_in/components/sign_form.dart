@@ -3,6 +3,7 @@ import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/helper/keyboard.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
+import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
 
 import '../../../components/default_button.dart';
@@ -77,7 +78,7 @@ class _SignFormState extends State<SignForm> {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                Navigator.pushNamed(context, HomeScreen.routeName);
               }
             },
           ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/product_card.dart';
+import 'package:shop_app/components/offer_card.dart';
 import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/screens/home/components/section_title.dart';
 
-class LatestProducts extends StatelessWidget {
+import '../../../size_config.dart';
+import 'section_title.dart';
+
+class LatestOffers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -11,7 +13,7 @@ class LatestProducts extends StatelessWidget {
         Padding(
           padding:
           EdgeInsets.symmetric(horizontal: 20),
-          child: SectionTitle(title: "Latest Products", press: () {}),
+          child: SectionTitle(title: "Latest offers", press: () {}),
         ),
         SizedBox(height:20),
         SingleChildScrollView(
@@ -19,10 +21,10 @@ class LatestProducts extends StatelessWidget {
           child: Row(
             children: [
               ...List.generate(
-                demoProducts.length,
+                offeredProducts.length,
                     (index) {
-                  if (demoProducts[index].isPopular)
-                    return ProductCard(product: demoProducts[index]);
+                  if (offeredProducts[index].isPopular)
+                    return OfferCard(product: offeredProducts[index]);
 
                   return SizedBox
                       .shrink(); // here by default width and height is 0

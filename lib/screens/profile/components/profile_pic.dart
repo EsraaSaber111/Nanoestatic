@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/size_config.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({
@@ -9,14 +10,14 @@ class ProfilePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 115,
-      width: 115,
+      height: getProportionateScreenHeight(140),
+      width: getProportionateScreenWidth(140),
       child: Stack(
         fit: StackFit.expand,
         overflow: Overflow.visible,
         children: [
           CircleAvatar(
-            backgroundImage: AssetImage("assets/images/Profile Image.png"),
+            backgroundImage: AssetImage("assets/images/splash_2.png"),
           ),
           Positioned(
             right: -16,

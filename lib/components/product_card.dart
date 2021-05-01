@@ -48,7 +48,7 @@ class ProductCard extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                product.title,
+                product.name,
                 style: TextStyle(color: Colors.black),
                 maxLines: 2,
               ),

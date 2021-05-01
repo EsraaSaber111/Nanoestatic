@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../constants.dart';
 import '../size_config.dart';
 
 class SocalCard extends StatelessWidget {
@@ -21,10 +22,10 @@ class SocalCard extends StatelessWidget {
         margin:
             EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10)),
         padding: EdgeInsets.all(getProportionateScreenWidth(12)),
-        height: getProportionateScreenHeight(40),
-        width: getProportionateScreenWidth(40),
+        height: getProportionateScreenHeight(50),
+        width: getProportionateScreenWidth(50),
         decoration: BoxDecoration(
-          color: Color(0xFFF5F6F9),
+          color: kPrimaryColor.withOpacity(0.15),
           shape: BoxShape.circle,
         ),
         child: SvgPicture.asset(icon),

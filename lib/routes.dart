@@ -1,6 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
+import 'package:shop_app/screens/categories/categories_screen.dart';
+import 'package:shop_app/screens/complete_order/complete_order.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:shop_app/screens/contact_us/ContactUs.dart';
+import 'package:shop_app/screens/course_details/CourseDetailsScreen.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
@@ -8,6 +12,7 @@ import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/screens/otp/otp_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
+import 'package:shop_app/screens/specific_products/SpecificScreen.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
 
 import 'screens/sign_up/sign_up_screen.dart';
@@ -26,4 +31,9 @@ final Map<String, WidgetBuilder> routes = {
   DetailsScreen.routeName: (context) => DetailsScreen(),
   CartScreen.routeName: (context) => CartScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
+  CourseDetailsScreen.routeName:(context) => CourseDetailsScreen(),
+  CategoriesScreen.routeName:(context)=>CategoriesScreen(),
+  CompleteOrder.routeName:(context)=>CompleteOrder(),
+  ContactUs.routeName:(context)=>ContactUs(),
+ // SpecificScreen.routeName:(context)=>SpecificScreen()
 };
