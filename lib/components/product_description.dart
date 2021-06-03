@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/product_model.dart';
+import 'package:html/parser.dart' show parse;
 import '../size_config.dart';
 
 class ProductDescription extends StatelessWidget {
@@ -62,7 +62,7 @@ class ProductDescription extends StatelessWidget {
 
               ),
               Text(
-                '${product.data.content}',
+                '${parse(product.data.content).body.text}',
                 maxLines: 10,
               ),
             ],

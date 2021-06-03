@@ -5,6 +5,13 @@ class ProductCart {
 
   final int id, numOfItem;
   ProductCart({@required this.id, @required this.numOfItem});
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['product_id'] = this.id;
+    data['quantity'] = this.numOfItem;
+    return data;
+  }
 }
 
 // Demo data for our cart

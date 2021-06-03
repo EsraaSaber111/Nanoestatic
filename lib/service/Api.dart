@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/CompeleteOrder.dart';
 import 'package:shop_app/models/User.dart';
@@ -16,7 +15,7 @@ import 'package:shop_app/models/product_model.dart';
 import 'package:shop_app/models/register.dart';
 import 'package:shop_app/models/slider.dart';
 import 'package:shop_app/models/wishlist.dart';
-import 'package:shop_app/screens/complete_order/components/complete_form.dart';
+import 'package:http/http.dart' as http;
 import 'package:shop_app/screens/complete_order2/components/complete_form.dart';
 import '../api_constants.dart';
 
@@ -28,8 +27,8 @@ class Api {
 
   static Future<AllCategoriesModel> getAllCategories() async {
     final response = await http.get(
-        '${baseurl + allCatURL + "api_username=" + name + "&api_password=" +
-            password + "&api_lang=" + await getLanguageCode()}');
+        "${baseurl + allCatURL + "api_username=" + name + "&api_password=" +
+            password + "&api_lang=" + await getLanguageCode()}");
     if (response.statusCode == 200) {
       print(response.body);
       final jsondata = json.decode(response.body);
@@ -286,21 +285,28 @@ class Api {
   }
 
   static Future<CheckOut> checkout(CompeleteOrder order) async {
+    print( '${baseurl + CheckoutURL + "api_username=" + name + "&api_password=" +
+        password + "&api_lang=" + await getLanguageCode() + "&email=" +
+        order.email + "&password=" + order.password + "&fullname=" +
+        order.fullname + "&address=" + order.address + "&notes=" +
+        order.notes + "&orderd_by=" + order.customerid.toString() +
+        "&allProducts=" + "${order.myProducts.map((e) => e.toJson()).toList()}"}');
     final response = await http.post(
         '${baseurl + CheckoutURL + "api_username=" + name + "&api_password=" +
             password + "&api_lang=" + await getLanguageCode() + "&email=" +
             order.email + "&password=" + order.password + "&fullname=" +
             order.fullname + "&address=" + order.address + "&notes=" +
             order.notes + "&orderd_by=" + order.customerid.toString() +
-            "&allProducts=" + order.myProducts.toString()}');
+            "&allProducts=" + "${order.myProducts.map((e) => e.toJson()).toList()}"}');
     if (response.statusCode == 200) {
 
       var data = jsonDecode(response.body);
       print(response.body);
       return data['message'];
-    } else {
-      throw Exception('faild');
-    }
+    } else ( e){
+      print(e);
+      throw Exception(e);
+    };
   }
 
   ///applycourse

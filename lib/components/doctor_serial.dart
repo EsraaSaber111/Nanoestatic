@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
@@ -33,7 +34,7 @@ class _State extends State<CustomDialogs> {
   // ignore: close_sinks
   StreamController<ErrorAnimationType> errorController;
 
-  bool hasError = false;
+  bool hasError = true;
   String currentText = "";
   final formKey = GlobalKey<FormState>();
 
@@ -46,7 +47,6 @@ class _State extends State<CustomDialogs> {
   @override
   void dispose() {
     errorController.close();
-
     super.dispose();
   }
 
@@ -58,9 +58,10 @@ class _State extends State<CustomDialogs> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         child: Stack(
+
           children: [
             Container(
-              height: 250,
+             // height: 250,
               padding: EdgeInsets.only(
                   top: Consts.paddding + Consts.avatar,
                   left: Consts.paddding,
@@ -73,6 +74,7 @@ class _State extends State<CustomDialogs> {
                 borderRadius: BorderRadius.circular(Consts.paddding),
               ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     widget.title,
@@ -133,6 +135,7 @@ class _State extends State<CustomDialogs> {
                           ],
                           ///handle on click here
                           onCompleted: (v) {
+
                             print(v);
                           Api.getdotor(v,"doctorserial/exist?").then((value) {
                             print(value);
@@ -144,6 +147,9 @@ class _State extends State<CustomDialogs> {
                             }
                             else {
                               print('error');
+                              setState(() {
+                                hasError=false;
+                              });
                             }
                           }
 
@@ -159,9 +165,13 @@ class _State extends State<CustomDialogs> {
 
                           onChanged: (value) {
                            // print(value);
+
                             setState(() {
+                              hasError=true;
+
                               currentText = value;
                             });
+
                           },
                           beforeTextPaste: (text) {
                             print("Allowing to paste $text");
@@ -171,8 +181,7 @@ class _State extends State<CustomDialogs> {
                           },
                         )),
                   ),
-
-
+                  hasError?Container():Text("Nodata"),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -210,7 +219,7 @@ class _State extends State<CustomDialogs> {
                   width: getProportionateScreenWidth(90),
                   child: Image.asset(
                     'assets/images/doctor.png',
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
@@ -224,8 +233,8 @@ class _State extends State<CustomDialogs> {
           ],
         ));
   }
-}
 
+}
 class Consts {
   static const double paddding = 16;
   static const double avatar = 66;

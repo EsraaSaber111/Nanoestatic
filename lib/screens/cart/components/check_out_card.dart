@@ -63,9 +63,9 @@ class CheckoutCard extends StatelessWidget {
                     text: "Check Out",
                     press: () {
                       print(demoCarts.length);
-                        // Navigator.pushNamed(
-                        //     context,
-                        //     CompleteOrder.routeName);
+                        Navigator.pushNamed(
+                            context,
+                            CompleteOrder.routeName);
                     },
                   ),
                 ),
