@@ -1,55 +1,101 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/default_button.dart';
-import 'package:shop_app/models/Product.dart';
+import 'package:shop_app/components/doctor_serial.dart';
+import 'package:shop_app/models/Cart.dart';
+import 'package:shop_app/models/product_model.dart';
+import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/size_config.dart';
-import 'product_description.dart';
+import '../../../components/product_description.dart';
 import 'top_rounded_container.dart';
 import 'product_images.dart';
 
-class Body extends StatelessWidget {
-  final Product product;
-  const Body({Key key, @required this.product}) : super(key: key);
+class Body extends StatefulWidget {
+  Future<Product_model> productdetails;
+  int id;
+  Body(this.id);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.productdetails=Api.getproductdetails(widget.id);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        ProductImages(product: product),
-        TopRoundedContainer(
-          color: Colors.white,
-          child: Column(
-            children: [
-              ProductDescription(
-                product: product,
-                pressOnSeeMore: () {},
-              ),
-              TopRoundedContainer(
-                color: Color(0xFFF6F7F9),
-                child: Column(
-                  children: [
-                 //   Price(product: product),
-                    TopRoundedContainer(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: SizeConfig.screenWidth * 0.15,
-                          right: SizeConfig.screenWidth * 0.15,
-                          bottom: getProportionateScreenWidth(40),
-                          top: getProportionateScreenWidth(15),
+    return FutureBuilder<Product_model>(
+      future: widget.productdetails,
+      builder: (_,snapshot){
+      if(snapshot.hasData){
+        return ListView(
+          children: [
+           ProductImages(snapshot.data.product.productImages),
+            TopRoundedContainer(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  ProductDescription(
+                    snapshot.data.product
+                  ),
+                  TopRoundedContainer(
+                    color: Color(0xFFF6F7F9),
+                    child: Column(
+                      children: [
+                        //   Price(product: product),
+                        TopRoundedContainer(
+                          color: Colors.white,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              left: SizeConfig.screenWidth * 0.15,
+                              right: SizeConfig.screenWidth * 0.15,
+                              bottom: getProportionateScreenWidth(40),
+                              top: getProportionateScreenWidth(15),
+                            ),
+                            child: DefaultButton(
+                              text: "Add To Cart",
+                              press: () {
+                                demoCarts.add(ProductCart(id:snapshot.data.product.id,numOfItem:snapshot.data.product.totalQuantity));
+
+                                /// todo:doctor serial dialog should be active
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return CustomDialogs(
+                                        title: 'Enter Doctor Serial',
+                                        // description:
+                                        // 'The QRcode is right you can use the app now',
+                                        buttontext1: 'Done',
+                                        buttontext2: 'Cancel',
+                                      );
+                                    });
+
+                              },
+                            ),
+                          ),
                         ),
-                        child: DefaultButton(
-                          text: "Add To Cart",
-                          press: () {},
-                        ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      ],
+            ),
+          ],
+        );
+      }else if(snapshot.connectionState==ConnectionState.waiting){
+        return Center(child: CircularProgressIndicator(),);
+      }
+      else{
+        return Center(child: Text('error'),);
+      }
+      },
+
     );
   }
 }
+

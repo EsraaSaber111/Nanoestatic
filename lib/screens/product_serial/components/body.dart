@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
-import 'package:shop_app/components/no_account_text.dart';
+import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/size_config.dart';
 
 import '../../../constants.dart';
@@ -58,7 +58,12 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
         children: [
           TextFormField(
             keyboardType: TextInputType.number,
-            onSaved: (newValue) => serial = newValue,
+            onSaved: (newValue) {
+              setState(() {
+                serial = newValue;
+              });
+
+            } ,
             onChanged: (value) {
               if (value.isNotEmpty && errors.contains(kSerilaNullError)) {
                 setState(() {
@@ -69,12 +74,26 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               return null;
             },
             validator: (value) {
+              Api.getdotor(value,"productserial/exist?").then((value) {
+                print(value);
+                if (value == "serial exist") {
+                  print(value.toString());
+                  Scaffold.of(context).showSnackBar(SnackBar(content: Row(children: [Icon(Icons.done_all,color: Colors.green,), SizedBox(width: 10,), Text("Serial Exists")],)));
+
+                }
+                else {
+                  Scaffold.of(context).showSnackBar(SnackBar(content: Row(children: [Icon(Icons.close,color: Colors.red,), SizedBox(width: 10,), Text('${value.toString()}')],)));
+                }
+              }
+              );
+
               if (value.isEmpty && !errors.contains(kSerilaNullError)) {
                 setState(() {
                   errors.add(kSerilaNullError);
                 });
               }
               return null;
+             // return null;
             },
             decoration: InputDecoration(
               labelText: "serial",
@@ -89,10 +108,11 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           FormError(errors: errors),
           SizedBox(height: SizeConfig.screenHeight * 0.1),
           DefaultButton(
-            text: "Continue",
+            text: "Check",
             press: () {
               if (_formKey.currentState.validate()) {
-                // Do what you want to do
+
+                // Scaffold.of(context).showSnackBar(SnackBar(content: Row(children: [Icon(Icons.done_all,color: Colors.green,), SizedBox(width: 10,), Text("Serial Exists")],)));
               }
             },
           ),

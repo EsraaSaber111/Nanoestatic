@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
       drawer: Drawer(
         child: drawer(),
       ),
+     // bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
     );
   }
 }

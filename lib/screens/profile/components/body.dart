@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/models/Product.dart';
 
+import 'expansion.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
@@ -13,30 +15,36 @@ class Body extends StatelessWidget {
           ProfilePic(),
           SizedBox(height: 20),
           ProfileMenu(
-            text: "My Account",
+            text: "Full Name",
+            sub: "Mohamed Ahmed",
             icon: "assets/icons/User Icon.svg",
             press: () => {},
           ),
           ProfileMenu(
-            text: "Notifications",
-            icon: "assets/icons/Bell.svg",
+            text: "Email",
+            sub: "DRAhmed@gmail.com",
+            icon: "assets/icons/Mail.svg",
             press: () {},
           ),
           ProfileMenu(
-            text: "Settings",
-            icon: "assets/icons/Settings.svg",
-            press: () {},
-          ),
-          ProfileMenu(
-            text: "Help Center",
+            text: "Password",
+            sub: "*********",
             icon: "assets/icons/Question mark.svg",
             press: () {},
           ),
           ProfileMenu(
-            text: "Log Out",
-            icon: "assets/icons/Log out.svg",
+            text: "Phone",
+            sub: "0102020220",
+            icon: "assets/icons/Phone.svg",
             press: () {},
           ),
+          ProfileMenu(
+            text: "Address",
+            sub: "4 Heloioples street",
+            icon: "assets/icons/Location point.svg",
+            press: () {},
+          ),
+          ExPanal(courses),
         ],
       ),
     );

@@ -6,12 +6,13 @@ import '../../../constants.dart';
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({
     Key key,
-    @required this.text,
-    @required this.icon,
+   this.text,
+   this.icon,
+   this.sub,
     this.press,
   }) : super(key: key);
 
-  final String text, icon;
+  final String text, sub, icon;
   final VoidCallback press;
 
   @override
@@ -19,7 +20,7 @@ class ProfileMenu extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: FlatButton(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(10),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         color: Color(0xFFF5F6F9),
         onPressed: press,
@@ -30,9 +31,15 @@ class ProfileMenu extends StatelessWidget {
               color: kPrimaryColor,
               width: 22,
             ),
-            SizedBox(width: 20),
-            Expanded(child: Text(text)),
-            Icon(Icons.arrow_forward_ios),
+            SizedBox(width: 10),
+            Expanded(
+             child: ListTile(
+               title: Text('${text}'),
+               subtitle: Text('${sub}'),
+             ),
+           ),
+           // Expanded(child: Text(text)),
+          //  Icon(Icons.edit),
           ],
         ),
       ),

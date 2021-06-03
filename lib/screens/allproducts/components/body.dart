@@ -5,7 +5,7 @@ import 'package:shop_app/screens/details/details_screen.dart';
 
 import '../../../constants.dart';
 import 'category_list.dart';
-import '../../offers/all_product_card.dart';
+import '../../offers/components/all_product_card.dart';
 
 class Body extends StatelessWidget {
    Product product;
@@ -32,21 +32,24 @@ class Body extends StatelessWidget {
                     ),
                   ),
                 ),
-                ListView.builder(
-                  // here we use our demo procuts list
-                  itemCount: demoProducts.length,
-                  itemBuilder: (context, index) => allProductCard(
-                    itemIndex: index,
-                    product: demoProducts[index],
-                    press: () {
-                      Navigator.pushNamed(
-                        context,
-                        DetailsScreen.routeName,
-                        arguments: ProductDetailsArguments(product: demoProducts[index]),
-                      );
-                      },
-                  ),
-                )
+
+                ///have to uncomment this and handle it
+
+                // ListView.builder(
+                //   // here we use our demo procuts list
+                //   itemCount: demoProducts.length,
+                //   itemBuilder: (context, index) => allProductCard(
+                //     itemIndex: index,
+                //     product: demoProducts[index],
+                //     press: () {
+                //       Navigator.pushNamed(
+                //         context,
+                //         DetailsScreen.routeName,
+                //         arguments: ProductDetailsArguments(product: demoProducts[index]),
+                //       );
+                //       },
+                //   ),
+                // )
               ],
             ),
           ),

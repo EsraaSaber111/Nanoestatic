@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
-import 'package:shop_app/screens/home/home_screen.dart';
+import 'package:shop_app/models/inquiry.dart';
+import 'package:shop_app/screens/inquiry/inquiry_screen.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
+import 'package:shop_app/service/Api.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -17,11 +19,11 @@ class InquiryForm extends StatefulWidget {
 class _InquiryFormState extends State<InquiryForm> {
   final _formKey = GlobalKey<FormState>();
   String email;
-  String phone;
+  int phone;
   String address;
   String note;
-  //String conform_password;
- // bool remember = false;
+
+
   final List<String> errors = [];
 
   void addError({String error}) {
@@ -56,10 +58,11 @@ class _InquiryFormState extends State<InquiryForm> {
           DefaultButton(
             text: "Send",
             press: () {
+               Api.makeinquiry(email,phone, note).then((value) => Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}'))) );
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+              //  Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           ),
@@ -85,9 +88,7 @@ class _InquiryFormState extends State<InquiryForm> {
         if (value.isEmpty) {
           addError(error: kNoteNullError);
           return "";
-        } else if ((note != value)) {
-          addError(error: kMatchPassError);
-          return "";
+
         }
         return null;
       },
@@ -106,14 +107,14 @@ class _InquiryFormState extends State<InquiryForm> {
     return TextFormField(
       keyboardType: TextInputType.number,
      // obscureText: true,
-      onSaved: (newValue) => phone = newValue,
+      onSaved: (newValue) => phone = int.parse(newValue),
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNullError);
         } else if (value.length >= 10) {
           removeError(error: kShortPhoneError);
         }
-        phone = value;
+        phone = int.parse(value);
       },
       validator: (value) {
         if (value.isEmpty) {

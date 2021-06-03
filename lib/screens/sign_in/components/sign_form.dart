@@ -5,6 +5,8 @@ import 'package:shop_app/helper/keyboard.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
+import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
+import 'package:shop_app/service/Api.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -78,7 +80,20 @@ class _SignFormState extends State<SignForm> {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, HomeScreen.routeName);
+                Api.login(email, password).then((value) {
+
+                  if(value.message=="invalid login"){
+                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}')));
+                  }else{
+                    Navigator.pushNamed(context, MainPage.routeName);
+                  Scaffold.of(context).showSnackBar(SnackBar(content: Text('welcome ${value.user.name} ${value.message}')));
+                  }
+
+
+                });
+
+                    //Scaffold.of(context).showSnackBar(SnackBar(content: Text('welcome ${value.user.name} ${value.message}'))));
+               //Navigator.pushNamed(context, MainPage.routeName);
               }
             },
           ),

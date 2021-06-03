@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/screens/categories/categories_screen.dart';
+import 'package:shop_app/screens/home/home_screen.dart';
+import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
+import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
 import 'package:shop_app/size_config.dart';
 
 // This is the best practice
@@ -70,7 +74,8 @@ class _BodyState extends State<Body> {
                     DefaultButton(
                       text: "Continue",
                       press: () {
-                        Navigator.pushNamed(context, SignInScreen.routeName);
+                    //    Navigator.pushNamed(context, SignInScreen.routeName);
+                        Navigator.pushNamed(context, MainPage.routeName);
                       },
                     ),
                     Spacer(),
@@ -83,7 +88,6 @@ class _BodyState extends State<Body> {
       ),
     );
   }
-
   AnimatedContainer buildDot({int index}) {
     return AnimatedContainer(
       duration: kAnimationDuration,

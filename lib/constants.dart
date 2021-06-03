@@ -43,6 +43,7 @@ final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 const String kEmailNullError = "Please Enter your email";
 const String kSerilaNullError = "Please Enter product serial";
+const String kSerilaError = "No serial exists , please try again";
 const String kPhoneNullError = "Please Enter your phone";
 const String kNoteNullError = "Please Enter your notes";
 const String kInvalidEmailError = "Please Enter Valid Email";

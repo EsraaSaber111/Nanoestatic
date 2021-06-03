@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/screens/home/components/slider.dart';
 import 'package:shop_app/screens/home/components/special_categories.dart';
+import 'package:shop_app/service/Api.dart';
 
 import '../../../size_config.dart';
+import 'LatestProducts.dart';
 import 'categories.dart';
 import 'discount_banner.dart';
 import 'home_header.dart';
-import 'popular_product.dart';
 import 'latest_offers.dart';
 
 class Body extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,9 +24,8 @@ class Body extends StatelessWidget {
             SizedBox(height: getProportionateScreenWidth(20)),
             Slidercard(),
             SizedBox(height: getProportionateScreenWidth(20)),
-            SpecialCategories(sliderdemo),
+            SpecialCategories(),
             SizedBox(height: getProportionateScreenWidth(20)),
-         //   DiscountBanner(),
             LatestOffers(),
             SizedBox(height: getProportionateScreenWidth(20)),
             LatestProducts(),

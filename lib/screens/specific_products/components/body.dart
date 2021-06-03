@@ -11,59 +11,61 @@ import '../../../constants.dart';
 import '../../../size_config.dart';
 
 
-class Body extends StatelessWidget {
-  final CategoryModel categorymodel;
-  const Body({Key key, @required this.categorymodel}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return   Scaffold(
-    //  appBar: AppBar(title: Text('${categorymodel.name}'),),
-      body: SafeArea(
-          child: AnimationLimiter(
-          child: Column(
+// class Body extends StatelessWidget {
+//   final CategoryModel categorymodel;
+//   const Body({Key key, @required this.categorymodel}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return   Scaffold(
+//     //  appBar: AppBar(title: Text('${categorymodel.name}'),),
+//       body: SafeArea(
+//           child: AnimationLimiter(
+//           child: Column(
+//             children: [
+//               Slidercard(),
+//               Text('${categorymodel.name} products '),
+//               GridView.count(
+//               crossAxisCount: 2,
+//               mainAxisSpacing: 2,
+//               crossAxisSpacing: 10,
+//               childAspectRatio: 0.8,
+//               children:
+//               List.generate(categorymodel.product.length, (index)
+//               {
+//                 return Padding(
+//                     padding: const EdgeInsets.all(5.0),
+//                     child: AnimationConfiguration.staggeredGrid(
+//                       columnCount: 2,
+//                       position: index,
+//                       duration: const Duration(milliseconds: 375),
+//                       child: ScaleAnimation(
+//                         scale: 0.5,
+//                         child: FadeInAnimation(
+//                           child: InkWell(
+//                             child: ProductCard(),
+//               //               onTap: () => Navigator.pushNamed(
+//               // context,
+//               //                 DetailsScreen.routeName,
+//               // arguments: ProductDetailsArguments(product: courses[index]),
+//               //             ),
+//
+//                         ),
+//                       ),
+//                     )
+//                     )
+//                 );
+//               }
+//               ).toList()),
+//             ],
+//           ),
+//       )),
+//     );
+//
+//   }
+// }
 
-            children: [
-              Slidercard(),
-              Text('${categorymodel.name} products '),
-              GridView.count(
-              crossAxisCount: 2,
-              mainAxisSpacing: 2,
-              crossAxisSpacing: 10,
-              childAspectRatio: 0.8,
-              children:
-              List.generate(categorymodel.product.length, (index)
-              {
-                return Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: AnimationConfiguration.staggeredGrid(
-                      columnCount: 2,
-                      position: index,
-                      duration: const Duration(milliseconds: 375),
-                      child: ScaleAnimation(
-                        scale: 0.5,
-                        child: FadeInAnimation(
-                          child: InkWell(
-                            child: ProductCard(),
-              //               onTap: () => Navigator.pushNamed(
-              // context,
-              //                 DetailsScreen.routeName,
-              // arguments: ProductDetailsArguments(product: courses[index]),
-              //             ),
 
-                        ),
-                      ),
-                    )
-                    )
-                );
-              }
-              ).toList()),
-            ],
-          ),
-      )),
-    );
 
-  }
-}
 // Widget CourseCard(int index){
 //     double width = 160;
 //

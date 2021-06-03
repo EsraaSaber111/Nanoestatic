@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/allproducts/products_screen.dart';
+import 'package:shop_app/localization/language_constants.dart';
+import 'package:shop_app/screens/about_us/AboutUs.dart';
 import 'package:shop_app/screens/categories/categories_screen.dart';
 import 'package:shop_app/screens/contact_us/ContactUs.dart';
 import 'package:shop_app/screens/courses/CourseScreen.dart';
@@ -23,13 +24,14 @@ class drawer extends StatelessWidget {
                 children: [Container()])),
         ListTile(
             leading: Icon(Icons.home),
-            title: Text('Home'),
+            title: Text(getTranslated(context, 'home_page')),
             onTap: () {
               Navigator.of(context).pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
             }),
         ListTile(
             leading: Icon(Icons.shopping_cart_outlined),
-            title: Text('products'),
+            title:Text(getTranslated(context, 'products')),
+
             onTap: () {
               Navigator.pushNamed(
                   context,
@@ -37,18 +39,13 @@ class drawer extends StatelessWidget {
             }),
         ListTile(
             leading: Icon(Icons.label_important),
-            title: Text('offers'),
+            title: Text(getTranslated(context, 'offers')),
             onTap: () {
-              // Navigator.pushNamed(
-              //     context,
-              //     OfferScreen.routeName);
-
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => OfferScreen()));
+              Navigator.pushNamed(context, OfferScreen.routeName);
             }),
         ListTile(
             leading: Icon(Icons.laptop),
-            title: Text('courses'),
+            title:Text(getTranslated(context, 'courses')),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => CourseScreen()));
@@ -63,25 +60,26 @@ class drawer extends StatelessWidget {
             }),
         ListTile(
             leading: Icon(Icons.group_sharp),
-            title: Text('about us'),
+            title: Text(getTranslated(context, 'about_us')),
             onTap: () {
-              // Navigator.pushNamed(context, '/settings');
+              Navigator.pushNamed(
+                  context,
+                  AboutUs.routeName);
             }),
         ListTile(
             leading: Icon(Icons.call),
-            title: Text('contact us'),
+            title: Text(getTranslated(context, 'contact_us')),
             onTap: () {
-
                 Navigator.pushNamed(
                     context,
-                    ContactUs.routeName);
+                    Contact.routeName);
             }),
         ListTile(
             leading: Icon(
               Icons.error,
               color: Colors.red,
             ),
-            title: Text('inquiry'),
+            title: Text(getTranslated(context, 'inquiry')),
             onTap: () {
 
               // Navigator.pushNamed(
@@ -92,6 +90,9 @@ class drawer extends StatelessWidget {
 
               // Navigator.pushNamed(context, '/settings');
             }),
+
+
+
       ],
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/api_constants.dart';
 import 'package:shop_app/models/Product.dart';
+import 'package:shop_app/models/offres.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 
 import '../constants.dart';
@@ -15,7 +17,7 @@ class OfferCard extends StatelessWidget {
   }) : super(key: key);
 
   final double width, aspectRetio;
-  final Product product;
+  final AllProducts product;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +26,10 @@ class OfferCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
-          onTap: () => Navigator.pushNamed(
-            context,
-            DetailsScreen.routeName,
-            arguments: ProductDetailsArguments(product: product),
-          ),
+          //todo:handle on click
+          onTap: () =>
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsScreen(product.id))),
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -41,14 +42,14 @@ class OfferCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Hero(
-                    tag: (product.id+10).toString(),
-                    child: Image.asset(product.images[0]),
+                    tag: (product.id+50).toString(),
+                    child: Image.network('${imageURl+product.mainImage}'),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
               Text(
-                product.name,
+                product.data.title,
                 style: TextStyle(color: Colors.black),
                 maxLines: 2,
               ),
@@ -56,7 +57,7 @@ class OfferCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "\$${product.newprice}",
+                    "\$${product.lastPrice}",
                     style: TextStyle(
                      // decoration: TextDecoration.lineThrough,
                       fontSize: getProportionateScreenWidth(18),
@@ -91,7 +92,7 @@ class OfferCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "\$${product.price}",
+                    "\$${product.lastPrice}",
                     style: TextStyle(
                       decoration: TextDecoration.lineThrough,
                       fontSize: getProportionateScreenWidth(12),

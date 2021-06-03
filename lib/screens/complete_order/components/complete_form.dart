@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
+import 'package:shop_app/models/Cart.dart';
+import 'package:shop_app/models/CompeleteOrder.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/login_success/login_success_screen.dart';
+import 'package:shop_app/service/Api.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -20,7 +23,7 @@ class _OrderFormFormState extends State<OrderForm> {
   String phone;
   String address;
   String note;
-  String spec;
+  String name;
   //String conform_password;
  // bool remember = false;
   final List<String> errors = [];
@@ -61,6 +64,10 @@ class _OrderFormFormState extends State<OrderForm> {
             press: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
+               // Confirm confirmcourse=Confirm(phone, address, email, note, name);
+
+                CompeleteOrder order=CompeleteOrder(password: phone,email: email,address: address,fullname: email,customerid: 3,notes: note,myProducts: demoCarts);
+                Api.checkout(order).then((value) => print(value));
                 // if all are valid then go to success screen
                 Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
@@ -209,19 +216,19 @@ class _OrderFormFormState extends State<OrderForm> {
 
     return TextFormField(
       //  obscureText: true,
-      onSaved: (newValue) => spec = newValue,
+      onSaved: (newValue) => name = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kAddressNullError);
         }
 
-        spec = value;
+        name = value;
       },
       validator: (value) {
         if (value.isEmpty) {
           addError(error: kAddressNullError);
           return "";
-        } else if ((spec != value)) {
+        } else if ((name != value)) {
           addError(error: kAddressNullError);
           return "";
         }

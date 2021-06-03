@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/api_constants.dart';
+import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/Product.dart';
+import 'package:shop_app/models/all_categories_model.dart';
 import 'package:shop_app/screens/categories/categories_screen.dart';
+import 'package:shop_app/screens/specific_products/SpecificScreen.dart';
+import 'package:shop_app/service/Api.dart';
 
 import '../../../size_config.dart';
 import 'section_title.dart';
 
-class SpecialCategories extends StatelessWidget {
-  final List<dynamic> product;
+class SpecialCategories extends StatefulWidget {
+  const SpecialCategories({Key key}) : super(key: key);
 
+  @override
+  _SpecialCategoriesState createState() => _SpecialCategoriesState();
+}
 
-  SpecialCategories(this.product);
+class _SpecialCategoriesState extends State<SpecialCategories> {
+
+  Future<AllCategoriesModel> allcategories;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    allcategories=Api.getAllCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,39 +35,87 @@ class SpecialCategories extends StatelessWidget {
           padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: SectionTitle(
-            title: "Categories",
+            title: "${getTranslated(context, 'Categories')}",
             press: () {
-                Navigator.pushNamed(
-                    context,
-                    CategoriesScreen.routeName);
+              Navigator.pushNamed(
+                  context,
+                  CategoriesScreen.routeName);
             },
           ),
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              SpecialOfferCard(
-                image: product[0].img,
-                category: "Sun Care",
-                numOfBrands: 18,
-                press: () {},
-              ),
-              SpecialOfferCard(
-                image: product[1].img,
-                category: "Body",
-                numOfBrands: 24,
-                press: () {},
-              ),
-              SizedBox(width: getProportionateScreenWidth(20)),
-            ],
-          ),
-        ),
-      ],
+        FutureBuilder<AllCategoriesModel>(
+          future: allcategories,
+          builder: (_,snapshot){
+            if(snapshot.hasData){
+              return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      children: [
+
+                        ...List.generate(
+                          2,
+                          // snapshot.data.allProducts.length,
+                              (index) {
+
+                            return  SpecialOfferCard(
+                              image: '${imageURl+snapshot.data.allCategories[index].mainImage}',
+                              category:"${snapshot.data.allCategories[index].data.name}",
+                              numOfBrands: 24,
+                              press: () {
+
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SpecificScreen(
+                                                snapshot
+                                                    .data
+                                                    .allCategories[index]
+                                                    .id,
+                                                snapshot
+                                                    .data
+                                                    .allCategories[index]
+                                                    .data
+                                                    .name)));
+
+
+
+                              },
+                            );
+
+                            return SizedBox
+                                .shrink(); // here by default width and height is 0
+                          },
+                        ),
+
+                        // SpecialOfferCard(
+                        //   image: '${imageURl+snapshot.data.allCategories[1].mainImage}',
+                        //   category:"${snapshot.data.allCategories[1].data.name}",
+                        //   numOfBrands: 24,
+                        //   press: () {},
+                        // ),
+
+                      ]
+                  )
+              );
+
+            }else if(snapshot.connectionState==ConnectionState.waiting){
+              return Center();
+            }else{
+              return Center(child: Text('not found'),);
+            }
+            }
+    ),
+
+                SizedBox(width: getProportionateScreenWidth(20)),
+              ]
     );
+
   }
 }
+
+
 
 class SpecialOfferCard extends StatelessWidget {
   const SpecialOfferCard({
@@ -68,12 +132,13 @@ class SpecialOfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width=242;
     return Padding(
-      padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
+      padding: EdgeInsets.only(left: getProportionateScreenWidth(20), right: getProportionateScreenWidth(20)),
       child: GestureDetector(
         onTap: press,
         child: SizedBox(
-          width: getProportionateScreenWidth(242),
+          width: getProportionateScreenWidth(width),
           height: getProportionateScreenWidth(100),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -82,11 +147,18 @@ class SpecialOfferCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      image,
-                    width: 180,
-
-                     fit: BoxFit.cover,
+                    Container(
+                     // height: 100,
+                      width: getProportionateScreenWidth(width),
+                decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                      image:
+                     NetworkImage(
+                        image,
+                      ),
+                ),
+                ),
                     ),
                   ],
                 ),
