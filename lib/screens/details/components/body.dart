@@ -59,8 +59,9 @@ class _BodyState extends State<Body> {
                             child: DefaultButton(
                               text: "Add To Cart",
                               press: () {
-                                demoCarts.add(ProductCart(id:snapshot.data.product.id,numOfItem:snapshot.data.product.totalQuantity));
-
+                                print("snapshot = ${snapshot.data.product.id}");
+                                demoCarts.add(ProductCart(id:snapshot.data.product.id,numOfItem: 1));
+                               // demoCarts=[];
                                 /// todo:doctor serial dialog should be active
                                 showDialog(
                                     barrierDismissible: false,
