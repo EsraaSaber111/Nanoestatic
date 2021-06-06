@@ -6,6 +6,7 @@ import 'package:shop_app/models/User.dart';
 import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 import 'package:shop_app/service/Api.dart';
+import 'package:shop_app/service/UserApi.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -63,7 +64,7 @@ class _SignUpFormState extends State<SignUpForm> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 RegisterUser user=RegisterUser(email: email,password: password,phone: phone, name: name);
-                Api.UserRegister(user).then((value) => Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}'))) );
+                UserApi.UserRegister(user).then((value) => Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}'))) );
                 // if all are valid then go to success screen
                // Navigator.pushNamed(context, SignInScreen.routeName);
 

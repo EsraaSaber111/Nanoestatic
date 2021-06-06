@@ -38,10 +38,12 @@ dependencies:
   flutter_staggered_animations:
   flutter_staggered_grid_view:
   pin_code_fields:
-  http: ^0.12.2
+  http:
   shared_preferences:
   persistent_bottom_nav_bar:
-  html: ^0.15.0
+  html:
+  sqflite:
+  path:
 
 
 dev_dependencies:

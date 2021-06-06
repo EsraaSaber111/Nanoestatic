@@ -4,13 +4,13 @@ import 'package:shop_app/models/Cart.dart';
 import 'package:shop_app/models/product_model.dart';
 import 'package:shop_app/service/Api.dart';
 import '../../../constants.dart';
+import '../../../dphelper.dart';
 import '../../../size_config.dart';
 
 class CartCard extends StatefulWidget {
   ProductCart cart;
   CartCard(this.cart);
   Future<Product_model> product;
-
   @override
   _CartCardState createState() => _CartCardState();
 }
@@ -20,7 +20,7 @@ class _CartCardState extends State<CartCard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    widget.product = Api.getproductdetails(widget.cart.id);
+    widget.product = Api.getproductdetails(widget.cart.product_id);
   }
 
   @override
@@ -29,7 +29,7 @@ class _CartCardState extends State<CartCard> {
         future: widget.product,
         builder: (_, snapshot) {
           if (snapshot.hasData) {
-         // demoCarts.add(ProductCart(id: snapshot.data.product.id,numOfItem: 3));
+
             return Row(
               children: [
                 SizedBox(

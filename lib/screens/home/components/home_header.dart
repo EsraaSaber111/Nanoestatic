@@ -67,7 +67,7 @@ class HomeHeader extends StatelessWidget {
                     press: ()  async{
                       // languageCode
                       //SharedPreferences.getInstance().then((value) => print(value.getString('languageCode')));
-                      print(await getLanguageCode());
+
                       Navigator.pushNamed(context, CartScreen.routeName);
                     }
                   ),

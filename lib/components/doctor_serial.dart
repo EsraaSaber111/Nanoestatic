@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shop_app/dphelper.dart';
+import 'package:shop_app/models/Cart.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
 import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/service/Api.dart';
@@ -13,9 +15,11 @@ import '../size_config.dart';
 class CustomDialogs extends StatefulWidget {
   final String title, description, buttontext1, buttontext2;
   final Image image;
+ final int product_id;
 
   const CustomDialogs(
       {Key key,
+        this.product_id,
         this.title,
         this.description,
         this.buttontext1,
@@ -37,11 +41,13 @@ class _State extends State<CustomDialogs> {
   bool hasError = true;
   String currentText = "";
   final formKey = GlobalKey<FormState>();
+  SQL_Helper helper = new SQL_Helper();
 
   @override
   void initState() {
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
+
   }
 
   @override
@@ -137,9 +143,14 @@ class _State extends State<CustomDialogs> {
                           onCompleted: (v) {
 
                             print(v);
-                          Api.getdotor(v,"doctorserial/exist?").then((value) {
+                          Api.getdotor(v,"doctorserial/exist?").then((value) async {
                             print(value);
                             if (value == "serial exist") {
+                              //todo:here add product to card
+                              ProductCart cart=ProductCart(product_id: widget.product_id, numOfItem: 1);
+
+                              int id= await helper.insertCart(cart);
+                              print(id);
                               Navigator.of(context).pop();
                               Navigator.pushNamed(
                                   context, CartScreen.routeName);

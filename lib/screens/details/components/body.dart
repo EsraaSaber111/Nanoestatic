@@ -59,8 +59,8 @@ class _BodyState extends State<Body> {
                             child: DefaultButton(
                               text: "Add To Cart",
                               press: () {
-                                print("snapshot = ${snapshot.data.product.id}");
-                                demoCarts.add(ProductCart(id:snapshot.data.product.id,numOfItem: 1));
+                                // print("snapshot = ${snapshot.data.product.id}");
+                                // demoCarts.add(ProductCart(product_id:snapshot.data.product.id,numOfItem: 1));
                                // demoCarts=[];
                                 /// todo:doctor serial dialog should be active
                                 showDialog(
@@ -68,6 +68,7 @@ class _BodyState extends State<Body> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return CustomDialogs(
+                                        product_id: snapshot.data.product.id,
                                         title: 'Enter Doctor Serial',
                                         // description:
                                         // 'The QRcode is right you can use the app now',

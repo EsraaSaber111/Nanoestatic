@@ -4,18 +4,17 @@ import 'package:shop_app/screens/UserProfile/components/profile_widget.dart';
 import 'package:shop_app/screens/UserProfile/components/textfield_widget.dart';
 import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
 
-import 'ProfileBody.dart';
-import 'appbar_widget.dart';
+
 import 'button_widget.dart';
 class EditBody extends StatefulWidget {
-  const EditBody({Key key}) : super(key: key);
+  User user ; EditBody(this.user);
 
   @override
   _EditBodyState createState() => _EditBodyState();
 }
 
 class _EditBodyState extends State<EditBody> {
-  User user = ProfileBody().user;
+
 
   @override
   Widget build(BuildContext context) =>  Scaffold(
@@ -25,36 +24,36 @@ class _EditBodyState extends State<EditBody> {
           physics: BouncingScrollPhysics(),
           children: [
             ProfileWidget(
-              imagePath: user.mainImage,
+              imagePath: widget.user.mainImage,
               isEdit: true,
               onClicked: () async {},
             ),
             const SizedBox(height: 24),
             TextFieldWidget(
               label: 'Full Name',
-              text: user.name,
+              text: widget.user.name,
               onChanged: (name) {},
             ),
             const SizedBox(height: 24),
             TextFieldWidget(
               label: 'Email',
-              text: user.email,
+              text: widget.user.email,
               onChanged: (email) {},
             ),
             const SizedBox(height: 24),
             TextFieldWidget(
               label: 'Address',
-              text: user.address,
+              text: widget.user.address,
               maxLines: 5,
               onChanged: (address) {},
             ),
             const SizedBox(height: 24),
             TextFieldWidget(
               label: 'Phone',
-              text: user.phone,
+              text: widget.user.phone,
               onChanged: (phone) {
                 setState(() {
-                  user.phone=phone;
+                  widget.user.phone=phone;
                 });
               },
             ),
@@ -62,9 +61,9 @@ class _EditBodyState extends State<EditBody> {
     ButtonWidget(
       text: 'Save changes',
       onClicked: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => MainPage()),
-        );
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(builder: (context) => MainPage()),
+        // );
 
       },
     )

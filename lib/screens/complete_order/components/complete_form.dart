@@ -9,6 +9,7 @@ import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/service/Api.dart';
 
 import '../../../constants.dart';
+import '../../../dphelper.dart';
 import '../../../size_config.dart';
 
 
@@ -24,6 +25,8 @@ class _OrderFormFormState extends State<OrderForm> {
   String address;
   String note;
   String name;
+ List<ProductCart> mypro;
+  SQL_Helper helper = new SQL_Helper();
   //String conform_password;
  // bool remember = false;
   final List<String> errors = [];
@@ -40,6 +43,15 @@ class _OrderFormFormState extends State<OrderForm> {
       setState(() {
         errors.remove(error);
       });
+  }
+
+  getprolist(){
+     helper.getDataList().then((value) {
+       setState(() {
+         mypro=value;
+       });
+     });
+    return mypro;
   }
 
   @override
@@ -65,12 +77,12 @@ class _OrderFormFormState extends State<OrderForm> {
            //   print(demoCarts.map((e) => e.toJson()).toList());
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-               // Confirm confirmcourse=Confirm(phone, address, email, note, name);
 
-                CompeleteOrder order=CompeleteOrder(password: phone,email: email,address: address,fullname: email,customerid: 3,notes: note,myProducts: demoCarts);
+               // Confirm confirmcourse=Confirm(phone, address, email, note, name);
+                CompeleteOrder order=CompeleteOrder(password: phone,email: email,address: address,fullname: email,customerid: 3,notes: note,myProducts: getprolist());
                 Api.checkout(order).then((value) => print(value));
                 // if all are valid then go to success screen
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                //Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           ),

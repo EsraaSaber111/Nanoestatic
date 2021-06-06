@@ -5,10 +5,10 @@ import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/models/all_products_model.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 import 'package:shop_app/service/Api.dart';
+import 'package:shop_app/service/WishlistApi.dart';
 
 import '../constants.dart';
 import '../size_config.dart';
-
 
 class ProductCard extends StatefulWidget {
   const ProductCard({
@@ -85,14 +85,26 @@ class _ProductCardState extends State<ProductCard> {
                   InkWell(
                     borderRadius: BorderRadius.circular(50),
                     onTap: () {
-                      Api.addwishlist('wishlist/add?', widget.product.id, 8).then((value) {
-                       // print(value);
-                        Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
-                      });
+                      if(isfav=="product exist"){
+                        WishlistApi.deletewishlist('wishlist/add?', widget.product.id, 8).then((value) {
+                           print(value);
+                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
+                        });
 
-                      setState(() {
-                        clicked=!clicked;
-                      });
+                        setState(() {
+                          clicked=!clicked;
+                        });
+                      }
+                    else{
+                        WishlistApi.addwishlist('wishlist/add?', widget.product.id, 8).then((value) {
+                          // print(value);
+                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
+                        });
+                        setState(() {
+                          clicked=!clicked;
+                        });
+                      }
+
 
                     },
                     child: Container(
@@ -108,7 +120,7 @@ class _ProductCardState extends State<ProductCard> {
                       child:  SvgPicture.asset(
                           "assets/icons/Heart Icon_2.svg",
                           ///todo: if product fav or not
-                          color: isfav=="product exist" && clicked
+                          color: isfav=="product exist"
                               ? Color(0xFFFF4848)
                               : Color(0xFFDBDEE4),
                         ),
@@ -123,7 +135,7 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 String getifav(){
-    Api.ifwishlist('wishlist/check?', 3, 8).then((value) {
+  WishlistApi.ifwishlist('wishlist/check?', widget.product.id , 8).then((value) {
       print(value);
       setState(() {
         isfav=value;

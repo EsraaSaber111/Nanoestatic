@@ -7,6 +7,7 @@ import 'package:shop_app/screens/details/details_screen.dart';
 import 'package:shop_app/screens/wishlist/components/wish_card.dart';
 import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/service/OffersApi.dart';
+import 'package:shop_app/service/WishlistApi.dart';
 
 import '../../../constants.dart';
 class Body extends StatefulWidget {
@@ -22,7 +23,7 @@ class _BodyState extends State<Body> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    wish=Api.getwish(8);
+    wish=WishlistApi.getwish(8);
   }
 
     @override

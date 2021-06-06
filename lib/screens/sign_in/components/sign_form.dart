@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/helper/keyboard.dart';
+import 'package:shop_app/models/login.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
-import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
 import 'package:shop_app/service/Api.dart';
-
+import 'package:shop_app/service/UserApi.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
+import '../../../sharedpref.dart';
 import '../../../size_config.dart';
 
 class SignForm extends StatefulWidget {
@@ -18,11 +19,21 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  SharedPreferences prefs;
   final _formKey = GlobalKey<FormState>();
+  User user;
   String email;
   String password;
   bool remember = false;
   final List<String> errors = [];
+
+  ///shared SharedPreferences method
+
+  savedata(String email, String password)async{
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString('email', email);
+    prefs.setString('password', password);
+  }
 
   void addError({String error}) {
     if (!errors.contains(error))
@@ -76,17 +87,30 @@ class _SignFormState extends State<SignForm> {
           DefaultButton(
             text: "Continue",
             press: () {
+
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
+                 savedata(email,password);
+
+                // await UserSimplePreferences.setEmail(email);
+                // await UserSimplePreferences.setPassword(password);
                 // if all are valid then go to success screen
+
                 KeyboardUtil.hideKeyboard(context);
-                Api.login(email, password).then((value) {
+                UserApi.login(email, password).then((value)  {
 
                   if(value.message=="invalid login"){
                     Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}')));
                   }else{
-                    Navigator.pushNamed(context, MainPage.routeName);
+
+                    ///shared SharedPreferences call
+                    // print(UserSimplePreferences.getEmail().toString());
+                    // print(UserSimplePreferences.getPassword().toString());
+                   Navigator.pushNamed(context, MainPage.routeName);
+
                   Scaffold.of(context).showSnackBar(SnackBar(content: Text('welcome ${value.user.name} ${value.message}')));
+
+
                   }
 
 
