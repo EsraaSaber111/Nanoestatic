@@ -14,9 +14,6 @@ class WishListScreen extends StatelessWidget {
       ),
       body: Body(),
       //bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
-      drawer: Drawer(
-        child: drawer(),
-      ),
     );
   }
 }

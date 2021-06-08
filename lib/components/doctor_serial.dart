@@ -6,6 +6,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shop_app/dphelper.dart';
 import 'package:shop_app/models/Cart.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
+import 'package:shop_app/screens/home/home_screen.dart';
+import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
 import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/service/Api.dart';
 
@@ -149,11 +151,15 @@ class _State extends State<CustomDialogs> {
                               //todo:here add product to card
                               ProductCart cart=ProductCart(product_id: widget.product_id, numOfItem: 1);
 
-                              int id= await helper.insertCart(cart);
+                                int id= await helper.insertCart(cart);
                               print(id);
                               Navigator.of(context).pop();
-                              Navigator.pushNamed(
-                                  context, CartScreen.routeName);
+
+                              //Navigator.pushReplacementNamed(context, CartScreen.routeName);
+                             Navigator.of(context).pushNamedAndRemoveUntil(CartScreen.routeName, ModalRoute.withName(MainPage.routeName));
+
+                              // Navigator.pushNamed(
+                              //     context, CartScreen.routeName);
                               print(value.toString());
                             }
                             else {

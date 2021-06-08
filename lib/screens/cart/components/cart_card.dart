@@ -10,10 +10,17 @@ import '../../../size_config.dart';
 class CartCard extends StatefulWidget {
   ProductCart cart;
   CartCard(this.cart);
+  SQL_Helper helper = new SQL_Helper();
   Future<Product_model> product;
   @override
   _CartCardState createState() => _CartCardState();
 }
+
+// cart=await helper.updateCartCount(cart.id);
+// cart.quantity++;
+// result = await helper.updateCart(cart);
+
+
 
 class _CartCardState extends State<CartCard> {
   @override
@@ -29,7 +36,6 @@ class _CartCardState extends State<CartCard> {
         future: widget.product,
         builder: (_, snapshot) {
           if (snapshot.hasData) {
-
             return Row(
               children: [
                 SizedBox(
@@ -58,23 +64,75 @@ class _CartCardState extends State<CartCard> {
                       maxLines: 2,
                     ),
                     SizedBox(height: 10),
-                    Text.rich(
-                      TextSpan(
-                        text: "\$${snapshot.data.product.lastPrice}",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, color: kPrimaryColor),
-                        children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text.rich(
                           TextSpan(
-                              text: " x${snapshot.data.product.totalQuantityAdded}",
-                              style: Theme.of(context).textTheme.bodyText1),
-                        ],
-                      ),
-                    )
+                              text: "\$${snapshot.data.product.lastPrice}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: kPrimaryColor),
+                              children: [
+                                TextSpan(text: "x"),
+                              ]),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 40,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black12),
+                              borderRadius: BorderRadius.circular(25)),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                  icon: Icon(
+                                    Icons.add,
+                                    size: 15,
+                                  ),
+                                  onPressed: () {
+
+                                    setState(() {
+                                     widget.helper.updateCartCount(widget.cart.id).then((value) {
+                                       widget.cart=value;
+                                        widget.cart.numOfItem++;
+                                        widget.helper.updateCart(widget.cart);
+                                      });
+
+                                    });
+                                 //   widget.helper.updateCart(ProductCart(product_id: snapshot.data.product.id,numOfItem: widget.cart.numOfItem));
+                                    print("updated${widget.cart.numOfItem}");
+                                  }),
+                              Text('${widget.cart.numOfItem}'),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: IconButton(
+                                    icon: Icon(Icons.minimize, size: 15),
+                                    onPressed: () {
+                                      setState(() {
+                                        if (widget.cart.numOfItem == 1) {
+                                          return;
+                                        } else
+                                          widget.helper.updateCartCount(widget.cart.id).then((value) {
+                                            widget.cart=value;
+                                            widget.cart.numOfItem--;
+                                            widget.helper.updateCart(widget.cart);
+                                          });
+                                          widget.cart.numOfItem--;
+                                      });
+                                    }),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 )
               ],
             );
-
           } else {
             return Center();
           }

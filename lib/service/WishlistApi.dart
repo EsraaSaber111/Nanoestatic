@@ -70,7 +70,7 @@ class WishlistApi{
   ///deletewishlist
 
   static Future<dynamic> deletewishlist(String url,int product_id, int userid) async {
-    final response = await http.post(
+    final response = await http.delete(
         '${baseurl + url + "api_username=" + name + "&api_password=" +
             password + "&api_lang=" + await getLanguageCode() +
             "&user_id=" +
@@ -78,10 +78,13 @@ class WishlistApi{
             "&product_id=" +
             product_id.toString()}');
     if (response.statusCode == 200) {
-      print(response.body);
       var data = jsonDecode(response.body);
-      return data['message'];
-    }
+      print(response.body);
+      return data.toString();
+    } else (e){
+      print(e);
+      throw Exception(e);
+    };
 
   }
 }

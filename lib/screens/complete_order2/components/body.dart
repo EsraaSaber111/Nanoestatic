@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
-                OrderForm(),
+                OrderForm2(),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,

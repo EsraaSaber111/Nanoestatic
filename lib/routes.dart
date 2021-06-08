@@ -16,6 +16,7 @@ import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
 import 'package:shop_app/screens/offers/offers_screen.dart';
 import 'package:shop_app/screens/otp/otp_screen.dart';
+import 'package:shop_app/screens/product_serial/product_serial_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
 import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 import 'package:shop_app/screens/specific_products/SpecificScreen.dart';
@@ -50,4 +51,5 @@ final Map<String, WidgetBuilder> routes = {
   MainPage.routeName:(context)=>MainPage(),
   WishListScreen.routeName:(context)=>WishListScreen(),
  // SpecificScreen.routeName:(context)=>SpecificScreen()
+  ProductSerialScreen.routeName:(context)=>ProductSerialScreen(),
 };

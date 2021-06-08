@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/screens/categories/categories_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
@@ -17,6 +18,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  //String instance;
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
@@ -33,6 +35,18 @@ class _BodyState extends State<Body> {
       "image": "assets/images/s3.jpg"
     },
   ];
+
+  // @override
+  // void initState() {
+  //   SharedPreferences.getInstance().then((prefs) {
+  //     setState(() {
+  //       instance= prefs.getString("user_token");
+  //       print(instance);
+  //     });
+  //   });
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -75,7 +89,7 @@ class _BodyState extends State<Body> {
                       text: "Continue",
                       press: () {
                         Navigator.pushNamed(context, SignInScreen.routeName);
-                       // Navigator.pushNamed(context, MainPage.routeName);
+                   //  instance==null? Navigator.pushNamed(context, SignInScreen.routeName): Navigator.pushNamed(context, MainPage.routeName);
                       },
                     ),
                     Spacer(),

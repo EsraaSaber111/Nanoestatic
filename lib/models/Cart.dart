@@ -7,10 +7,13 @@ class ProductCart {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
     data['product_id'] = this.product_id;
     data['quantity'] = this.numOfItem;
     return data;
+  }
+  String to_String() {
+    final String data = '';
+    return '{"product_id":${product_id.toString()},"quantity":${numOfItem.toString()}}';
   }
 
   Map<String, dynamic> toMap() {

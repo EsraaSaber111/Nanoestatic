@@ -21,7 +21,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String email;
   String password;
   String name;
-  int phone;
+  String phone;
   bool remember = false;
   final List<String> errors = [];
 
@@ -80,14 +80,14 @@ class _SignUpFormState extends State<SignUpForm> {
     return TextFormField(
       keyboardType: TextInputType.number,
       // obscureText: true,
-      onSaved: (newValue) => phone = int.parse(newValue),
+      onSaved: (newValue) => phone = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNullError);
         } else if (value.length >= 10) {
           removeError(error: kShortPhoneError);
         }
-        phone = int.parse(value);
+        phone = value;
       },
       validator: (value) {
         if (value.isEmpty) {

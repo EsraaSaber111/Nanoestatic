@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/localization/demo_localization.dart';
 import 'package:shop_app/routes.dart';
+import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
 import 'package:shop_app/screens/splash/splash_screen.dart';
 import 'package:shop_app/theme.dart';
 import 'localization/language_constants.dart';
@@ -40,6 +42,18 @@ class _MyAppState extends State<MyApp> {
     });
     super.didChangeDependencies();
   }
+  String instance;
+  @override
+  void initState() {
+    SharedPreferences.getInstance().then((prefs) {
+      setState(() {
+        instance= prefs.getString("user_token");
+        print(instance);
+      });
+    });
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +77,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       // home: SplashScreen(),
       // We use routeName so that we dont need to remember the name
-      initialRoute: SplashScreen.routeName,
+      initialRoute: instance==null? SplashScreen.routeName: MainPage.routeName,
       routes: routes,
     );
   }

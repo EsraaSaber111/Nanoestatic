@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:shop_app/models/Cart.dart';
 import 'package:sqflite/sqflite.dart';
-class SQL_Helper {
 
+class SQL_Helper {
   static SQL_Helper dbHelper;
   static Database _database;
 
@@ -95,6 +95,7 @@ class SQL_Helper {
   Future<int> deleteCart(int id) async {
     var db = await this.database;
     int result = await db.rawDelete("DELETE FROM $tableName WHERE $_id = $id");
+
     return result;
   }
   Future<int> getCount() async {

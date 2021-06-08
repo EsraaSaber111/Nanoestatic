@@ -15,5 +15,12 @@
   "offer": "offer",
   "settings": "settings",
   "wishlist": "favorites",
-  "profile": "profile"
+  "profile": "profile",
+  "Full Name": "Full Name",
+  "Email": "Email",
+  "Phone": "Phone",
+  "Address": "Address",
+  "Edit Profile": "Edit Profile",
+  "Save changes": "Save changes",
+  "Password": "Password"
 }

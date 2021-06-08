@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/api_constants.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/models/all_products_model.dart';
@@ -11,12 +12,14 @@ import '../constants.dart';
 import '../size_config.dart';
 
 class ProductCard extends StatefulWidget {
+
   const ProductCard({
     Key key,
     this.width = 140,
     this.aspectRetio = 1.02,
     @required this.product,
   }) : super(key: key);
+
 
   final double width, aspectRetio;
   final AllProducts product;
@@ -26,7 +29,7 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
 
-
+  String id;
  bool clicked=false;
  String isfav="";
 
@@ -35,6 +38,11 @@ class _ProductCardState extends State<ProductCard> {
     // TODO: implement initState
     super.initState();
     getifav();
+    SharedPreferences.getInstance().then((value) {
+      setState(() {
+        id = value.getString('id');
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -86,7 +94,7 @@ class _ProductCardState extends State<ProductCard> {
                     borderRadius: BorderRadius.circular(50),
                     onTap: () {
                       if(isfav=="product exist"){
-                        WishlistApi.deletewishlist('wishlist/add?', widget.product.id, 8).then((value) {
+                        WishlistApi.deletewishlist('wishlist/delete?', widget.product.id, int.parse(id)).then((value) {
                            print(value);
                           Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
                         });

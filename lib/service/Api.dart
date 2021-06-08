@@ -107,7 +107,7 @@ class Api {
         '${baseurl + allCoursesURL + "api_username=" + name + "&api_password=" +
             password + "&api_lang=" + await getLanguageCode()}');
     if (response.statusCode == 200) {
-      //  print(response.body);
+       print(response.body);
       final jsondata = json.decode(response.body);
       Courses courses = Courses.fromJson(jsondata);
       List<AllCourses> Allcourses = [];
@@ -166,20 +166,6 @@ class Api {
 
   ///get course (details) data
 
-  static Future<Course_Model> getcoursedetails(int id) async {
-    final response = await http.get(
-        '${baseurl + courseURL + "api_username=" + name + "&api_password=" +
-            password + "&api_lang=" + await getLanguageCode() + "&course_id=" +
-            id.toString()}');
-    if (response.statusCode == 200) {
-      //  print(response.body);
-      final jsondata = json.decode(response.body);
-      // print(jsondata);
-      return Course_Model.fromJson(jsondata);
-    } else {
-      throw Exception('faild');
-    }
-  }
 
   /// get contact us data
 
@@ -234,53 +220,31 @@ class Api {
 
 
 
-  static Future<CheckOut> checkout(CompeleteOrder order) async {
+  static Future<String> checkout(CompeleteOrder order) async {
+    print("order ${order.myProducts}");
     print( '${baseurl + CheckoutURL + "api_username=" + name + "&api_password=" +
         password + "&api_lang=" + await getLanguageCode() + "&email=" +
-        order.email + "&password=" + order.password + "&fullname=" +
+        order.email + "&phone=" + order.phone + "&fullname=" +
         order.fullname + "&address=" + order.address + "&notes=" +
         order.notes + "&orderd_by=" + order.customerid.toString() +
-        "&allProducts=" + "${order.myProducts.map((e) => e.toJson()).toList()}"}');
+        "&allProducts=" + "${order.myProducts.map((e) => e.to_String()).toList()}"}');
     final response = await http.post(
         '${baseurl + CheckoutURL + "api_username=" + name + "&api_password=" +
             password + "&api_lang=" + await getLanguageCode() + "&email=" +
-            order.email + "&password=" + order.password + "&fullname=" +
-            order.fullname + "&address=" + order.address + "&notes=" +
-            order.notes + "&orderd_by=" + order.customerid.toString() +
-            "&allProducts=" + "${order.myProducts.map((e) => e.toJson()).toList()}"}');
+            order.email + "&phone=" + order.phone + "&fullname=" +
+            order.fullname + "&address=" + order.address + "&notes="+ order.notes + "&orderd_by=" + order.customerid.toString() +
+            "&allProducts=" + "${order.myProducts.map((e) => e.to_String()).toList()}"}');
     if (response.statusCode == 200) {
-
       var data = jsonDecode(response.body);
       print(response.body);
-      return data['message'];
-    } else ( e){
+      return data.toString();
+    } else (e){
       print(e);
       throw Exception(e);
     };
   }
 
-  ///applycourse
 
-  static Future<dynamic> confirmcourse(String url, Confirm c, int courseid,
-      int userid) async {
-    final response = await http.post(
-        '${baseurl + url + "api_username=" + name + "&api_password=" +
-            password + "&api_lang=" + await getLanguageCode() + "&name=" +
-            c.name + "&phone=" +
-            c.phone + "&notes=" +
-            c.note + "&address=" +
-            c.address + "&email=" +
-            c.email +
-            "&user_id=" +
-            userid.toString() +
-            "&course_id=" +
-            courseid.toString()}');
-    if (response.statusCode == 200) {
-// print(response.body);
-      var data = jsonDecode(response.body);
-      return data['message'];
-    }
-  }
 
 
 

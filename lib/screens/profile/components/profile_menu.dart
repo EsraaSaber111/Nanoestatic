@@ -10,9 +10,11 @@ class ProfileMenu extends StatelessWidget {
    this.icon,
    this.sub,
     this.press,
+    this.color
   }) : super(key: key);
 
   final String text, sub, icon;
+  final Color color;
   final VoidCallback press;
 
   @override
@@ -22,7 +24,7 @@ class ProfileMenu extends StatelessWidget {
       child: FlatButton(
         padding: EdgeInsets.all(10),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: Color(0xFFF5F6F9),
+        color: color==null?Color(0xFFF5F6F9):color,
         onPressed: press,
         child: Row(
           children: [

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/Product.dart';
 
-import 'expansion.dart';
+import '../../UserProfile/expansion.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
@@ -44,7 +44,7 @@ class Body extends StatelessWidget {
             icon: "assets/icons/Location point.svg",
             press: () {},
           ),
-          ExPanal(courses),
+         // ExPanal(courses),
         ],
       ),
     );

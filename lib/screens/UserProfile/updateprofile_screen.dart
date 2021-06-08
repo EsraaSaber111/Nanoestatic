@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/components/coustom_bottom_nav_bar.dart';
 import 'package:shop_app/models/login.dart';
+import '../../enums.dart';
 import 'components/EditBody.dart';
 class UpdateProfileScreen extends StatelessWidget {
   static String routeName = "/updateprofile";
-  // User user;
-  // UpdateProfileScreen(this.user);
+  Login login;
+  UpdateProfileScreen(this.login);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Edit Profile"),
       ),
-   //  body: EditBody(user),
-    //  bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.profile),
+     body: EditBody(login),
+    // bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.profile),
     );
   }
 }

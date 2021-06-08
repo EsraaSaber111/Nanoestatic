@@ -1,104 +1,106 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/api_constants.dart';
-import 'package:shop_app/models/Product.dart';
+import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/login.dart';
-import 'package:shop_app/screens/UserProfile/components/profile_widget.dart';
-import 'package:shop_app/screens/profile/components/expansion.dart';
+import 'package:shop_app/screens/UserProfile/expansion.dart';
 import 'package:shop_app/screens/profile/components/profile_menu.dart';
-import 'package:shop_app/service/Api.dart';
+import 'package:shop_app/screens/splash/splash_screen.dart';
 import 'package:shop_app/service/UserApi.dart';
-
-import '../../../sharedpref.dart';
 import '../updateprofile_screen.dart';
-import 'appbar_widget.dart';
 import 'button_widget.dart';
-import 'numbers_widget.dart';
+import 'expanioncourse.dart';
 
 class ProfileBody extends StatefulWidget {
-  // final User user=User(name: "esraa" , phone: '12345677' , email:  'esraa@gmail.com', address: "streeet" , mainImage: 'assets/images/course.jpg');
-
   @override
   _ProfileBodyState createState() => _ProfileBodyState();
 }
 
 class _ProfileBodyState extends State<ProfileBody> {
-  Future<Login> login;
-
-
+  Login login;
+  String instance;
   @override
   void initState() {
-    // TODO: implement initState
+    ///todo:get all applyed courses
+
     super.initState();
-    login=UserApi.getuser(8);
+    SharedPreferences.getInstance().then((pref) async {
+      UserApi.getuser(pref.getString('id')).then((value) {
+        setState(() {
+          login = value;
+        });
+      });
+      //  setState(() {
+      //    login = Login(
+      //        user: User(
+      //          name: pref.getString('name'),
+      //          email: pref.getString('email'),
+      //          phone: pref.getString('phone'),
+      //          address: pref.getString('address'),
+      //        ));
+      //  });
+      // });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<Login>(
-          future: login,
-          builder: (_, snapshot) {
-            if (snapshot.hasData) {
-              return ListView(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            logout();
+          },
+          child: Icon(Icons.logout),
+        ),
+        body: login == null
+            ? Container()
+            : ListView(
                 physics: BouncingScrollPhysics(),
                 children: [
                   const SizedBox(height: 10),
                   // ProfileWidget(
-                  //   imagePath:'${imageURl+ snapshot.data.user.mainImage}',
+                  //   imagePath:'${imageURl+login.user.mainImage}',
                   //   onClicked: () {
                   //     // Navigator.of(context).push(
                   //     //   MaterialPageRoute(builder: (context) => UpdateProfileScreen()),
                   //     // );
                   //   },
                   // ),
-                  const SizedBox(height: 20),
-                  // buildName(widget.user),
+                  //const SizedBox(height: 20),
+                  buildName(login.user),
                   const SizedBox(height: 20),
                   Center(child: buildUpgradeButton()),
                   //NumbersWidget(),
                   const SizedBox(height: 48),
                   ProfileMenu(
-                    text: "Full Name",
-                    sub: "${snapshot.data.user.name}",
+                    text: "${getTranslated(context, 'Full Name')}",
+                    sub: "${login.user.name}",
                     icon: "assets/icons/User Icon.svg",
                     press: () => {},
                   ),
                   ProfileMenu(
-                    text: "Email",
-                    sub: "${snapshot.data.user.email}",
+                    text: "${getTranslated(context, 'Email')}",
+                    sub: "${login.user.email}",
                     icon: "assets/icons/Mail.svg",
                     press: () {},
                   ),
+
                   ProfileMenu(
-                    text: "Password",
-                    sub: "*********",
-                    icon: "assets/icons/Question mark.svg",
-                    press: () {},
-                  ),
-                  ProfileMenu(
-                    text: "Phone",
-                    sub: "${snapshot.data.user.phone}",
+                    text: "${getTranslated(context, 'Phone')}",
+                    sub: "${login.user.phone}",
                     icon: "assets/icons/Phone.svg",
                     press: () {},
                   ),
                   ProfileMenu(
-                    text: "Address",
-                    sub: "${snapshot.data.user.address}",
+                    text: "${getTranslated(context, 'Address')}",
+                    sub: "${login.user.address}",
                     icon: "assets/icons/Location point.svg",
                     press: () {},
                   ),
-                  ExPanal(courses),
+                  ExPanalOrders(),
+                  ExPanalCourses(),
                   //buildAbout(widget.user),
                 ],
-              );
-            } else {
-              return Center(
-                child: Text('not'),
-              );
-            }
-          }),
-    );
+              ));
   }
 
   Widget buildName(User user) => Column(
@@ -116,11 +118,11 @@ class _ProfileBodyState extends State<ProfileBody> {
       );
 
   Widget buildUpgradeButton() => ButtonWidget(
-        text: 'Edit Profile',
+        text: '${getTranslated(context, 'Edit Profile')}',
         onClicked: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context) => UpdateProfileScreen(
+                builder: (context) => UpdateProfileScreen(login
                     //    widget.user
                     )),
           );
@@ -145,4 +147,12 @@ class _ProfileBodyState extends State<ProfileBody> {
           ),
         ),
       );
+  logout() {
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.clear();
+      print(prefs.getString('user_token'));
+    });
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SplashScreen()));
+  }
 }

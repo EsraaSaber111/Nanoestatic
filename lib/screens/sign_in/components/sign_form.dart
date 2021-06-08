@@ -27,13 +27,8 @@ class _SignFormState extends State<SignForm> {
   bool remember = false;
   final List<String> errors = [];
 
-  ///shared SharedPreferences method
 
-  savedata(String email, String password)async{
-    prefs = await SharedPreferences.getInstance();
-    prefs.setString('email', email);
-    prefs.setString('password', password);
-  }
+
 
   void addError({String error}) {
     if (!errors.contains(error))
@@ -48,6 +43,7 @@ class _SignFormState extends State<SignForm> {
         errors.remove(error);
       });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +86,7 @@ class _SignFormState extends State<SignForm> {
 
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-                 savedata(email,password);
+                // savedata(email,password);
 
                 // await UserSimplePreferences.setEmail(email);
                 // await UserSimplePreferences.setPassword(password);
@@ -102,7 +98,9 @@ class _SignFormState extends State<SignForm> {
                   if(value.message=="invalid login"){
                     Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}')));
                   }else{
-
+                     // SharedPreferences.getInstance().then((prefs) {
+                     //    prefs.setString("instance",'done');
+                     //  });
                     ///shared SharedPreferences call
                     // print(UserSimplePreferences.getEmail().toString());
                     // print(UserSimplePreferences.getPassword().toString());

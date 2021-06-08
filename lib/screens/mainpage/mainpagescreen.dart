@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/components/drawer.dart';
 import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/login.dart';
 import 'package:shop_app/screens/UserProfile/userprofile_screen.dart';
@@ -6,6 +7,8 @@ import 'package:shop_app/screens/home/components/bottombar.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
 import 'package:shop_app/screens/wishlist/wishlist_screen.dart';
+
+import '../../size_config.dart';
 class MainPage extends StatefulWidget {
 
   // final User user;
@@ -25,7 +28,9 @@ class _MainPageState extends State<MainPage> {
   ];
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
+      //drawer: Drawer(child: drawer(),),
       body:tabs[_currentindex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentindex,

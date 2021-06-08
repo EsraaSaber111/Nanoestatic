@@ -1,47 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
-import 'package:shop_app/models/Cart.dart';
-import 'package:shop_app/models/CompeleteOrder.dart';
-import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import 'package:shop_app/service/Api.dart';
-
+import 'package:shop_app/service/CoursesApi.dart';
+import 'package:shop_app/service/UserApi.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-
-class OrderForm extends StatefulWidget {
+class OrderForm2 extends StatefulWidget {
   @override
-  _OrderFormFormState createState() => _OrderFormFormState();
+  _OrderFormForm2State createState() => _OrderFormForm2State();
 }
 
-class _OrderFormFormState extends State<OrderForm> {
+class _OrderFormForm2State extends State<OrderForm2> {
   final _formKey = GlobalKey<FormState>();
   String email;
   String phone;
   String address;
   String note;
   String name;
-  //String conform_password;
- // bool remember = false;
-  final List<String> errors = [];
+  String user_id;
+  String course_id;
 
+  final List<String> errors = [];
   void addError({String error}) {
     if (!errors.contains(error))
       setState(() {
         errors.add(error);
       });
   }
-
+  
   void removeError({String error}) {
     if (errors.contains(error))
       setState(() {
         errors.remove(error);
       });
   }
+  @override
+  void initState() {
+    SharedPreferences.getInstance().then((value) {
+      print(value.getString('id'));
+      setState(() {
+        user_id = value.getString('id');
+        course_id=value.getString('course_id');
+      });
+    });
+    // TODO: implement initState
+    super.initState();
+  // print('user=${user_id}');
+  //   print('user=${course_id}');
 
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -64,12 +76,12 @@ class _OrderFormFormState extends State<OrderForm> {
             press: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-               Confirm confirmcourse=Confirm(phone, address, email, note, name);
-               Api.confirmcourse('course/store?', confirmcourse, 3, 6).then((value) {
+               Confirm confirmcourse=Confirm(phone:phone, address:address, email:email, note:note, name:name,userid: int.parse(user_id),courseid: int.parse(course_id));
+                CoursesApi.confirmcourse('course/store?', confirmcourse).then((value) {
                  print(value);
-                 Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}')));
+                 Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
                });
-
+    // =================================================================================
                 // CompeleteOrder order=CompeleteOrder(password: phone,email: email,address: address,fullname: email,customerid: 3,notes: note,myProducts: demoCarts);
                 // Api.checkout(order);
                 // if all are valid then go to success screen
@@ -81,7 +93,6 @@ class _OrderFormFormState extends State<OrderForm> {
       ),
     );
   }
-
   TextFormField buildNoteFormField() {
     return TextFormField(
       maxLines: 5,
@@ -259,6 +270,8 @@ class Confirm{
   String address;
   String note;
   String name;
+  int userid;
+  int courseid;
 
-  Confirm(this.phone,this.address,this.email,this.note,this.name);
+  Confirm({this.phone,this.address,this.email,this.note,this.name,this.userid,this.courseid});
 }

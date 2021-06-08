@@ -34,7 +34,7 @@ class ProfileWidget extends StatelessWidget {
 
   Widget buildImage() {
     //TODO:Edit to network
-    final image = AssetImage(imagePath);
+    final image = NetworkImage(imagePath);
 
     return ClipOval(
       child: Material(

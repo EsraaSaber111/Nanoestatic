@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/models/Cart.dart';
 
 import '../../../dphelper.dart';
@@ -12,8 +13,17 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  SQL_Helper helper=SQL_Helper();
+  SQL_Helper helper = SQL_Helper();
+  Future<List<ProductCart>> carts;
 
+  @override
+  void initState() {
+    setState(() {
+      carts = helper.getDataList();
+      helper.getDataList().then((items) => SharedPreferences.getInstance().then((value) => value.setInt('length',items.length)));
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +31,8 @@ class _BodyState extends State<Body> {
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: FutureBuilder<List<ProductCart>>(
-          future: helper.getDataList(),
-          builder: (_, snapshot){
+          future: carts,
+          builder: (_, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
                 itemCount: snapshot.data.length,
@@ -33,11 +43,15 @@ class _BodyState extends State<Body> {
                     direction: DismissDirection.endToStart,
                     onDismissed: (direction) {
                       setState(() {
-                        helper.deleteCart(index);
+                        helper
+                            .deleteCart(snapshot.data[index].id)
+                            .whenComplete(() {
+                          print("deleted");
+                          setState(() {
+                            carts = helper.getDataList();
+                          });
+                        });
                       });
-
-
-
                     },
                     background: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -56,8 +70,10 @@ class _BodyState extends State<Body> {
                   ),
                 ),
               );
-            }else{
-              return Center(child: Text('no products'),);
+            } else {
+              return Center(
+                child: Text('no products'),
+              );
             }
           }),
     );

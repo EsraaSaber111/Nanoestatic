@@ -13,10 +13,9 @@ import 'icon_btn_with_counter.dart';
 import 'search_field.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({
-    Key key,
-  }) : super(key: key);
 
+int length;
+HomeHeader(this.length);
   @override
   Widget build(BuildContext context) {
     void _changelanguage(Languages language)async {
@@ -62,7 +61,7 @@ class HomeHeader extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(3),
                   child: IconBtnWithCounter(
-                    numOfitem: 3,
+                    numOfitem: length,
                     svgSrc: "assets/icons/Cart Icon.svg",
                     press: ()  async{
                       // languageCode

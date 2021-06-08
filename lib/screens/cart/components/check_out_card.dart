@@ -7,13 +7,12 @@ import 'package:shop_app/screens/complete_order/complete_order.dart';
 import 'package:shop_app/service/Api.dart';
 
 import '../../../constants.dart';
+import '../../../dphelper.dart';
 import '../../../size_config.dart';
 
 class CheckoutCard extends StatelessWidget {
-  const CheckoutCard({
-    Key key,
-  }) : super(key: key);
 
+  SQL_Helper helper = new SQL_Helper();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,6 +45,7 @@ class CheckoutCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                ///todo:get calculation
                 Text.rich(
                   TextSpan(
                     text: "Total:\n",
@@ -62,7 +62,8 @@ class CheckoutCard extends StatelessWidget {
                   child: DefaultButton(
                     text: "Check Out",
                     press: () {
-                      print(demoCarts.length);
+
+                     // helper.deleteall();
                         Navigator.pushNamed(
                             context,
                             CompleteOrder.routeName);
