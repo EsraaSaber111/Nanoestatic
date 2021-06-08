@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/constants.dart';
 import 'package:shop_app/dphelper.dart';
 import 'package:shop_app/models/Cart.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
@@ -17,16 +19,15 @@ import '../size_config.dart';
 class CustomDialogs extends StatefulWidget {
   final String title, description, buttontext1, buttontext2;
   final Image image;
- final int product_id;
+  final int product_id;
 
-  const CustomDialogs(
-      {Key key,
-        this.product_id,
-        this.title,
-        this.description,
-        this.buttontext1,
-        this.buttontext2,
-        this.image})
+  const CustomDialogs({Key key,
+    this.product_id,
+    this.title,
+    this.description,
+    this.buttontext1,
+    this.buttontext2,
+    this.image})
       : super(key: key);
 
   @override
@@ -35,6 +36,7 @@ class CustomDialogs extends StatefulWidget {
 
 class _State extends State<CustomDialogs> {
   TextEditingController textEditingController = TextEditingController();
+
   // ..text = "123456";
 
   // ignore: close_sinks
@@ -49,7 +51,6 @@ class _State extends State<CustomDialogs> {
   void initState() {
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
-
   }
 
   @override
@@ -69,7 +70,7 @@ class _State extends State<CustomDialogs> {
 
           children: [
             Container(
-             // height: 250,
+              // height: 250,
               padding: EdgeInsets.only(
                   top: Consts.paddding + Consts.avatar,
                   left: Consts.paddding,
@@ -141,54 +142,65 @@ class _State extends State<CustomDialogs> {
                               blurRadius: 10,
                             )
                           ],
+
                           ///handle on click here
                           onCompleted: (v) {
-
                             print(v);
-                          Api.getdotor(v,"doctorserial/exist?").then((value) async {
-                            print(value);
-                            if (value == "serial exist") {
-                              //todo:here add product to card
-                              ProductCart cart=ProductCart(product_id: widget.product_id, numOfItem: 1);
+                            Api.getdotor(v, "doctorserial/exist?").then((
+                                value) async {
+                              print(value);
+                              if (value == "serial exist") {
+                                //todo:here add product to card
+                                ProductCart cart = ProductCart(
+                                    product_id: widget.product_id,
+                                    numOfItem: 1);
 
-                                int id= await helper.insertCart(cart);
-                              print(id);
-                              Navigator.of(context).pop();
+                                int id = await helper.insertCart(cart);
+                                print(id);
+                                helper.getCount().then((count) {
+                                  SharedPreferences.getInstance().then((value) {
+                                    value.setInt('length',count );
+                                    setState(() {
+                                      counts=count;
+                                    });
+                                  });});
 
-                              //Navigator.pushReplacementNamed(context, CartScreen.routeName);
-                             Navigator.of(context).pushNamedAndRemoveUntil(CartScreen.routeName, ModalRoute.withName(MainPage.routeName));
 
-                              // Navigator.pushNamed(
-                              //     context, CartScreen.routeName);
-                              print(value.toString());
+
+                                //Navigator.pushReplacementNamed(context, CartScreen.routeName);
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    CartScreen.routeName,
+                                    ModalRoute.withName(MainPage.routeName));
+
+                                // Navigator.pushNamed(
+                                //     context, CartScreen.routeName);
+                                print(value.toString());
+                              }
+                              else {
+                                print('error');
+                                setState(() {
+                                  hasError = false;
+                                });
+                              }
                             }
-                            else {
-                              print('error');
-                              setState(() {
-                                hasError=false;
-                              });
-                            }
-                          }
 
-                          );
-
-                              },
+                            );
+                          },
 
 
                           //
-                            //Navigator.pushNamed(context, CartScreen.routeName);
-                            //print("Completed");
+                          //Navigator.pushNamed(context, CartScreen.routeName);
+                          //print("Completed");
 
 
                           onChanged: (value) {
-                           // print(value);
+                            // print(value);
 
                             setState(() {
-                              hasError=true;
+                              hasError = true;
 
                               currentText = value;
                             });
-
                           },
                           beforeTextPaste: (text) {
                             print("Allowing to paste $text");
@@ -198,7 +210,7 @@ class _State extends State<CustomDialogs> {
                           },
                         )),
                   ),
-                  hasError?Container():Text("Nodata"),
+                  hasError ? Container() : Text("Nodata"),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -215,7 +227,8 @@ class _State extends State<CustomDialogs> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text(widget.buttontext2,  style: TextStyle(color: Colors.white, fontSize: 15)),),
+                        child: Text(widget.buttontext2, style: TextStyle(
+                            color: Colors.white, fontSize: 15)),),
                     ],
                   )
 
@@ -252,8 +265,10 @@ class _State extends State<CustomDialogs> {
   }
 
 }
+
 class Consts {
   static const double paddding = 16;
   static const double avatar = 66;
+
   Consts._();
 }

@@ -34,7 +34,7 @@ class IconBtnWithCounter extends StatelessWidget {
             ),
             child: SvgPicture.asset(svgSrc),
           ),
-          if (numOfitem != 0)
+          if (counts != 0)
             Positioned(
               top: -3,
               right: 0,
@@ -48,7 +48,7 @@ class IconBtnWithCounter extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "$numOfitem",
+                    "${counts??0}",
                     style: TextStyle(
                       fontSize: getProportionateScreenWidth(10),
                       height: 1,

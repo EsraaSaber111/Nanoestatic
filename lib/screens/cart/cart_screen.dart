@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/constants.dart';
 import 'package:shop_app/models/Cart.dart';
 
 import '../../dphelper.dart';
@@ -26,6 +27,7 @@ class _CartScreenState extends State<CartScreen> {
     SharedPreferences.getInstance().then((value) {
       setState(() {
         len=value.getInt('length');
+        print("len $len");
       });
     }
     );
@@ -51,7 +53,7 @@ class _CartScreenState extends State<CartScreen> {
             style: TextStyle(color: Colors.black),
           ),
           Text(
-            "${len} items",
+            "${counts??0} items",
             style: Theme.of(context).textTheme.caption,
           ),
         ],

@@ -4,6 +4,7 @@ import 'package:shop_app/size_config.dart';
 
 
 const kBackgroundColor = Color(0XFFE5E5E5);
+int counts = 0;
 
 const kCardInfoBG = Color(0XFF686868);
 const kRatingStarColor = Color(0XFFF4D150);

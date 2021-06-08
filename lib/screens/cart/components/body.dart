@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/constants.dart';
 import 'package:shop_app/models/Cart.dart';
 
 import '../../../dphelper.dart';
@@ -49,7 +50,11 @@ class _BodyState extends State<Body> {
                           print("deleted");
                           setState(() {
                             carts = helper.getDataList();
+
                           });
+                          helper.getCount().then((value) {setState(() {
+                            counts=value;
+                          });});
                         });
                       });
                     },

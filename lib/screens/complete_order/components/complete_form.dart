@@ -101,6 +101,7 @@ class _OrderFormFormState extends State<OrderForm> {
                     notes: note,
                     myProducts: mypro);
                 helper.deleteall();
+                counts=0;
                 Api.checkout(order).then((value) => print(value));
                 // if all are valid then go to success screen
                 showDialog(
