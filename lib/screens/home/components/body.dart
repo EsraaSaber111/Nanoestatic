@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/Provider/provider.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/screens/home/components/slider.dart';
@@ -20,6 +22,7 @@ class Body extends StatefulWidget {
   _BodyState createState() => _BodyState();
 }
 class _BodyState extends State<Body> {
+
   int len=0;
   @override
   void initState() {
@@ -28,7 +31,7 @@ class _BodyState extends State<Body> {
     SharedPreferences.getInstance().then((value) {
       setState(() {
         len = value.getInt('length');
-        counts = value.getInt('length');
+        Provider.of<Provider_control>(context,listen: false).setCount(value.getInt('length'));
       });
     });
         }

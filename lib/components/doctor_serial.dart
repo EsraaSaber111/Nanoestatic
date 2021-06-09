@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/Provider/provider.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/dphelper.dart';
 import 'package:shop_app/models/Cart.dart';
@@ -161,11 +163,9 @@ class _State extends State<CustomDialogs> {
                                   SharedPreferences.getInstance().then((value) {
                                     value.setInt('length',count );
                                     setState(() {
-                                      counts=count;
+                                      Provider.of<Provider_control>(context,listen: false).setCount(count);
                                     });
                                   });});
-
-
 
                                 //Navigator.pushReplacementNamed(context, CartScreen.routeName);
                                 Navigator.of(context).pushNamedAndRemoveUntil(

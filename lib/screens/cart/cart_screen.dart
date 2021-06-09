@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/Provider/provider.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/models/Cart.dart';
 
@@ -45,6 +47,8 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   AppBar buildAppBar(BuildContext context) {
+    final themeColor = Provider.of<Provider_control>(context);
+
     return AppBar(
       title: Column(
         children: [
@@ -53,7 +57,7 @@ class _CartScreenState extends State<CartScreen> {
             style: TextStyle(color: Colors.black),
           ),
           Text(
-            "${counts??0} items",
+            "${themeColor.getcount()??00} items",
             style: Theme.of(context).textTheme.caption,
           ),
         ],

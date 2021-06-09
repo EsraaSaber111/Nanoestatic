@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/Provider/provider.dart';
 import 'package:shop_app/localization/demo_localization.dart';
 import 'package:shop_app/routes.dart';
 import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
@@ -11,7 +13,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 
 void main() {
-  runApp(MyApp());
+  runApp( ChangeNotifierProvider<Provider_control>(
+      create: (_) => Provider_control(),
+      child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {

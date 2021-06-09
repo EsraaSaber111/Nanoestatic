@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/Provider/provider.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -18,6 +20,8 @@ class IconBtnWithCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeColor = Provider.of<Provider_control>(context);
+
     return InkWell(
       borderRadius: BorderRadius.circular(100),
       onTap: press,
@@ -34,7 +38,7 @@ class IconBtnWithCounter extends StatelessWidget {
             ),
             child: SvgPicture.asset(svgSrc),
           ),
-          if (counts != 0)
+          if (themeColor.getcount() != 0)
             Positioned(
               top: -3,
               right: 0,
@@ -48,7 +52,7 @@ class IconBtnWithCounter extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "${counts??0}",
+                    "${themeColor.getcount()??0}",
                     style: TextStyle(
                       fontSize: getProportionateScreenWidth(10),
                       height: 1,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/Provider/provider.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
@@ -70,6 +72,8 @@ class _OrderFormFormState extends State<OrderForm> {
 
   @override
   Widget build(BuildContext context) {
+    final themeColor = Provider.of<Provider_control>(context);
+
     return Form(
       key: _formKey,
       child: Column(
@@ -101,7 +105,7 @@ class _OrderFormFormState extends State<OrderForm> {
                     notes: note,
                     myProducts: mypro);
                 helper.deleteall();
-                counts=0;
+                themeColor.setCount(0);
                 Api.checkout(order).then((value) => print(value));
                 // if all are valid then go to success screen
                 showDialog(

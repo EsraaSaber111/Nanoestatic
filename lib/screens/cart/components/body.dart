@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/Provider/provider.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/models/Cart.dart';
 
@@ -28,6 +30,8 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    final themeColor = Provider.of<Provider_control>(context);
+
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
@@ -53,7 +57,7 @@ class _BodyState extends State<Body> {
 
                           });
                           helper.getCount().then((value) {setState(() {
-                            counts=value;
+                            themeColor.setCount(value);
                           });});
                         });
                       });
