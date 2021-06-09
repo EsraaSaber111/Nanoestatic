@@ -63,14 +63,14 @@ class _BodyState extends State<Body> {
                              double width;
                         if (index == 0 || index == 1) {
                           x = 4;
-                          y = 2;
+                          y = 2.0;
                           width=325;
                           _staggeredTiles.add(
                             StaggeredTile.count(x, y),
                           );
                         } else {
                           x = 2;
-                          y = 2;
+                          y = 2.0;
                           width=155;
                           _staggeredTiles.add(
                             StaggeredTile.count(x, y),
