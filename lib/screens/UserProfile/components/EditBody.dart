@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/User.dart';
 import 'package:shop_app/models/login.dart';
+import 'package:shop_app/screens/UserProfile/userprofile_screen.dart';
 import 'package:shop_app/service/UserApi.dart';
 
 
@@ -12,7 +14,6 @@ import '../../../constants.dart';
 import '../../../size_config.dart';
 import 'button_widget.dart';
 class EditBody extends StatefulWidget {
-
   Login login;
   EditBody(this.login);
 
@@ -22,7 +23,11 @@ class EditBody extends StatefulWidget {
 
 class _EditBodyState extends State<EditBody> {
   final List<String> errors = [];
-  String name,email,phone,password,id;
+  String name;
+  String email;
+  String phone;
+  String password;
+  String id;
   @override
   void initState() {
     // TODO: implement initState
@@ -36,27 +41,34 @@ class _EditBodyState extends State<EditBody> {
   @override
   Widget build(BuildContext context) =>  Scaffold(
         //appBar: buildAppBar(context),
-        body: widget.login==null?Container():Column(
-          children: [
-            buildNameFormField(),
-            SizedBox(height: getProportionateScreenHeight(30)),
-            buildEmailFormField(),
-            SizedBox(height: getProportionateScreenHeight(30)),
-            buildPassFormField(),
-            SizedBox(height: getProportionateScreenHeight(30)),
-            buildPhoneFormField(),
-            SizedBox(height: getProportionateScreenHeight(30)),
-            FormError(errors: errors),
-            SizedBox(height: getProportionateScreenHeight(40)),
-            ButtonWidget(
-              text: '${getTranslated(context, 'Save changes')}',
-              onClicked: () {
-                RegisterUser user=RegisterUser(name: name,email: email,phone: phone,password: password);
-                print(id);print(name);print(email);print(password);print(phone);
-                UserApi.UserUpdate(user, id).then((value) => print(value));
-              },
-            )
-          ],
+        body: widget.login==null?Container():Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ListView(
+            children: [
+              SizedBox(height: getProportionateScreenHeight(30)),
+              buildNameFormField(),
+              SizedBox(height: getProportionateScreenHeight(30)),
+              buildEmailFormField(),
+              SizedBox(height: getProportionateScreenHeight(30)),
+              buildPassFormField(),
+              SizedBox(height: getProportionateScreenHeight(30)),
+              buildPhoneFormField(),
+              SizedBox(height: getProportionateScreenHeight(30)),
+              FormError(errors: errors),
+              SizedBox(height: getProportionateScreenHeight(40)),
+              ButtonWidget(
+                text: '${getTranslated(context, 'Save changes')}',
+                onClicked: () {
+                  RegisterUser user=RegisterUser(name: name,email: email,phone: phone,password: password);
+                 print(id);print(name);print(email);print(password);print(phone);
+                 UserApi.UserUpdate(user, id).then((value) => print(value));
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfileScreen()));
+                // Navigator.pushReplacementNamed(context, UserProfileScreen.routeName);
+                  Phoenix.rebirth(context);
+                },
+              )
+            ],
+          ),
         )
 
 
@@ -124,23 +136,17 @@ class _EditBodyState extends State<EditBody> {
   );
   TextFormField buildNameFormField() {
     return TextFormField(
-      maxLines: 5,
       //  obscureText: true,
       onSaved: (newValue) => name = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: kNoteNullError);
-        } else if (value.isNotEmpty) {
-          removeError(error: kNoteNullError);
+          removeError(error: kNamelNullError);
         }
-        name = value;
+       name=value;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: kNoteNullError);
-          return "";
-        } else if ((name != value)) {
-          addError(error: kMatchPassError);
+          addError(error: kNamelNullError);
           return "";
         }
         return null;
@@ -200,7 +206,7 @@ class _EditBodyState extends State<EditBody> {
         } else if (emailValidatorRegExp.hasMatch(value)) {
           removeError(error: kInvalidEmailError);
         }
-        email=value;
+       email=value;
       },
       validator: (value) {
         if (value.isEmpty) {
@@ -231,7 +237,6 @@ class _EditBodyState extends State<EditBody> {
         if (value.isNotEmpty) {
           removeError(error: kAddressNullError);
         }
-
         password = value;
       },
       validator: (value) {

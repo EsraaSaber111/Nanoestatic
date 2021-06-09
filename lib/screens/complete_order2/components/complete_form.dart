@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
+import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
 import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/service/CoursesApi.dart';
 import 'package:shop_app/service/UserApi.dart';
@@ -78,8 +79,26 @@ class _OrderFormForm2State extends State<OrderForm2> {
                 _formKey.currentState.save();
                Confirm confirmcourse=Confirm(phone:phone, address:address, email:email, note:note, name:name,userid: int.parse(user_id),courseid: int.parse(course_id));
                 CoursesApi.confirmcourse('course/store?', confirmcourse).then((value) {
-                 print(value);
-                 Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Center(child: Text('welcome ${confirmcourse.name}')),
+                          content: Text('Course Applied Sucessfully , we will contact you soon'),
+                          elevation: 5,
+                          actions: [
+                            RaisedButton(
+                              onPressed: () {
+                                Navigator.popUntil(context, ModalRoute.withName(MainPage.routeName));
+                                //  Navigator.of(context).pushNamedAndRemoveUntil(MainPage.routeName, (route) => false);
+                              },
+                              child: Text('ok'),
+                            ),
+                          ],
+                        );
+                      });
+                 //print(value);
+                 //Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
                });
     // =================================================================================
                 // CompeleteOrder order=CompeleteOrder(password: phone,email: email,address: address,fullname: email,customerid: 3,notes: note,myProducts: demoCarts);

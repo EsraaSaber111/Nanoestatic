@@ -33,6 +33,16 @@ class _ProductCardState extends State<ProductCard> {
  bool clicked=false;
  String isfav="";
 
+  String getifav(){
+    WishlistApi.ifwishlist('wishlist/check?', widget.product.id , 8).then((value) {
+      print(value);
+      setState(() {
+        isfav=value;
+      });
+      return isfav;
+      // Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}')));
+    });
+  }
  @override
   void initState() {
     // TODO: implement initState
@@ -95,8 +105,8 @@ class _ProductCardState extends State<ProductCard> {
                     onTap: () {
                       if(isfav=="product exist"){
                         WishlistApi.deletewishlist('wishlist/delete?', widget.product.id, int.parse(id)).then((value) {
-                           print(value);
-                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
+                          //  print(value);
+                          // Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
                         });
 
                         setState(() {
@@ -106,7 +116,7 @@ class _ProductCardState extends State<ProductCard> {
                     else{
                         WishlistApi.addwishlist('wishlist/add?', widget.product.id, 8).then((value) {
                           // print(value);
-                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
+                        //  Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
                         });
                         setState(() {
                           clicked=!clicked;
@@ -128,9 +138,10 @@ class _ProductCardState extends State<ProductCard> {
                       child:  SvgPicture.asset(
                           "assets/icons/Heart Icon_2.svg",
                           ///todo: if product fav or not
-                          color: isfav=="product exist"
-                              ? Color(0xFFFF4848)
+                          color: clicked?Color(0xFFFF4848)
                               : Color(0xFFDBDEE4),
+                         // isfav=="product exist"
+                              //?
                         ),
                       ),
                     ),
@@ -142,14 +153,5 @@ class _ProductCardState extends State<ProductCard> {
       ),
     );
   }
-String getifav(){
-  WishlistApi.ifwishlist('wishlist/check?', widget.product.id , 8).then((value) {
-      print(value);
-      setState(() {
-        isfav=value;
-      });
-      return isfav;
-     // Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}')));
-    });
-}
+
 }

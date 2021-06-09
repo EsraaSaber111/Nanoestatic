@@ -43,7 +43,7 @@ class OfferCard extends StatelessWidget {
                   ),
                   child: Hero(
                     tag: (product.id+50).toString(),
-                    child: Image.network('${imageURl+product.mainImage}'),
+                    child: Image.network('${imageURl+product.mainImage}', fit: BoxFit.contain,),
                   ),
                 ),
               ),

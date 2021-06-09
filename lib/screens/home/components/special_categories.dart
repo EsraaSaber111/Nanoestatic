@@ -61,7 +61,7 @@ class _SpecialCategoriesState extends State<SpecialCategories> {
                             return  SpecialOfferCard(
                               image: '${imageURl+snapshot.data.allCategories[index].mainImage}',
                               category:"${snapshot.data.allCategories[index].data.name}",
-                              numOfBrands: 24,
+                             numOfBrands:"products",
                               press: () {
 
                                 Navigator.push(
@@ -127,7 +127,7 @@ class SpecialOfferCard extends StatelessWidget {
   }) : super(key: key);
 
   final String category, image;
-  final int numOfBrands;
+  final String numOfBrands;
   final GestureTapCallback press;
 
   @override
@@ -186,11 +186,12 @@ class SpecialOfferCard extends StatelessWidget {
                         TextSpan(
                           text: "$category\n",
                           style: TextStyle(
-                            fontSize: getProportionateScreenWidth(18),
-                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: getProportionateScreenWidth(20),
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
-                        TextSpan(text: "$numOfBrands Product")
+                        TextSpan(text: "${numOfBrands}",style: TextStyle(fontSize:  getProportionateScreenWidth(18)))
                       ],
                     ),
                   ),

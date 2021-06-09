@@ -15,7 +15,7 @@ import 'package:shop_app/service/UserApi.dart';
 
 import '../../api_constants.dart';
 import '../../size_config.dart';
-import 'components/body.dart';
+
 
 class CourseDetailsScreen extends StatefulWidget {
   String id;

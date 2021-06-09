@@ -30,16 +30,16 @@ class _BodyState extends State<Body> {
     return SafeArea(
         child:courses==null?Container():AnimationLimiter(
             child: GridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 2,
-                crossAxisSpacing: 10,
-                childAspectRatio: 0.8,
+                crossAxisCount: 1,
+                mainAxisSpacing: 0.3,
+                crossAxisSpacing: 0.2,
+               childAspectRatio:2.5,
                 children:
                     List.generate(courses.allCourses.length, (index) {
                   return Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: AnimationConfiguration.staggeredGrid(
-                          columnCount: 2,
+                          columnCount: 1,
                           position: index,
                           duration: const Duration(milliseconds: 375),
                           child: ScaleAnimation(
@@ -47,7 +47,7 @@ class _BodyState extends State<Body> {
                             child: FadeInAnimation(
                               child: InkWell(
                                 child:
-                                    Coursecard(index, courses.allCourses),
+                                    Center(child: Coursecard(index, courses.allCourses)),
                                 onTap: () {
                                   Navigator.push(context, MaterialPageRoute(
                                       builder: (context)=>CourseDetailsScreen(courses.allCourses[index].id.toString()

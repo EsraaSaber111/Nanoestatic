@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:shop_app/screens/specific_products/components/Products_Category_Card.dart';
+import 'package:shop_app/components/product_card.dart';
+
 import 'package:shop_app/components/drawer.dart';
 import 'package:shop_app/models/all_products_model.dart';
 import 'package:shop_app/models/category.dart';
@@ -35,12 +36,16 @@ class ProductsBody extends StatefulWidget {
 }
 
 class _productsbodyState extends State<ProductsBody> {
-  Future<AllProductsModel> products;
+  AllProductsModel products;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    products = Api.getAllProducts(widget.id);
+ Api.getAllProducts(widget.id).then((value) {
+      setState(() {
+        products=value;
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -50,48 +55,33 @@ class _productsbodyState extends State<ProductsBody> {
         title: Text('${widget.title} Products'),
       ),
       body: SafeArea(
-          child: FutureBuilder<AllProductsModel>(
-        future: products,
-        builder: (_, snapshot) {
-          if(snapshot.connectionState==ConnectionState.waiting){
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          else if (snapshot.hasData) {
-            return AnimationLimiter(
-              child: GridView.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 2,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 0.7,
-                  children:
-                      List.generate(snapshot.data.allProducts.length, (index) {
+      child:products==null?Center(child: CircularProgressIndicator(),):AnimationLimiter(
+      child: GridView.count(
+      crossAxisCount: 2,
+      mainAxisSpacing: 2,
+      crossAxisSpacing: 10,
+      childAspectRatio: 0.7,
+      children:
+      List.generate(products.allProducts.length, (index) {
 
-                    //      widget.title=snapshot.data.allProducts[index].data.title;
+        //      widget.title=snapshot.data.allProducts[index].data.title;
 
-                    return Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: AnimationConfiguration.staggeredGrid(
-                            columnCount: 2,
-                            position: index,
-                            duration: const Duration(milliseconds: 375),
-                            child: ScaleAnimation(
-                              scale: 0.5,
-                              child: FadeInAnimation(
-                                child: ProductCategoryCard(
-                                    snapshot.data.allProducts[index]),
-                              ),
-                            )));
-                  }).toList()),
-            );
-          } else {
-            return Center(
-              child: Text('error'),
-            );
-          }
-        },
-      )),
+        return Padding(
+        padding: const EdgeInsets.all(5.0),
+    child: AnimationConfiguration.staggeredGrid(
+    columnCount: 2,
+    position: index,
+    duration: const Duration(milliseconds: 375),
+    child: ScaleAnimation(
+    scale: 0.5,
+    child: FadeInAnimation(
+    child: ProductCard(
+      product:products.allProducts[index]),
+    ),
+    )));
+    }).toList()),
+    )
+      ),
     );
   }
 }

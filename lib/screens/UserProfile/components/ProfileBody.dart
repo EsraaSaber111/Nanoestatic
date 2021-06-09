@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/login.dart';
@@ -44,63 +45,65 @@ class _ProfileBodyState extends State<ProfileBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            logout();
-          },
-          child: Icon(Icons.logout),
-        ),
-        body: login == null
-            ? Container()
-            : ListView(
-                physics: BouncingScrollPhysics(),
-                children: [
-                  const SizedBox(height: 10),
-                  // ProfileWidget(
-                  //   imagePath:'${imageURl+login.user.mainImage}',
-                  //   onClicked: () {
-                  //     // Navigator.of(context).push(
-                  //     //   MaterialPageRoute(builder: (context) => UpdateProfileScreen()),
-                  //     // );
-                  //   },
-                  // ),
-                  //const SizedBox(height: 20),
-                  buildName(login.user),
-                  const SizedBox(height: 20),
-                  Center(child: buildUpgradeButton()),
-                  //NumbersWidget(),
-                  const SizedBox(height: 48),
-                  ProfileMenu(
-                    text: "${getTranslated(context, 'Full Name')}",
-                    sub: "${login.user.name}",
-                    icon: "assets/icons/User Icon.svg",
-                    press: () => {},
-                  ),
-                  ProfileMenu(
-                    text: "${getTranslated(context, 'Email')}",
-                    sub: "${login.user.email}",
-                    icon: "assets/icons/Mail.svg",
-                    press: () {},
-                  ),
+    return Phoenix(
+      child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              logout();
+            },
+            child: Icon(Icons.logout),
+          ),
+          body: login == null
+              ? Container()
+              : ListView(
+                  physics: BouncingScrollPhysics(),
+                  children: [
+                    const SizedBox(height: 10),
+                    // ProfileWidget(
+                    //   imagePath:'${imageURl+login.user.mainImage}',
+                    //   onClicked: () {
+                    //     // Navigator.of(context).push(
+                    //     //   MaterialPageRoute(builder: (context) => UpdateProfileScreen()),
+                    //     // );
+                    //   },
+                    // ),
+                    //const SizedBox(height: 20),
+                    buildName(login.user),
+                    const SizedBox(height: 20),
+                    Center(child: buildUpgradeButton()),
+                    //NumbersWidget(),
+                    const SizedBox(height: 48),
+                    ProfileMenu(
+                      text: "${getTranslated(context, 'Full Name')}",
+                      sub: "${login.user.name}",
+                      icon: "assets/icons/User Icon.svg",
+                      press: () => {},
+                    ),
+                    ProfileMenu(
+                      text: "${getTranslated(context, 'Email')}",
+                      sub: "${login.user.email}",
+                      icon: "assets/icons/Mail.svg",
+                      press: () {},
+                    ),
 
-                  ProfileMenu(
-                    text: "${getTranslated(context, 'Phone')}",
-                    sub: "${login.user.phone}",
-                    icon: "assets/icons/Phone.svg",
-                    press: () {},
-                  ),
-                  ProfileMenu(
-                    text: "${getTranslated(context, 'Address')}",
-                    sub: "${login.user.address}",
-                    icon: "assets/icons/Location point.svg",
-                    press: () {},
-                  ),
-                  ExPanalOrders(),
-                  ExPanalCourses(),
-                  //buildAbout(widget.user),
-                ],
-              ));
+                    ProfileMenu(
+                      text: "${getTranslated(context, 'Phone')}",
+                      sub: "${login.user.phone}",
+                      icon: "assets/icons/Phone.svg",
+                      press: () {},
+                    ),
+                    ProfileMenu(
+                      text: "${getTranslated(context, 'Address')}",
+                      sub: "${login.user.address}",
+                      icon: "assets/icons/Location point.svg",
+                      press: () {},
+                    ),
+                    ExPanalOrders(),
+                    ExPanalCourses(),
+                    //buildAbout(widget.user),
+                  ],
+                )),
+    );
   }
 
   Widget buildName(User user) => Column(

@@ -154,9 +154,9 @@ class Api {
             password + "&api_lang=" + await getLanguageCode() + "&product_id=" +
             pro_id.toString()}');
     if (response.statusCode == 200) {
-      print(response.body);
+    //  print(response.body);
       final jsondata = json.decode(response.body);
-      print(jsondata);
+      //print(jsondata);
       return Product_model.fromJson(jsondata);
     } else {
       throw Exception('faild');

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/ContactItems.dart';
 import 'package:shop_app/screens/contact_us/items.dart';
+
 class AboutUsCard extends StatelessWidget {
   double width;
   Items items;
@@ -12,14 +13,17 @@ class AboutUsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListTile(
-        title: Row(
-          children: [
-            Text("${items.title} ", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-          ],
-        ),
-        subtitle: Text(items.details),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListTile(
+          title: Row(
+            children: [
+              Text("${items.title} ", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+            ],
+          ),
+          subtitle: Text(items.details),
 
+        ),
       ),
        width: width,
       // height: height,

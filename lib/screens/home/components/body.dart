@@ -35,25 +35,31 @@ class _BodyState extends State<Body> {
       });
     });
         }
-
+Future<Null>rList()async{
+    await Future.delayed(Duration(seconds: 2));
+}
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ListView(
-        children: [
-          SizedBox(height: getProportionateScreenHeight(20)),
-          HomeHeader(len),
-          SizedBox(height: getProportionateScreenWidth(20)),
-          Slidercard(),
-          SizedBox(height: getProportionateScreenWidth(20)),
-          SpecialCategories(),
-          SizedBox(height: getProportionateScreenWidth(20)),
-          LatestOffers(),
-          SizedBox(height: getProportionateScreenWidth(20)),
-          LatestProducts(),
-          SizedBox(height: getProportionateScreenWidth(20)),
+      child: RefreshIndicator(
+onRefresh: rList,
+        backgroundColor: Colors.orange,
+        child: ListView(
+          children: [
+            SizedBox(height: getProportionateScreenHeight(20)),
+            HomeHeader(len),
+            SizedBox(height: getProportionateScreenWidth(20)),
+            Slidercard(),
+            SizedBox(height: getProportionateScreenWidth(20)),
+            SpecialCategories(),
+            SizedBox(height: getProportionateScreenWidth(20)),
+            LatestOffers(),
+            SizedBox(height: getProportionateScreenWidth(20)),
+            LatestProducts(),
+            SizedBox(height: getProportionateScreenWidth(20)),
 
-        ],
+          ],
+        ),
       ),
 
     );

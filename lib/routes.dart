@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:shop_app/screens/UserProfile/userprofile_screen.dart';
 import 'package:shop_app/screens/about_us/AboutUs.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
 import 'package:shop_app/screens/categories/categories_screen.dart';
@@ -52,4 +53,5 @@ final Map<String, WidgetBuilder> routes = {
   WishListScreen.routeName:(context)=>WishListScreen(),
  // SpecificScreen.routeName:(context)=>SpecificScreen()
   ProductSerialScreen.routeName:(context)=>ProductSerialScreen(),
+  UserProfileScreen.routeName:(context)=>UserProfileScreen(),
 };

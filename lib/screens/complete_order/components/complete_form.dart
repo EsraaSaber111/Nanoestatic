@@ -72,7 +72,7 @@ class _OrderFormFormState extends State<OrderForm> {
 
   @override
   Widget build(BuildContext context) {
-    final themeColor = Provider.of<Provider_control>(context);
+    final count = Provider.of<Provider_control>(context);
 
     return Form(
       key: _formKey,
@@ -105,7 +105,7 @@ class _OrderFormFormState extends State<OrderForm> {
                     notes: note,
                     myProducts: mypro);
                 helper.deleteall();
-                themeColor.setCount(0);
+                count.setCount(0);
                 Api.checkout(order).then((value) => print(value));
                 // if all are valid then go to success screen
                 showDialog(
