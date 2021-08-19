@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/screens/profile/profile_screen.dart';
-
 import '../constants.dart';
 import '../enums.dart';
+import '../size_config.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
@@ -29,8 +29,8 @@ class CustomBottomNavBar extends StatelessWidget {
           ),
         ],
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
+          topLeft: Radius.circular(getProportionateScreenWidth(40)),
+          topRight: Radius.circular(getProportionateScreenWidth(40)),
         ),
       ),
       child: SafeArea(

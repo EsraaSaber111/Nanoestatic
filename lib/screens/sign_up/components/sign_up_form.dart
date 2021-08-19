@@ -66,7 +66,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 RegisterUser user=RegisterUser(email: email,password: password,phone: phone, name: name);
                 UserApi.UserRegister(user).then((value) => Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value.message}'))) );
                 // if all are valid then go to success screen
-               // Navigator.pushNamed(context, SignInScreen.routeName);
+                Navigator.pushReplacementNamed(context, SignInScreen.routeName);
 
               }
             },

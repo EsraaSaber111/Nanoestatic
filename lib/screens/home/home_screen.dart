@@ -7,15 +7,14 @@ class HomeScreen extends StatelessWidget {
   static String routeName = "/home";
   @override
   Widget build(BuildContext context) {
-    return Phoenix(
-      child: Scaffold(
+    return Scaffold(
         body: Body(),
         //bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
         drawer: Drawer(
           child: drawer(),
        ),
        // bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
-      ),
+
     );
   }
 }

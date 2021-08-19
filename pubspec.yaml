@@ -45,9 +45,17 @@ dependencies:
   sqflite:
   path:
   flutter_phoenix:
+  flutter_launcher_icons:
+
 
 
 dev_dependencies:
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/Gift Icon.svg"
+
   flutter_test:
     sdk: flutter
 
@@ -66,7 +74,6 @@ flutter:
     - assets/icons/
     - lib/lang/en.json
     - lib/lang/ar.json
-
 
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see

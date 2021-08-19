@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
+import 'package:shop_app/components/member_dialog.dart';
 import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/size_config.dart';
 
@@ -20,7 +21,7 @@ class Body extends StatelessWidget {
             children: [
               SizedBox(height: SizeConfig.screenHeight * 0.04),
               Text(
-                "Product serial",
+                "Member serial",
                 style: TextStyle(
                   fontSize: getProportionateScreenWidth(28),
                   color: Colors.black,
@@ -28,7 +29,7 @@ class Body extends StatelessWidget {
                 ),
               ),
               Text(
-                "Please enter the product serial to check it's availability",
+                "Please enter Member serial",
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
@@ -73,14 +74,25 @@ class _SerialFormState extends State<SerialForm> {
               return null;
             },
             validator: (value) {
-              Api.getdoctorserial(value,"productserial/exist?").then((value) {
-                print(value);
-                if (value == "serial exist") {
-                  print(value.toString());
-                  Scaffold.of(context).showSnackBar(SnackBar(content: Row(children: [Icon(Icons.done_all,color: Colors.green,), SizedBox(width: 10,), Text("Serial Exists")],)));
+              Api.getmemberserial(value,"memberserial/exist?").then((value) {
+                print(value.message);
+                if (value.message == "serial exist") {
+
+                  print(value.message.toString());
+                  showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return MemberDialog(
+                          memberModel: value,
+                         // product_id: snapshot.data.product.id,
+                          buttontext2: 'Done',
+                        );
+                      });
+                  Scaffold.of(context).showSnackBar(SnackBar(content: Row(children: [Icon(Icons.done_all,color: Colors.green,), SizedBox(width: 10,),Text('${value.message.toString()}')],)));
                 }
                 else {
-                  Scaffold.of(context).showSnackBar(SnackBar(content: Row(children: [Icon(Icons.close,color: Colors.red,), SizedBox(width: 10,), Text('${value.toString()}')],)));
+                  Scaffold.of(context).showSnackBar(SnackBar(content: Row(children: [Icon(Icons.close,color: Colors.red,), SizedBox(width: 10,), Text('${value.message.toString()}')],)));
                 }
               }
               );
@@ -95,7 +107,7 @@ class _SerialFormState extends State<SerialForm> {
             },
             decoration: InputDecoration(
               labelText: "serial",
-              hintText: "Enter product serial",
+              hintText: "Enter Member Serial",
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,

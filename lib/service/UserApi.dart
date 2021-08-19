@@ -2,13 +2,10 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/User.dart';
-import 'package:shop_app/models/all_products_model.dart';
-import 'package:shop_app/models/course_model.dart';
 import 'package:shop_app/models/login.dart';
 import 'package:shop_app/models/orders.dart';
 import 'package:shop_app/models/register.dart';
 import 'package:http/http.dart' as http;
-import 'package:shop_app/screens/complete_order2/components/complete_form.dart';
 import '../api_constants.dart';
 
 class UserApi{
@@ -24,7 +21,7 @@ class UserApi{
       //   print(jsondata);
       return Register.fromJson(jsondata);
     } else {
-      throw Exception('faild');
+      throw Exception('failed');
     }
   }
 
@@ -48,7 +45,7 @@ class UserApi{
       });
       return Login.fromJson(jsondata);
     } else {
-      throw Exception('faild');
+      throw Exception('failed');
     }
   }
 
@@ -70,7 +67,7 @@ class UserApi{
         print(response.body);
         return data.toString();
       } else
-            (e) {
+         (e){
           print(e);
           throw Exception(e);
         };
@@ -82,10 +79,10 @@ class UserApi{
             password + "&api_lang=" + await getLanguageCode() +"&user_id="+id.toString()}');
     if (response.statusCode == 200) {
       final jsondata = json.decode(response.body);
-      print(jsondata);
+     // print(jsondata);
       return Login.fromJson(jsondata);
     } else {
-      throw Exception('faild');
+      throw Exception('failed');
     }
   }
 
@@ -95,7 +92,7 @@ class UserApi{
             password + "&api_lang=" + await getLanguageCode() +
             "&user_id=" + userid}');
     if (response.statusCode == 200) {
-      print(response.body);
+     // print(response.body);
       final jsondata = json.decode(response.body);
       Orders orders = Orders.fromJson(jsondata);
       List<AllUserOrders> Allorders = [];
@@ -105,7 +102,7 @@ class UserApi{
       }
       return orders;
     } else {
-      throw Exception('faild');
+      throw Exception('failed');
     }
   }
 
@@ -123,7 +120,7 @@ class UserApi{
             "&user_id="+userid}');
 
     if (response.statusCode == 200) {
-        print(response.body);
+        //print(response.body);
       var data = jsonDecode(response.body);
       return data['message'];
     } else {

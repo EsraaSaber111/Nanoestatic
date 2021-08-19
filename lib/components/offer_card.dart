@@ -39,7 +39,7 @@ class OfferCard extends StatelessWidget {
                   padding: EdgeInsets.all(getProportionateScreenWidth(20)),
                   decoration: BoxDecoration(
                     color: kSecondaryColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(getProportionateScreenWidth(15)),
                   ),
                   child: Hero(
                     tag: (product.id+50).toString(),
@@ -70,10 +70,10 @@ class OfferCard extends StatelessWidget {
                     onTap: () {},
                     child: Container(
                     //  padding: EdgeInsets.all(getProportionateScreenWidth(5)),
-                      height: getProportionateScreenWidth(25),
+                      height: getProportionateScreenHeight(25),
                       width: getProportionateScreenWidth(50),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(50), bottomLeft: Radius.circular(50)),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(getProportionateScreenWidth(50)), bottomLeft: Radius.circular(getProportionateScreenWidth(50))),
                         color: Colors.redAccent,
                         shape: BoxShape.rectangle,
                       ),

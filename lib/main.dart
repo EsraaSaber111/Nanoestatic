@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/Provider/provider.dart';
@@ -65,7 +64,7 @@ class _MyAppState extends State<MyApp> {
     selectcategory(allproducts);
     return MaterialApp(
 
-      title: 'Flutter Demo',
+      title: 'NanoEstatic',
       theme: theme(),
 
       locale: _locale,

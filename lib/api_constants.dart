@@ -1,5 +1,4 @@
-
-const String baseurl="http://meso.be4maps.com/api/";
+const String baseurl="http://nanostatic.net/api/";
 const String contentURL="contact?";
 const String aboutUsURL="about?";
 const String productURL="product/show?";
@@ -18,6 +17,6 @@ const String name="ahmed";
 const String password="123456";
 const String english="en";
 const String arabic="ar";
-const String imageURl="http://meso.be4maps.com/upload/";
+const String imageURl="http://nanostatic.net/upload/";
 
 

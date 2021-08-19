@@ -3,6 +3,8 @@ import 'package:shop_app/components/offer_card.dart';
 import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/models/offres.dart';
+import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
+import 'package:shop_app/screens/offers/offers_screen.dart';
 import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/service/OffersApi.dart';
 
@@ -18,7 +20,6 @@ class LatestOffers extends StatefulWidget {
 }
 
 class _LatestOffersState extends State<LatestOffers> {
-
   Future<Offres> offers;
   @override
   void initState() {
@@ -33,7 +34,9 @@ class _LatestOffersState extends State<LatestOffers> {
         Padding(
           padding:
           EdgeInsets.symmetric(horizontal: 20),
-          child: SectionTitle(title: "${getTranslated(context, 'Latest_Offers')}", press: () {}),
+          child: SectionTitle(title: "${getTranslated(context, 'Latest_Offers')}", press: () {
+            Navigator.of(context).pushNamedAndRemoveUntil(OfferScreen.routeName, ModalRoute.withName(MainPage.routeName));
+          }),
         ),
         SizedBox(height:20),
         FutureBuilder<Offres>(

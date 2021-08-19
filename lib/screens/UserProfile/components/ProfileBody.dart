@@ -18,11 +18,8 @@ class ProfileBody extends StatefulWidget {
 
 class _ProfileBodyState extends State<ProfileBody> {
   Login login;
-  String instance;
   @override
   void initState() {
-    ///todo:get all applyed courses
-
     super.initState();
     SharedPreferences.getInstance().then((pref) async {
       UserApi.getuser(pref.getString('id')).then((value) {
@@ -30,16 +27,6 @@ class _ProfileBodyState extends State<ProfileBody> {
           login = value;
         });
       });
-      //  setState(() {
-      //    login = Login(
-      //        user: User(
-      //          name: pref.getString('name'),
-      //          email: pref.getString('email'),
-      //          phone: pref.getString('phone'),
-      //          address: pref.getString('address'),
-      //        ));
-      //  });
-      // });
     });
   }
 
@@ -47,12 +34,6 @@ class _ProfileBodyState extends State<ProfileBody> {
   Widget build(BuildContext context) {
     return Phoenix(
       child: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              logout();
-            },
-            child: Icon(Icons.logout),
-          ),
           body: login == null
               ? Container()
               : ListView(
@@ -150,12 +131,5 @@ class _ProfileBodyState extends State<ProfileBody> {
           ),
         ),
       );
-  logout() {
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.clear();
-      print(prefs.getString('user_token'));
-    });
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => SplashScreen()));
-  }
+
 }

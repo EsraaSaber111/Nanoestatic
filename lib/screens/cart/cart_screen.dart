@@ -7,9 +7,9 @@ import 'package:shop_app/constants.dart';
 import 'package:shop_app/models/Cart.dart';
 import 'package:shop_app/screens/home/components/icon_btn_with_counter.dart';
 
-import '../../dphelper.dart';
+import '../../helper/dphelper.dart';
 import '../../size_config.dart';
-import 'components/body.dart';
+
 import 'components/cart_card.dart';
 import 'components/check_out_card.dart';
 
@@ -78,7 +78,6 @@ class _CartScreenState extends State<CartScreen> {
                           carts=value;
                         });
                       });
-
 
                       helper.getCount().then((value) {setState(() {
                         themeColor.setCount(value);

@@ -5,15 +5,16 @@ import 'components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
   static String routeName = "/details";
-  int id;
-  DetailsScreen(this.id);
+  int product_id;
+
+  DetailsScreen(this.product_id);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),
       //appBar: CustomAppBar(rating: agrs.product.rating),
-      body: Body(id),
+      body: Body(product_id),
     );
   }
 }

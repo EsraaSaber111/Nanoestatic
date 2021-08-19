@@ -17,6 +17,29 @@ class Slidercard extends StatefulWidget {
 }
 
 class _SlidercardState extends State<Slidercard> {
+
+  showdialogfun(context,img)
+  {
+    return showDialog(context: context,
+        builder: (context){
+      return Center(
+        child: Material(
+          type: MaterialType.transparency,
+          child: Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+            color: Colors.white),
+            padding: EdgeInsets.all(15),
+            width: MediaQuery.of(context).size.width*0.8,
+            height: MediaQuery.of(context).size.height*0.8,
+            child: Image.network(img) ,
+          ),
+        ),
+      );
+    });
+  }
+
+
+
   Future<Sliders> sliders;
   final cardInfoDecoration =  BoxDecoration(
     borderRadius: BorderRadius.circular(15),
@@ -35,7 +58,6 @@ class _SlidercardState extends State<Slidercard> {
   }
   @override
   Widget build(BuildContext context) {
-
 
     return FutureBuilder<Sliders>(
       future: sliders,
@@ -61,14 +83,19 @@ class _SlidercardState extends State<Slidercard> {
                                 decoration: cardInfoDecoration,
                                 //color: Colors.blueGrey,
                                 // margin: EdgeInsets.all(5.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                                  child: Image.network(
-                                    '${imageURl+snapshot.data.allSliders[index].image}',
-                                    // {}url.img,
-                                    fit: BoxFit.cover,
+                                child: InkWell(
+                                  onTap: (){
+                                    showdialogfun(context,imageURl+snapshot.data.allSliders[index].image);
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                                    child: Image.network(
+                                      '${imageURl+snapshot.data.allSliders[index].image}',
+                                      // {}url.img,
+                                      fit: BoxFit.cover,
 
-                                    width: getProportionateScreenWidth(320),
+                                      width: getProportionateScreenWidth(320),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -118,7 +145,6 @@ class _SlidercardState extends State<Slidercard> {
 
     );
   }
-
 
 }
 

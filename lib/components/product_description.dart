@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:html/parser.dart' show parse;
+import 'package:shop_app/service/WishlistApi.dart';
 import '../size_config.dart';
 
 
 class ProductDescription extends StatefulWidget {
 
   dynamic product;
-  ProductDescription(this.product);
+  String user_id;
+  ProductDescription(this.product, this.user_id);
   @override
   _ProductDescriptionState createState() => _ProductDescriptionState();
 }
@@ -17,6 +20,29 @@ class _ProductDescriptionState extends State<ProductDescription> {
 
   bool clicked=false;
 
+  String isfav = "";
+  String getifav() {
+    WishlistApi.ifwishlist('wishlist/check?',widget.product.id, int.parse(widget.user_id))
+        .then((value) {
+      print(value);
+      setState(() {
+        isfav = value;
+      });
+      if(isfav=="product exist"){
+        clicked=true;
+      }else{
+        clicked=false;
+      }
+      return isfav;
+    });
+  }
+
+  @override
+  void initState() {
+    getifav();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,9 +72,29 @@ class _ProductDescriptionState extends State<ProductDescription> {
                   ),
                   child: InkWell(
                     onTap: (){
-setState(() {
-  clicked=!clicked;
-});
+                      if (isfav == "product exist") {
+                        WishlistApi.deletewishlist(
+                            'wishlist/delete?', widget.product.id, int.parse(widget.user_id)).then((value) {
+                          print(value);
+                          Scaffold.of(context).showSnackBar(
+                              SnackBar(content: Text('${value}')));
+                        });
+
+                        // Scaffold.of(context).showSnackBar(
+                        //    SnackBar(content: Text('already exists')));
+                        setState(() {
+                          clicked = !clicked;
+                        });
+                      }
+                      else{
+                        WishlistApi.addwishlist('wishlist/add?', widget.product.id, int.parse(widget.user_id)).then((value) {
+                          print(value);
+                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
+                        });
+                        setState(() {
+                          clicked = !clicked;
+                        });
+                      };
                     },
                     child: SvgPicture.asset(
                       "assets/icons/Heart Icon_2.svg",
@@ -64,7 +110,7 @@ setState(() {
 
         Padding(
           padding: EdgeInsets.all(
-              20
+              getProportionateScreenWidth(20)
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +118,7 @@ setState(() {
               Text('Description',style: TextStyle(color: Colors.black.withOpacity(0.7),fontWeight: FontWeight.bold),
 
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: getProportionateScreenHeight(10),),
               Text(
                 '${parse(widget.product.data.content).body.text}',
                 maxLines: 10,
@@ -81,30 +127,6 @@ setState(() {
 
           ),
         ),
-        // Padding(
-        //   padding: EdgeInsets.symmetric(
-        //     horizontal: getProportionateScreenWidth(20),
-        //     vertical: 10,
-        //   ),
-        //   child: GestureDetector(
-        //     onTap: () {},
-        //     child: Row(
-        //       children: [
-        //         Text(
-        //           "See More Detail",
-        //           style: TextStyle(
-        //               fontWeight: FontWeight.w600, color: kPrimaryColor),
-        //         ),
-        //         SizedBox(width: 5),
-        //         Icon(
-        //           Icons.arrow_forward_ios,
-        //           size: 12,
-        //           color: kPrimaryColor,
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // )
       ],
     );
   }

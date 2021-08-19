@@ -4,7 +4,7 @@ import 'package:shop_app/models/Cart.dart';
 import 'package:shop_app/models/product_model.dart';
 import 'package:shop_app/service/Api.dart';
 import '../../../constants.dart';
-import '../../../dphelper.dart';
+import '../../../helper/dphelper.dart';
 import '../../../size_config.dart';
 import 'check_out_card.dart';
 
@@ -36,11 +36,13 @@ class _CartCardState extends State<CartCard> {
     // TODO: implement initState
     super.initState();
     Api.getproductdetails(widget.cart.product_id).then((value) {
-      setState(() {
-        widget.product = value;
-      });
-    });
+      if(this.mounted){
+        setState(() {
+          widget.product = value;
+        });
+      }
 
+    });
   }
 
 

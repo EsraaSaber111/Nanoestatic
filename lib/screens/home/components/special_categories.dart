@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/Provider/provider.dart';
 import 'package:shop_app/api_constants.dart';
 import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/Product.dart';
@@ -63,7 +65,6 @@ class _SpecialCategoriesState extends State<SpecialCategories> {
                               category:"${snapshot.data.allCategories[index].data.name}",
                              numOfBrands:"products",
                               press: () {
-
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(

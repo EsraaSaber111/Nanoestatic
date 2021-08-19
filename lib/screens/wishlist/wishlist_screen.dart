@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/drawer.dart';
 import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/login.dart';
-
 import 'components/body.dart';
 class WishListScreen extends StatelessWidget {
 

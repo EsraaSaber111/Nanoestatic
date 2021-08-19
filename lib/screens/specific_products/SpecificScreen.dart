@@ -75,6 +75,7 @@ class _productsbodyState extends State<ProductsBody> {
     child: ScaleAnimation(
     scale: 0.5,
     child: FadeInAnimation(
+
     child: ProductCard(
       product:products.allProducts[index]),
     ),

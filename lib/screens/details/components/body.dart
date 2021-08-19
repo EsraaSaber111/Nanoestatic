@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/doctor_serial.dart';
-import 'package:shop_app/models/Cart.dart';
 import 'package:shop_app/models/product_model.dart';
 import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/size_config.dart';
@@ -11,9 +11,9 @@ import 'product_images.dart';
 
 class Body extends StatefulWidget {
   Future<Product_model> productdetails;
-  int id;
-  Body(this.id);
-
+  int product_id;
+ String userid;
+  Body(this.product_id);
   @override
   _BodyState createState() => _BodyState();
 }
@@ -23,7 +23,16 @@ class _BodyState extends State<Body> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    widget.productdetails=Api.getproductdetails(widget.id);
+
+    widget.productdetails=Api.getproductdetails(widget.product_id);
+
+    SharedPreferences.getInstance().then((pref) {
+      setState(() {
+        widget.userid = pref.getString('id');
+        print(widget.userid);
+      });
+    });
+
   }
 
   @override
@@ -40,7 +49,7 @@ class _BodyState extends State<Body> {
               child: Column(
                 children: [
                   ProductDescription(
-                    snapshot.data.product
+                    snapshot.data.product,widget.userid
                   ),
                   TopRoundedContainer(
                     color: Color(0xFFF6F7F9),
@@ -59,9 +68,6 @@ class _BodyState extends State<Body> {
                             child: DefaultButton(
                               text: "Add To Cart",
                               press: () {
-                                // print("snapshot = ${snapshot.data.product.id}");
-                                // demoCarts.add(ProductCart(product_id:snapshot.data.product.id,numOfItem: 1));
-                               // demoCarts=[];
                                 /// todo:doctor serial dialog should be active
                                 showDialog(
                                     barrierDismissible: false,
@@ -70,8 +76,6 @@ class _BodyState extends State<Body> {
                                       return CustomDialogs(
                                         product_id: snapshot.data.product.id,
                                         title: 'Enter Doctor Serial',
-                                        // description:
-                                        // 'The QRcode is right you can use the app now',
                                         buttontext1: 'Done',
                                         buttontext2: 'Cancel',
                                       );

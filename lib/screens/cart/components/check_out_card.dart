@@ -7,7 +7,7 @@ import 'package:shop_app/models/product_model.dart';
 import 'package:shop_app/screens/complete_order/complete_order.dart';
 import 'package:shop_app/service/Api.dart';
 
-import '../../../dphelper.dart';
+import '../../../helper/dphelper.dart';
 import '../../../size_config.dart';
 
 class CheckoutCard extends StatefulWidget {

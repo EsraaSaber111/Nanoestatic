@@ -140,13 +140,13 @@ class _EditBodyState extends State<EditBody> {
       onSaved: (newValue) => name = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: kNamelNullError);
+          removeError(error: kNameNullError);
         }
        name=value;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: kNamelNullError);
+          addError(error: kNameNullError);
           return "";
         }
         return null;

@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/course_model.dart';
-import 'package:shop_app/models/orders.dart';
 import 'package:shop_app/screens/complete_order2/components/complete_form.dart';
 import 'package:http/http.dart' as http;
 import '../api_constants.dart';
@@ -36,7 +34,7 @@ class CoursesApi{
             id.toString()}');
     if (response.statusCode == 200) {
       final jsondata = json.decode(response.body);
-      print(jsondata);
+     // print(jsondata);
       SharedPreferences.getInstance().then((prefs) {
         prefs.setString('course_id', jsondata['course']['id'].toString());
         prefs.setString('course_name', jsondata['course']['data']['name']);
@@ -44,7 +42,7 @@ class CoursesApi{
       });
       return Course_Model.fromJson(jsondata);
     } else {
-      throw Exception('faild');
+      throw Exception('failed');
     }
   }
   static Future<UserCourses> getUserCourses(String userid) async {
@@ -53,7 +51,7 @@ class CoursesApi{
             password + "&api_lang=" + await getLanguageCode() +
             "&user_id=" + userid}');
     if (response.statusCode == 200) {
-      print(response.body);
+      //print(response.body);
       final jsondata = json.decode(response.body);
       UserCourses courses = UserCourses.fromJson(jsondata);
       List<AllUserCourses> Allcourses = [];
@@ -63,7 +61,7 @@ class CoursesApi{
       }
       return courses;
     } else {
-      throw Exception('faild');
+      throw Exception('failed');
     }
   }
 

@@ -20,23 +20,17 @@ class SQL_Helper {
   String tableName = "Cart_table";
   String _id = "id";
 
-
   String __productid = "product_id";
   String __quantity = "quantity";
 
-
-
-
   Future<Database> get database async {
-    if (_database == null){
+    if (_database == null) {
       _database = await initializedDatabase();
     }
     return _database;
   }
 
   Future<Database> initializedDatabase() async {
-
-
     String path = join(await getDatabasesPath(), 'database.dp');
     // Directory directory = await getApplicationDocumentsDirectory();
     // String path = directory.path + "database.db";
@@ -47,9 +41,7 @@ class SQL_Helper {
 
   void createDatabase(Database db, int version) async {
     await db.execute(
-
-        "CREATE TABLE $tableName($_id INTEGER PRIMARY KEY,$__productid INTEGER, $__quantity INTEGER)" );
-
+        "CREATE TABLE $tableName($_id INTEGER PRIMARY KEY,$__productid INTEGER, $__quantity INTEGER)");
   }
 
   Future<List<Map<String, dynamic>>> getcartMapList() async {
@@ -59,19 +51,18 @@ class SQL_Helper {
     return result;
   }
 
-
   Future<bool> checkDatabase() async {
     Database db = await this.database;
     //var result1 =  await db.rawQuery("SELECT * FROM $tableName ORDER BY $_id ASC");
-    var  result = await db.query(tableName);
-    return (result.isEmpty)?true:false;
+    var result = await db.query(tableName);
+    return (result.isEmpty) ? true : false;
   }
 
   Future<bool> checkItem(int id) async {
     Database db = await this.database;
     //var result1 =  await db.rawQuery("SELECT * FROM $tableName ORDER BY $_id ASC");
-    var  result = await db.query(tableName, where: "$_id = ?", whereArgs: [id]);
-    return (result.isEmpty)?true:false;
+    var result = await db.query(tableName, where: "$_id = ?", whereArgs: [id]);
+    return (result.isEmpty) ? true : false;
   }
 
   Future<int> insertCart(ProductCart cart) async {
@@ -80,15 +71,16 @@ class SQL_Helper {
     return result;
   }
 
-  Future<int> updateCart(ProductCart cart) async{
+  Future<int> updateCart(ProductCart cart) async {
     Database db = await this.database;
-    var result = await db.update(tableName, cart.toMap(), where: "$_id = ?", whereArgs: [cart.id]);
+    var result = await db.update(tableName, cart.toMap(),
+        where: "$_id = ?", whereArgs: [cart.id]);
     return result;
   }
-  Future<ProductCart> updateCartCount(int id) async{
+
+  Future<ProductCart> updateCartCount(int id) async {
     Database db = await this.database;
-    var result = await db.query(tableName,
-        where: "$_id = ?", whereArgs: [id]);
+    var result = await db.query(tableName, where: "$_id = ?", whereArgs: [id]);
     return ProductCart.getMap(result[0]);
   }
 
@@ -98,31 +90,29 @@ class SQL_Helper {
 
     return result;
   }
+
   Future<int> getCount() async {
     Database db = await this.database;
-    List<Map<String, dynamic>> all = await db.rawQuery("SELECT COUNT (*) FROM $tableName");
+    List<Map<String, dynamic>> all =
+        await db.rawQuery("SELECT COUNT (*) FROM $tableName");
     int result = Sqflite.firstIntValue(all);
     return result;
   }
 
-
-  Future<List<ProductCart>> getDataList() async{
-
+  Future<List<ProductCart>> getDataList() async {
     var cartMapList = await getcartMapList();
     int count = cartMapList.length;
 
     List<ProductCart> carts = new List<ProductCart>();
 
-    for (int i = 0; i <= count -1; i++){
+    for (int i = 0; i <= count - 1; i++) {
       carts.add(ProductCart.getMap(cartMapList[i]));
     }
     return carts;
   }
 
-
   void deleteall() async {
     var db = await this.database;
     int result = await db.rawDelete("DELETE FROM $tableName ");
   }
-
 }

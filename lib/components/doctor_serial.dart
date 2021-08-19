@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/Provider/provider.dart';
 import 'package:shop_app/constants.dart';
-import 'package:shop_app/dphelper.dart';
+import 'package:shop_app/helper/dphelper.dart';
 import 'package:shop_app/models/Cart.dart';
 import 'package:shop_app/screens/cart/cart_screen.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
@@ -99,7 +99,7 @@ class _State extends State<CustomDialogs> {
                   Form(
                     key: formKey,
                     child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(30)),
                         child: PinCodeTextField(
                           appContext: context,
                           pastedTextStyle: TextStyle(
@@ -125,7 +125,7 @@ class _State extends State<CustomDialogs> {
                             inactiveFillColor: Colors.white,
                             inactiveColor: Colors.grey,
                             shape: PinCodeFieldShape.box,
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(getProportionateScreenWidth(5)),
                             fieldHeight: getProportionateScreenHeight(40),
                             fieldWidth: getProportionateScreenWidth(30),
                             activeFillColor:
@@ -148,7 +148,7 @@ class _State extends State<CustomDialogs> {
                           ///handle on click here
                           onCompleted: (v) {
                             print(v);
-                            Api.getdotor(v, "doctorserial/exist?").then((
+                            Api.getdoctorserial(v, "doctorserial/exist?").then((
                                 value) async {
                               print(value);
                               if (value == "serial exist") {
@@ -220,7 +220,7 @@ class _State extends State<CustomDialogs> {
                       RaisedButton(
 
                         shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0)
+                            borderRadius: new BorderRadius.circular(getProportionateScreenWidth(30))
                         ),
                         color: Colors.green,
 
@@ -243,7 +243,7 @@ class _State extends State<CustomDialogs> {
                 tag: '1',
                 child: Container(
                   padding:
-                  EdgeInsets.symmetric(horizontal: Consts.paddding + 70),
+                  EdgeInsets.symmetric(horizontal: Consts.paddding + getProportionateScreenWidth(70)),
                   height: getProportionateScreenHeight(140),
                   // image is square but we add extra 20 + 20 padding thats why width is 200
                   width: getProportionateScreenWidth(90),
@@ -255,11 +255,6 @@ class _State extends State<CustomDialogs> {
               ),
             )
 
-            // Positioned(left: Consts.paddding, right: Consts.paddding,
-            //     child: CircleAvatar(
-            //       backgroundColor: Colors.blue,
-            //     radius: Consts.avatar,)
-            // )
           ],
         ));
   }
@@ -267,8 +262,8 @@ class _State extends State<CustomDialogs> {
 }
 
 class Consts {
-  static const double paddding = 16;
-  static const double avatar = 66;
+  static  double paddding = getProportionateScreenWidth(16);
+  static double avatar = getProportionateScreenWidth(66);
 
   Consts._();
 }

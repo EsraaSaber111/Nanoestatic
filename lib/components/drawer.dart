@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/screens/about_us/AboutUs.dart';
 import 'package:shop_app/screens/categories/categories_screen.dart';
@@ -6,8 +8,12 @@ import 'package:shop_app/screens/contact_us/ContactUs.dart';
 import 'package:shop_app/screens/courses/CourseScreen.dart';
 import 'package:shop_app/screens/inquiry/inquiry_screen.dart';
 import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
+import 'package:shop_app/screens/member_serial/member_serial_screen.dart';
 import 'package:shop_app/screens/offers/offers_screen.dart';
 import 'package:shop_app/screens/product_serial/product_serial_screen.dart';
+import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
+import 'package:shop_app/screens/splash/splash_screen.dart';
+
 class drawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,6 +32,7 @@ class drawer extends StatelessWidget {
             leading: Icon(Icons.home),
             title: Text(getTranslated(context, 'home_page')),
             onTap: () {
+              Navigator.pop(context);
 Navigator.pushReplacementNamed(context, MainPage.routeName);
              // Navigator.of(context).pushNamedAndRemoveUntil(MainPage.routeName, (route) => false);
             }),
@@ -62,6 +69,13 @@ Navigator.pushReplacementNamed(context, MainPage.routeName);
                Navigator.of(context).pushNamedAndRemoveUntil(ProductSerialScreen.routeName, ModalRoute.withName(MainPage.routeName));
             }),
         ListTile(
+            leading: Icon(Icons.person_search),
+            title: Text('Member Serial'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).pushNamedAndRemoveUntil(MemberSerialScreen.routeName, ModalRoute.withName(MainPage.routeName));
+            }),
+        ListTile(
             leading: Icon(Icons.group_sharp),
             title: Text(getTranslated(context, 'about_us')),
             onTap: () {
@@ -88,11 +102,28 @@ Navigator.pushReplacementNamed(context, MainPage.routeName);
               Navigator.of(context).pushNamedAndRemoveUntil(InquiryScreen.routeName, ModalRoute.withName(MainPage.routeName));
 
             }),
+        ListTile(
+            leading: Icon(
+              Icons.logout,
+              color: Colors.red,
+            ),
+            title: Text('Logout'),
+            onTap: () {
+              Navigator.pop(context);
+                SharedPreferences.getInstance().then((prefs) {
+                  prefs.clear();
+                  print(prefs.getString('user_token'));
+                });
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SignInScreen()));
+
+            }
+            )
 
 
 
       ],
     );
+
   }
 
 

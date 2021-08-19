@@ -17,23 +17,17 @@ class WishlistApi{
             "&product_id=" +
             product_id.toString()}');
     if (response.statusCode == 200) {
-      print(response.body);
+      //print(response.body);
       var data = jsonDecode(response.body);
       return data['message'];
     }
-
   }
-
-
-
   ///get wishlist
   static Future<Wishlist> getwish(int id) async {
     final response = await http.get(
         '${baseurl + wishlistURL + "api_username=" + name + "&api_password=" +
-            password + "&api_lang=" + await getLanguageCode() + "&user_id=" +
-            id.toString()}');
+            password + "&api_lang=" + await getLanguageCode() + "&user_id="+id.toString()}');
     if (response.statusCode == 200) {
-      //  print(response.body);
       final jsondata = json.decode(response.body);
       Wishlist wishList = Wishlist.fromJson(jsondata);
       List<AllWishListProducts> Allwishes = [];
@@ -44,13 +38,10 @@ class WishlistApi{
       }
       return wishList;
     } else {
-      throw Exception('faild');
+      throw Exception('failed');
     }
   }
-
-
   ///if wishlish
-
   static Future<dynamic> ifwishlist(String url,int product_id, int userid) async {
     final response = await http.post(
         '${baseurl + url + "api_username=" + name + "&api_password=" +
@@ -64,13 +55,12 @@ class WishlistApi{
       var data = jsonDecode(response.body);
       return data['message'];
     }
-
   }
 
   ///deletewishlist
 
   static Future<dynamic> deletewishlist(String url,int product_id, int userid) async {
-    final response = await http.delete(
+    final response = await http.post(
         '${baseurl + url + "api_username=" + name + "&api_password=" +
             password + "&api_lang=" + await getLanguageCode() +
             "&user_id=" +
@@ -79,8 +69,8 @@ class WishlistApi{
             product_id.toString()}');
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-      print(response.body);
-      return data.toString();
+      //print(response.body);
+      return data['message'];
     } else (e){
       print(e);
       throw Exception(e);

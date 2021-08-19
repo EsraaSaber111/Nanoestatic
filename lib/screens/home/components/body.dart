@@ -34,16 +34,10 @@ class _BodyState extends State<Body> {
         Provider.of<Provider_control>(context,listen: false).setCount(value.getInt('length'));
       });
     });
-        }
-Future<Null>rList()async{
-    await Future.delayed(Duration(seconds: 2));
-}
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: RefreshIndicator(
-onRefresh: rList,
-        backgroundColor: Colors.orange,
         child: ListView(
           children: [
             SizedBox(height: getProportionateScreenHeight(20)),
@@ -60,8 +54,6 @@ onRefresh: rList,
 
           ],
         ),
-      ),
-
     );
   }
 

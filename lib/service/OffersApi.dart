@@ -9,18 +9,18 @@ class OffersApi{
   static Future<Offres> getAllOffers() async {
     final response = await http.get('${baseurl+allOffersURL+"api_username="+name+"&api_password="+password+"&api_lang="+english}');
     if(response.statusCode == 200) {
-      print(response.body);
+     // print(response.body);
       final jsondata = json.decode(response.body);
-      Offres offres=Offres.fromJson(jsondata);
+      Offres offers=Offres.fromJson(jsondata);
 
       var Alloffers=[];
       for(var i in Alloffers){
         AllProducts allProducts= AllProducts.fromJson(i);
         Alloffers.add(allProducts);
       }
-      return offres;
+      return offers;
     }else{
-      throw Exception('faild');
+      throw Exception('failed');
     }
   }
 

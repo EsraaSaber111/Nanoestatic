@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/api_constants.dart';
 import 'package:shop_app/models/wishlist.dart';
+import 'package:shop_app/service/WishlistApi.dart';
 
 
 import '../../../constants.dart';
@@ -11,7 +12,7 @@ class wishcart extends StatelessWidget {
   int itemIndex;
   AllWishListProducts wish;
   Function press;
-wishcart({this.wish,this.itemIndex,this.press});
+  wishcart({this.wish,this.itemIndex,this.press});
 
 
 
@@ -61,10 +62,10 @@ wishcart({this.wish,this.itemIndex,this.press});
                   width: 200,
                   ///have to handle image
                   child: Image.network(
-                   '${imageURl+wish.mainImage}',
-                   fit: BoxFit.cover,
-                     height: 200,
-                     width: 400,
+                    '${imageURl+wish.mainImage}',
+                    fit: BoxFit.cover,
+                    height: 200,
+                    width: 400,
                   ),
                 ),
               ),
@@ -86,12 +87,12 @@ wishcart({this.wish,this.itemIndex,this.press});
                       padding: const EdgeInsets.symmetric(
                           horizontal: kDefaultPadding),
                       child: Text(
-                        'Favorite ${itemIndex}',
+                        'Favorite ${itemIndex+1}',
                         style: TextStyle(
                           fontSize: getProportionateScreenWidth(18),
                           color: Colors.black,
                         ),
-                       // style: Theme.of(context).textTheme.headline6,
+                        // style: Theme.of(context).textTheme.headline6,
                       ),
 
                     ),
@@ -99,7 +100,7 @@ wishcart({this.wish,this.itemIndex,this.press});
                       padding: const EdgeInsets.symmetric(
                           horizontal: kDefaultPadding),
                       child: Text(
-                       ' ${wish.lastPrice} \$',
+                        ' ${wish.lastPrice} \$',
                         style: TextStyle(
                           fontSize: getProportionateScreenWidth(20),
                           fontWeight: FontWeight.w600,
@@ -127,20 +128,23 @@ wishcart({this.wish,this.itemIndex,this.press});
                     // it use the available space
                     Spacer(),
                     Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: kDefaultPadding * 1.5, // 30 padding
-                        vertical: kDefaultPadding / 4, // 5 top and bottom
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFFE6E6),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(22),
-                          topRight: Radius.circular(22),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: kDefaultPadding * 1.5, // 30 padding
+                          vertical: kDefaultPadding / 4, // 5 top and bottom
                         ),
-                      ),
-                      child: Icon(Icons.favorite,color: Colors.red,)
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFE6E6),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(22),
+                            topRight: Radius.circular(22),
+                          ),
+                        ),
+                        child: IconButton(
+                          icon:Icon(Icons.favorite,color: Colors.red,),
 
-                      ),
+                       )
+
+                    ),
 
 
                   ],

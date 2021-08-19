@@ -1,86 +1,128 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/offres.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/api_constants.dart';
 import 'package:shop_app/models/wishlist.dart';
-import 'package:shop_app/screens/offers/components/all_product_card.dart';
 import 'package:shop_app/screens/details/details_screen.dart';
 import 'package:shop_app/screens/wishlist/components/wish_card.dart';
-import 'package:shop_app/service/Api.dart';
-import 'package:shop_app/service/OffersApi.dart';
 import 'package:shop_app/service/WishlistApi.dart';
 
 import '../../../constants.dart';
-class Body extends StatefulWidget {
-  const Body({Key key}) : super(key: key);
 
+class Body extends StatefulWidget {
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
-  Future<Wishlist>wish;
+  Wishlist wish;
+  String userid;
+  getdata(){
+    SharedPreferences.getInstance().then((pref) async {
+      WishlistApi.getwish(int.parse(pref.getString('id'))).then((value) {
+        setState(() {
+          wish = value;
+          userid=pref.getString('id');
+        });
+      });
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    wish=WishlistApi.getwish(8);
+
+    getdata();
+
+
   }
 
-    @override
-    Widget build(BuildContext context) {
-      return SafeArea(
-        bottom: false,
-        child: Column(
-          children: <Widget>[
-            //  SearchBox(onChanged: (value) {}),
-            // CategoryList(),
-            SizedBox(height: kDefaultPadding / 2),
-            Expanded(
-              child: Stack(
-                children: <Widget>[
-                  // Our background
-                  Container(
-                    // margin: EdgeInsets.only(top: 100),
-                    decoration: BoxDecoration(
-                      //  color: kBackgroundColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40),
-                      ),
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: kDefaultPadding / 2),
+          Expanded(
+            child: Stack(
+              children: <Widget>[
+                // Our background
+                Container(
+                  decoration: BoxDecoration(
+                    //  color: kBackgroundColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
                     ),
                   ),
-                  FutureBuilder<Wishlist>(
-                  future: wish,
-                      builder: (_,snapshot){
-                    if(snapshot.hasData){
-                    print(snapshot.data.message);
-                      return ListView.builder(
+                ),
+                wish == null
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.builder(
                         // here we use our demo procuts list
-                        itemCount:snapshot.data.allWishListProducts.length,
-                        itemBuilder: (context, index) =>
-                            wishcart(
-                          itemIndex: index,
-                          wish: snapshot.data.allWishListProducts[index],
-                          press: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsScreen(snapshot.data.allWishListProducts[index].id)));
-                          },
+                        itemCount: wish.allWishListProducts.length,
+                        itemBuilder: (context, index) => Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Dismissible(
+                            key: UniqueKey(),
+                            direction: DismissDirection.endToStart,
+                            onDismissed: (direction) {
+
+                              setState(() {
+    WishlistApi.deletewishlist("wishlist/delete?", wish.allWishListProducts[index].id, int.parse(userid)).whenComplete(() {
+
+      print("deleted");
+      WishlistApi.getwish(int.parse(userid)).then((value) {
+       setState(() {
+         wish=value;
+       });
+      });
+
+    });
+
+
+                              });
+                            },
+
+                            background: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFFE6E6),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Row(
+                                children: [
+                                  Spacer(),
+                                  SvgPicture.asset("assets/icons/Trash.svg"),
+                                ],
+                              ),
+                            ),
+                            child: wishcart(
+                              itemIndex: index,
+                              wish: wish.allWishListProducts[index],
+                              press: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DetailsScreen(
+                                            wish.allWishListProducts[index].id,)));
+                              },
+                            ),
+                          ),
                         ),
-                      );
-
-                    }
-                    else if(snapshot.connectionState==ConnectionState.waiting){
-                      return Center(child: CircularProgressIndicator(),);
-                    }else{
-                      return Center(child: Text('error'),);
-                    }
-                      })
-                ],
-              ),
+                      )
+              ],
             ),
-          ],
-        ),
-      );
-    }
-
+          ),
+        ],
+      ),
+    );
+  }
 }
-

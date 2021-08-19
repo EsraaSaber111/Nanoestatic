@@ -4,13 +4,10 @@ import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/helper/keyboard.dart';
 import 'package:shop_app/models/login.dart';
-import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
-import 'package:shop_app/service/Api.dart';
 import 'package:shop_app/service/UserApi.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
-import '../../../sharedpref.dart';
 import '../../../size_config.dart';
 
 class SignForm extends StatefulWidget {
@@ -27,7 +24,23 @@ class _SignFormState extends State<SignForm> {
   bool remember = false;
   final List<String> errors = [];
 
+  getemail(){
+    SharedPreferences.getInstance().then((pref) async {
+        setState(() {
+          email=pref.getString('email');
+        });
+    });
+  }
 
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if(remember){
+      getemail();
+    }
+  }
 
 
   void addError({String error}) {
@@ -68,14 +81,7 @@ class _SignFormState extends State<SignForm> {
               ),
               Text("Remember me"),
               Spacer(),
-              GestureDetector(
-                onTap: () => Navigator.pushNamed(
-                    context, ForgotPasswordScreen.routeName),
-                child: Text(
-                  "Forgot Password",
-                  style: TextStyle(decoration: TextDecoration.underline),
-                ),
-              )
+
             ],
           ),
           FormError(errors: errors),
@@ -104,7 +110,7 @@ class _SignFormState extends State<SignForm> {
                     ///shared SharedPreferences call
                     // print(UserSimplePreferences.getEmail().toString());
                     // print(UserSimplePreferences.getPassword().toString());
-                   Navigator.pushNamed(context, MainPage.routeName);
+                   Navigator.pushReplacementNamed(context, MainPage.routeName);
 
                   Scaffold.of(context).showSnackBar(SnackBar(content: Text('welcome ${value.user.name} ${value.message}')));
 
@@ -159,6 +165,7 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      initialValue: email,
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
