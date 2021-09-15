@@ -59,23 +59,23 @@ class _BodyState extends State<Body> {
                     children: List.generate(
                       snapshot.data.allCategories.length,
                       (int index) {
-                        var x, y ;
-                             double width;
-                        if (index == 0 || index == 1) {
-                          x = 4;
-                          y = 2.0;
-                          width=325;
-                          _staggeredTiles.add(
-                            StaggeredTile.count(x, y),
-                          );
-                        } else {
-                          x = 2;
-                          y = 2.0;
-                          width=155;
-                          _staggeredTiles.add(
-                            StaggeredTile.count(x, y),
-                          );
-                        }
+                        // var x, y ;
+                        //      double width;
+                        // if (index == 0 || index == 1) {
+                        //   x = 4;
+                        //   y = 2.0;
+                        //   width=325;
+                        //   _staggeredTiles.add(
+                        //     StaggeredTile.count(x, y),
+                        //   );
+                        // } else {
+                        //   x = 2;
+                        //   y = 2.0;
+                        //   width=155;
+                        //   _staggeredTiles.add(
+                        //     StaggeredTile.count(x, y),
+                        //   );
+                       // }
                         return AnimationConfiguration.staggeredGrid(
                           columnCount: snapshot.data.allCategories.length,
                           position: index,
@@ -104,7 +104,7 @@ class _BodyState extends State<Body> {
                                                   children: [
                                                     Container(
 
-                                                width: getProportionateScreenWidth(width),
+                                                width: getProportionateScreenWidth(200),
                                               //  height: 100,
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(

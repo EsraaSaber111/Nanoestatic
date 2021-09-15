@@ -6,7 +6,7 @@ import 'package:shop_app/service/Api.dart';
 import '../../../constants.dart';
 import '../../../helper/dphelper.dart';
 import '../../../size_config.dart';
-import 'check_out_card.dart';
+
 
 class CartCard extends StatefulWidget {
   ProductCart cart;

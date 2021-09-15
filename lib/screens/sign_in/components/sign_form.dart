@@ -21,7 +21,7 @@ class _SignFormState extends State<SignForm> {
   User user;
   String email;
   String password;
-  bool remember = false;
+ // bool remember = false;
   final List<String> errors = [];
 
   getemail(){
@@ -37,11 +37,8 @@ class _SignFormState extends State<SignForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(remember){
-      getemail();
-    }
-  }
 
+  }
 
   void addError({String error}) {
     if (!errors.contains(error))
@@ -57,7 +54,6 @@ class _SignFormState extends State<SignForm> {
       });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -68,22 +64,22 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
-          Row(
-            children: [
-              Checkbox(
-                value: remember,
-                activeColor: kPrimaryColor,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
-              ),
-              Text("Remember me"),
-              Spacer(),
-
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     Checkbox(
+          //       value: remember,
+          //       activeColor: kPrimaryColor,
+          //       onChanged: (value) {
+          //         setState(() {
+          //           remember = value;
+          //         });
+          //       },
+          //     ),
+          //     Text("Remember me"),
+          //     Spacer(),
+          //
+          //   ],
+          // ),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(

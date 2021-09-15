@@ -33,6 +33,7 @@ class _MainPageState extends State<MainPage> {
       //drawer: Drawer(child: drawer(),),
       body:tabs[_currentindex],
       bottomNavigationBar: BottomNavigationBar(
+
         currentIndex: _currentindex,
         backgroundColor: Colors.white,
         selectedItemColor: Colors.orange,

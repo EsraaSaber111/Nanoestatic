@@ -99,7 +99,6 @@ class _CheckoutCadState extends State<CheckoutCard> {
                   child: DefaultButton(
                     text: "Check Out",
                     press: () {
-
                       // helper.deleteall();
                       Navigator.pushNamed(
                           context,

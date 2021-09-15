@@ -20,7 +20,6 @@ const kSecondaryColor = Color(0xFF979797);
 const kTextColor = Color(0xFF757575);
 const kDefaultPadding = 15.0;
 const kBlueColor = Color(0xFF40BAD5);
-
 const kAnimationDuration = Duration(milliseconds: 200);
 
 final headingStyle = TextStyle(
