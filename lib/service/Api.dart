@@ -79,6 +79,27 @@ class Api {
     }
   }
 
+  static Future<AllProductsModel> getAllProducts(int cat_Id) async {
+    final response = await http.get(
+        '${baseurl + allProductURL + "api_username=" + name + "&api_password=" +
+            password + "&api_lang=" + await getLanguageCode() +
+            "&category_id=" + cat_Id.toString()}');
+    if (response.statusCode == 200) {
+      print(response.body);
+      final jsondata = json.decode(response.body);
+      AllProductsModel allProductsModel = AllProductsModel.fromJson(jsondata);
+
+      List<AllProducts> Allpro = [];
+      for (var i in Allpro) {
+        AllProducts allProducts = AllProducts.fromJson(i);
+        Allpro.add(allProducts);
+      }
+      return allProductsModel;
+    } else {
+      throw Exception('failed');
+    }
+  }
+
   ///get product (details) data
 
   static Future<Product_model> getproductdetails(int pro_id) async {
@@ -147,26 +168,7 @@ class Api {
 
   ///get all products of specific category
 
-  static Future<AllProductsModel> getAllProducts(int cat_Id) async {
-    final response = await http.get(
-        '${baseurl + allProductURL + "api_username=" + name + "&api_password=" +
-            password + "&api_lang=" + await getLanguageCode() +
-            "&category_id=" + cat_Id.toString()}');
-    if (response.statusCode == 200) {
-      //print(response.body);
-      final jsondata = json.decode(response.body);
-      AllProductsModel allProductsModel = AllProductsModel.fromJson(jsondata);
 
-      List<AllProducts> Allpro = [];
-      for (var i in Allpro) {
-        AllProducts allProducts = AllProducts.fromJson(i);
-        Allpro.add(allProducts);
-      }
-      return allProductsModel;
-    } else {
-      throw Exception('failed');
-    }
-  }
 
   /// get function for json object
 

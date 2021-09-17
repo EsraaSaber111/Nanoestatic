@@ -46,6 +46,7 @@ class _ProductCardState extends State<ProductCard> {
   }
   @override
   void initState() {
+
     getifav();
     // TODO: implement initState
     super.initState();

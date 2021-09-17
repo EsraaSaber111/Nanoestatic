@@ -47,15 +47,13 @@ class _BodyState extends State<Body> {
               if (snapshot.hasData) {
                 // return Center(child: Text('${snapshot.data.allCategories.length}'),);
                 return AnimationLimiter(
-                  child: StaggeredGridView.count(
-                    //crossAxisCount: 4,
-                    staggeredTiles: _staggeredTiles,
-                    // children: _tiles,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8.0,
-                    // childAspectRatio: 1.0,
+                  child: GridView.count(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 0.3,
+                    crossAxisSpacing: 0.2,
+                    childAspectRatio:2.5,
                     padding: const EdgeInsets.all(20.0),
-                    crossAxisCount: snapshot.data.allCategories.length,
+                    //crossAxisCount: snapshot.data.allCategories.length,
                     children: List.generate(
                       snapshot.data.allCategories.length,
                       (int index) {
@@ -163,9 +161,6 @@ class _BodyState extends State<Body> {
                                                         TextSpan(
                                                             text:
                                                                 "${snapshot.data.allCategories[index].data.description} \n"),
-                                                        TextSpan(
-                                                            text:
-                                                                "${snapshot.data.allCategories[index].id} Product"),
                                                       ],
                                                     ),
                                                   ),
