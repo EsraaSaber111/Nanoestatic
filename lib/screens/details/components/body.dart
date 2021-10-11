@@ -12,7 +12,7 @@ import 'product_images.dart';
 class Body extends StatefulWidget {
   Future<Product_model> productdetails;
   int product_id;
- String userid;
+  String userid;
   Body(this.product_id);
   @override
   _BodyState createState() => _BodyState();
