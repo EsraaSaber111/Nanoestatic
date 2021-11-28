@@ -3,13 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:html/parser.dart' show parse;
+import 'package:shop_app/models/product_model.dart';
 import 'package:shop_app/service/WishlistApi.dart';
 import '../size_config.dart';
 
 
 class ProductDescription extends StatefulWidget {
 
-  dynamic product;
+  MyProduct product;
   String user_id;
   ProductDescription(this.product, this.user_id);
   @override
@@ -22,7 +23,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
 
   String isfav = "";
   String getifav() {
-    WishlistApi.ifwishlist('wishlist/check?',widget.product.c_id, int.parse(widget.user_id))
+    WishlistApi.ifwishlist('wishlist/check?',widget.product.id, int.parse(widget.user_id))
         .then((value) {
       print(value);
       setState(() {
@@ -74,7 +75,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                     onTap: (){
                       if (isfav == "product exist") {
                         WishlistApi.deletewishlist(
-                            'wishlist/delete?', widget.product.c_id, int.parse(widget.user_id)).then((value) {
+                            'wishlist/delete?', widget.product.id, int.parse(widget.user_id)).then((value) {
                           print(value);
                           Scaffold.of(context).showSnackBar(
                               SnackBar(content: Text('${value}')));
@@ -87,7 +88,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                         });
                       }
                       else{
-                        WishlistApi.addwishlist('wishlist/add?', widget.product.c_id, int.parse(widget.user_id)).then((value) {
+                        WishlistApi.addwishlist('wishlist/add?', widget.product.id, int.parse(widget.user_id)).then((value) {
                           print(value);
                           Scaffold.of(context).showSnackBar(SnackBar(content: Text('${value}')));
                         });
