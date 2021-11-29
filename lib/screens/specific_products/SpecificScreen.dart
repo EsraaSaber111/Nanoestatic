@@ -4,6 +4,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/components/product_card.dart';
 import 'package:shop_app/components/drawer.dart';
+import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/all_products_model.dart';
 import 'package:shop_app/service/Api.dart';
 
@@ -59,7 +60,13 @@ class _productsbodyState extends State<ProductsBody> {
     return Scaffold(
       ///have to solve appBar
       appBar: AppBar(
-        title: Text('${widget.title} Products'),
+        title: Row(
+          children: [
+            Text('${widget.title}'),
+
+           // Text(' ${getTranslated(context, 'product')}')
+          ],
+        ),
       ),
       body: SafeArea(
           child: specific_products == null

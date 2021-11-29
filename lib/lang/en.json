@@ -2,6 +2,7 @@
   "home_page": "Home Page",
   "offers": "offers",
   "products" : "products",
+  "product" : "products",
   "courses" : "courses",
   "contact_us" : "contact us",
   "about_us": "about us",
@@ -22,5 +23,10 @@
   "Address": "Address",
   "Edit Profile": "Edit Profile",
   "Save changes": "Save changes",
-  "Password": "Password"
+  "Password": "Password",
+  "product_serial": "Product Serial",
+  "member_serial": "Member Serial",
+  "logout": "Logout",
+  "Nanoestatic Academy": "Nanoestatic Academy",
+  "Description": "Description"
 }

@@ -31,9 +31,9 @@ class _BodyState extends State<Body> {
         child:courses==null?Container():AnimationLimiter(
             child: GridView.count(
                 crossAxisCount: 1,
-                mainAxisSpacing: 0.3,
+               // mainAxisSpacing: 9,
                 crossAxisSpacing: 0.2,
-               childAspectRatio:2.5,
+                childAspectRatio:2.5,
                 children:
                     List.generate(courses.allCourses.length, (index) {
                   return Padding(

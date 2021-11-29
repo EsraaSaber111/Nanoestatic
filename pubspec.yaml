@@ -50,11 +50,12 @@ dependencies:
 
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.9.2"
 
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icons/Gift Icon.svg"
+  image_path: "assets/icons/app_logo.png"
 
   flutter_test:
     sdk: flutter

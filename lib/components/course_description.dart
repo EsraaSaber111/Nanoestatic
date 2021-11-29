@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:html/parser.dart';
+import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:shop_app/models/course_model.dart';
 import 'package:shop_app/models/product_model.dart';
@@ -75,11 +77,11 @@ setState(() {
             crossAxisAlignment: CrossAxisAlignment.start,
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Description',style: TextStyle(color: Colors.black.withOpacity(0.7),fontWeight: FontWeight.bold),
+              Text(getTranslated(context, 'Description'),style: TextStyle(color: Colors.black.withOpacity(0.7),fontWeight: FontWeight.bold),
 
               ),
               Text(
-                '${widget.product.data.content}',
+                '${parse(widget.product.data.content).body.text}',
                 maxLines: 10,
               ),
             ],

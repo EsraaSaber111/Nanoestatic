@@ -2,6 +2,7 @@
   "home_page": "الصفحة الرئيسية",
   "offers": "العروض",
   "products" : "المنتجات",
+  "product" : "منتجات",
   "courses" : "دورات تدريبيه",
   "contact_us" : "اتصل بنا",
   "about_us": "من نحن",
@@ -22,5 +23,10 @@
   "Address": "العنوان",
   "Edit Profile": "تعديل الملف الشخصي",
   "Save changes": "حفظ التغيرات",
-  "Password": "كلمة السر"
+  "Password": "كلمة السر",
+  "product_serial": "كود المنتج",
+  "member_serial": "كود الاعضاء",
+  "logout": "تسجيل الخروج",
+  "Nanoestatic Academy": "الاكاديمية التعليمية",
+  "Description": "الوصف"
 }

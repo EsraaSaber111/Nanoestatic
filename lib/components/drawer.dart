@@ -22,7 +22,7 @@ class drawer extends StatelessWidget {
         DrawerHeader(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/images/download.png"),
+                    image: AssetImage("assets/images/logo.png"),
                     fit: BoxFit.fitWidth)),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -63,14 +63,15 @@ Navigator.pushReplacementNamed(context, MainPage.routeName);
             }),
         ListTile(
             leading: Icon(Icons.search),
-            title: Text('Product Serial'),
+            title: Text(getTranslated(context, 'product_serial')),
+
             onTap: () {
               Navigator.pop(context);
                Navigator.of(context).pushNamedAndRemoveUntil(ProductSerialScreen.routeName, ModalRoute.withName(MainPage.routeName));
             }),
         ListTile(
             leading: Icon(Icons.person_search),
-            title: Text('Member Serial'),
+            title: Text(getTranslated(context, 'member_serial')),
             onTap: () {
               Navigator.pop(context);
               Navigator.of(context).pushNamedAndRemoveUntil(MemberSerialScreen.routeName, ModalRoute.withName(MainPage.routeName));
@@ -107,7 +108,7 @@ Navigator.pushReplacementNamed(context, MainPage.routeName);
               Icons.logout,
               color: Colors.red,
             ),
-            title: Text('Logout'),
+            title: Text(getTranslated(context, 'logout')),
             onTap: () {
               Navigator.pop(context);
                 SharedPreferences.getInstance().then((prefs) {
@@ -115,7 +116,6 @@ Navigator.pushReplacementNamed(context, MainPage.routeName);
                   print(prefs.getString('user_token'));
                 });
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SignInScreen()));
-
             }
             )
 

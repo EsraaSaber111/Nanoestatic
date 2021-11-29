@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/Product.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:shop_app/models/product_model.dart';
@@ -116,7 +117,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Description',style: TextStyle(color: Colors.black.withOpacity(0.7),fontWeight: FontWeight.bold),
+              Text('${getTranslated(context,'Description')}',style: TextStyle(color: Colors.black.withOpacity(0.7),fontWeight: FontWeight.bold),
 
               ),
               SizedBox(height: getProportionateScreenHeight(10),),

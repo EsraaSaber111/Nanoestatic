@@ -5,6 +5,7 @@ import 'package:shop_app/constants.dart';
 import 'package:shop_app/localization/language_constants.dart';
 
 import 'package:shop_app/screens/cart/cart_screen.dart';
+import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
 import '../../../languages.dart';
 import '../../../main.dart';
 import '../../../size_config.dart';
@@ -50,6 +51,7 @@ HomeHeader(this.length);
               onChanged: (Languages language){
                 //Phoenix.rebirth(context);
                 _changelanguage(language);
+                Navigator.pushReplacementNamed(context, MainPage.routeName);
               },
               icon: Icon(Icons.language, color: Colors.grey,),
             )

@@ -61,9 +61,10 @@ class _SpecialCategoriesState extends State<SpecialCategories> {
                               (index) {
 
                             return  SpecialOfferCard(
+                              width: 250,
                               image: '${imageURl+snapshot.data.allCategories[index].mainImage}',
                               category:"${snapshot.data.allCategories[index].data.name}",
-                             numOfBrands:"products",
+                              numOfBrands:'${getTranslated(context, 'product')}',
                               press: () {
                                 Navigator.push(
                                     context,
@@ -78,7 +79,7 @@ class _SpecialCategoriesState extends State<SpecialCategories> {
                                                     .data
                                                     .allCategories[index]
                                                     .data
-                                                    .name)));
+                                                    .description)));
 
 
 
@@ -125,15 +126,17 @@ class SpecialOfferCard extends StatelessWidget {
     @required this.image,
     @required this.numOfBrands,
     @required this.press,
+    @required this.width
   }) : super(key: key);
 
   final String category, image;
   final String numOfBrands;
   final GestureTapCallback press;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
-    double width=242;
+    //double width=250;
     return Padding(
       padding: EdgeInsets.only(left: getProportionateScreenWidth(20), right: getProportionateScreenWidth(20)),
       child: GestureDetector(

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shop_app/components/drawer.dart';
+import 'package:shop_app/localization/language_constants.dart';
 import 'package:shop_app/models/all_categories_model.dart';
+import 'package:shop_app/screens/home/components/special_categories.dart';
 import 'package:shop_app/screens/specific_products/SpecificScreen.dart';
 import 'package:shop_app/service/Api.dart';
 import '../../../api_constants.dart';
@@ -35,7 +37,7 @@ class _BodyState extends State<Body> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categories'),
+        title: Text("${getTranslated(context, 'Categories')}"),
       ),
       drawer: Drawer(
         child: drawer(),
@@ -49,31 +51,14 @@ class _BodyState extends State<Body> {
                 return AnimationLimiter(
                   child: GridView.count(
                     crossAxisCount: 1,
-                    mainAxisSpacing: 0.3,
+                    mainAxisSpacing: 9,
                     crossAxisSpacing: 0.2,
                     childAspectRatio:2.5,
-                    padding: const EdgeInsets.all(20.0),
+                   // padding: const EdgeInsets.all(5.0),
                     //crossAxisCount: snapshot.data.allCategories.length,
                     children: List.generate(
                       snapshot.data.allCategories.length,
                       (int index) {
-                        // var x, y ;
-                        //      double width;
-                        // if (index == 0 || index == 1) {
-                        //   x = 4;
-                        //   y = 2.0;
-                        //   width=325;
-                        //   _staggeredTiles.add(
-                        //     StaggeredTile.count(x, y),
-                        //   );
-                        // } else {
-                        //   x = 2;
-                        //   y = 2.0;
-                        //   width=155;
-                        //   _staggeredTiles.add(
-                        //     StaggeredTile.count(x, y),
-                        //   );
-                       // }
                         return AnimationConfiguration.staggeredGrid(
                           columnCount: snapshot.data.allCategories.length,
                           position: index,
@@ -81,112 +66,131 @@ class _BodyState extends State<Body> {
                           child: ScaleAnimation(
                             scale: 0.5,
                             child: FadeInAnimation(
-                                child: InkWell(
-                                    child: Padding(
-                                      padding: EdgeInsets.all(
-                                          getProportionateScreenWidth(2)),
-                                      child: GestureDetector(
-                                        child: SizedBox(
-                                          width:
-                                              getProportionateScreenWidth(242),
-                                          height:
-                                              getProportionateScreenWidth(100),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            child: Stack(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-
-                                                width: getProportionateScreenWidth(200),
-                                              //  height: 100,
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.fill,
-                                                    image: NetworkImage(
-                                                        '${imageURl+snapshot.data.allCategories[index].mainImage}',
-                                                      //  height: width,
-
-                                                    ),
-                                                  ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                      begin:
-                                                          Alignment.topCenter,
-                                                      end: Alignment
-                                                          .bottomCenter,
-                                                      colors: [
-                                                        Color(0xFF343434)
-                                                            .withOpacity(0.4),
-                                                        Color(0xFF343434)
-                                                            .withOpacity(0.15),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal:
-                                                        getProportionateScreenWidth(
-                                                            15.0),
-                                                    vertical:
-                                                        getProportionateScreenWidth(
-                                                            10),
-                                                  ),
-                                                  child: Text.rich(
-                                                    TextSpan(
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                      children: [
-                                                        TextSpan(
-                                                          text:
-                                                              "${snapshot.data.allCategories[index].data.name}\n",
-                                                          style: TextStyle(
-                                                            fontSize:
-                                                                getProportionateScreenWidth(
-                                                                    18),
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                                        TextSpan(
-                                                            text:
-                                                                "${snapshot.data.allCategories[index].data.description} \n"),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SpecificScreen(
-                                                      snapshot
-                                                          .data
-                                                          .allCategories[index]
-                                                          .id,
-                                                      snapshot
-                                                          .data
-                                                          .allCategories[index]
-                                                          .data
-                                                          .name)));
-                                    })
+                                child: SpecialOfferCard(
+                                  width: 335,
+                                  image: '${imageURl+snapshot.data.allCategories[index].mainImage}',
+                                  category:"${snapshot.data.allCategories[index].data.name}",
+                                  numOfBrands:'${    snapshot.data
+                                      .allCategories[index]
+                                      .data
+                                      .description}',
+                                  press: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SpecificScreen(
+                                                    snapshot
+                                                        .data
+                                                        .allCategories[index]
+                                                        .id,
+                                                    snapshot
+                                                        .data
+                                                        .allCategories[index]
+                                                        .data
+                                                        .description)));
+                                  },
+                                )
+                                // InkWell(
+                                //     child: Padding(
+                                //       padding: EdgeInsets.all(
+                                //           getProportionateScreenWidth(2)),
+                                //       child: GestureDetector(
+                                //         child: SizedBox(
+                                //           width:
+                                //               getProportionateScreenWidth(242),
+                                //           height:
+                                //               getProportionateScreenWidth(100),
+                                //           child: ClipRRect(
+                                //             borderRadius:
+                                //                 BorderRadius.circular(20),
+                                //             child: Stack(
+                                //               children: [
+                                //                 Container(
+                                //
+                                //                 width: getProportionateScreenWidth(242),
+                                //               //  height: 100,
+                                //                 decoration: BoxDecoration(
+                                //                   image: DecorationImage(
+                                //                 fit: BoxFit.fill,
+                                //                 image: NetworkImage(
+                                //                     '${imageURl+snapshot.data.allCategories[index].mainImage}',
+                                //                   //  height: width,
+                                //
+                                //                 ),
+                                //                   ),
+                                //                   ),
+                                //                 ),
+                                //                 Container(
+                                //                   decoration: BoxDecoration(
+                                //                     gradient: LinearGradient(
+                                //                       begin:
+                                //                           Alignment.topCenter,
+                                //                       end: Alignment
+                                //                           .bottomCenter,
+                                //                       colors: [
+                                //                         Color(0xFF343434)
+                                //                             .withOpacity(0.4),
+                                //                         Color(0xFF343434)
+                                //                             .withOpacity(0.15),
+                                //                       ],
+                                //                     ),
+                                //                   ),
+                                //                 ),
+                                //                 Padding(
+                                //                   padding: EdgeInsets.symmetric(
+                                //                     horizontal:
+                                //                         getProportionateScreenWidth(
+                                //                             15.0),
+                                //                     vertical:
+                                //                         getProportionateScreenWidth(
+                                //                             10),
+                                //                   ),
+                                //                   child: Text.rich(
+                                //                     TextSpan(
+                                //                       style: TextStyle(
+                                //                           color: Colors.white),
+                                //                       children: [
+                                //                         TextSpan(
+                                //                           text:
+                                //                               "${snapshot.data.allCategories[index].data.name}\n",
+                                //                           style: TextStyle(
+                                //                             fontSize:
+                                //                                 getProportionateScreenWidth(
+                                //                                     18),
+                                //                             fontWeight:
+                                //                                 FontWeight.bold,
+                                //                           ),
+                                //                         ),
+                                //                         TextSpan(
+                                //                             text:
+                                //                                 "${snapshot.data.allCategories[index].data.description} \n"),
+                                //                       ],
+                                //                     ),
+                                //                   ),
+                                //                 ),
+                                //               ],
+                                //             ),
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //     onTap: () {
+                                //       Navigator.push(
+                                //           context,
+                                //           MaterialPageRoute(
+                                //               builder: (context) =>
+                                //                   SpecificScreen(
+                                //                       snapshot
+                                //                           .data
+                                //                           .allCategories[index]
+                                //                           .id,
+                                //                       snapshot
+                                //                           .data
+                                //                           .allCategories[index]
+                                //                           .data
+                                //                           .description)));
+                                //     })
 
                                 // Card(
                                 //   elevation: 4,
