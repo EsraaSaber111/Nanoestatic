@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:path/path.dart';
-import 'package:shop_app/models/Cart.dart';
+import 'package:nanoestatic/models/Cart.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SQL_Helper {

@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/Provider/provider.dart';
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/helper/dphelper.dart';
-import 'package:shop_app/models/Cart.dart';
-import 'package:shop_app/screens/cart/cart_screen.dart';
-import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
-import 'package:shop_app/service/Api.dart';
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/Provider/provider.dart';
+import 'package:nanoestatic/constants.dart';
+import 'package:nanoestatic/helper/dphelper.dart';
+import 'package:nanoestatic/models/Cart.dart';
+import 'package:nanoestatic/screens/cart/cart_screen.dart';
+import 'package:nanoestatic/screens/home/home_screen.dart';
+import 'package:nanoestatic/screens/mainpage/mainpagescreen.dart';
+import 'package:nanoestatic/service/Api.dart';
+import 'package:nanoestatic/service/Api.dart';
 
 import '../size_config.dart';
 

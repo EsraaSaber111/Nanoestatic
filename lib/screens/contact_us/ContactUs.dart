@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:shop_app/components/drawer.dart';
-import 'package:shop_app/components/socal_card.dart';
-import 'package:shop_app/models/ContactItems.dart';
-import 'package:shop_app/models/contact_us.dart';
+import 'package:nanoestatic/components/drawer.dart';
+import 'package:nanoestatic/components/socal_card.dart';
+import 'package:nanoestatic/models/ContactItems.dart';
+import 'package:nanoestatic/models/contact_us.dart';
 
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/service/Api.dart';
 
 import 'items.dart';
 class Contact extends StatefulWidget {

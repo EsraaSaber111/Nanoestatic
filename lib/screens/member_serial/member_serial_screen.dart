@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/drawer.dart';
+import 'package:nanoestatic/components/drawer.dart';
 import 'components/body.dart';
 
 class MemberSerialScreen extends StatelessWidget {

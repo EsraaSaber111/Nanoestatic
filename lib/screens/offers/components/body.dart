@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:shop_app/models/offres.dart';
-import 'package:shop_app/screens/offers/components/all_product_card.dart';
-import 'package:shop_app/screens/details/details_screen.dart';
-import 'package:shop_app/service/OffersApi.dart';
+import 'package:nanoestatic/models/offres.dart';
+import 'package:nanoestatic/screens/offers/components/all_product_card.dart';
+import 'package:nanoestatic/screens/details/details_screen.dart';
+import 'package:nanoestatic/service/OffersApi.dart';
 
 import '../../../constants.dart';
 class Body extends StatefulWidget {

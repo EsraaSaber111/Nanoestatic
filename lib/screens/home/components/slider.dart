@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/slider.dart';
-import 'package:shop_app/service/Api.dart';
-import 'package:shop_app/size_config.dart';
+import 'package:nanoestatic/constants.dart';
+import 'package:nanoestatic/models/Product.dart';
+import 'package:nanoestatic/models/slider.dart';
+import 'package:nanoestatic/service/Api.dart';
+import 'package:nanoestatic/size_config.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 import '../../../api_constants.dart';

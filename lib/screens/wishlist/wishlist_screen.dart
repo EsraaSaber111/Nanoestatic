@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/localization/language_constants.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
 import 'components/body.dart';
 class WishListScreen extends StatelessWidget {
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/components/custom_surfix_icon.dart';
-import 'package:shop_app/components/default_button.dart';
-import 'package:shop_app/components/form_error.dart';
-import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
-import 'package:shop_app/service/Api.dart';
-import 'package:shop_app/service/CoursesApi.dart';
-import 'package:shop_app/service/UserApi.dart';
+import 'package:nanoestatic/components/custom_surfix_icon.dart';
+import 'package:nanoestatic/components/default_button.dart';
+import 'package:nanoestatic/components/form_error.dart';
+import 'package:nanoestatic/screens/mainpage/mainpagescreen.dart';
+import 'package:nanoestatic/service/Api.dart';
+import 'package:nanoestatic/service/CoursesApi.dart';
+import 'package:nanoestatic/service/UserApi.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 

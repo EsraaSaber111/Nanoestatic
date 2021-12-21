@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/Provider/provider.dart';
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/models/Cart.dart';
-import 'package:shop_app/screens/home/components/icon_btn_with_counter.dart';
+import 'package:nanoestatic/Provider/provider.dart';
+import 'package:nanoestatic/constants.dart';
+import 'package:nanoestatic/models/Cart.dart';
+import 'package:nanoestatic/screens/home/components/icon_btn_with_counter.dart';
 
 import '../../helper/dphelper.dart';
 import '../../size_config.dart';

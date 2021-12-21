@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop_app/components/default_button.dart';
-import 'package:shop_app/models/Cart.dart';
-import 'package:shop_app/models/CompeleteOrder.dart';
-import 'package:shop_app/models/product_model.dart';
-import 'package:shop_app/screens/complete_order/complete_order.dart';
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/components/default_button.dart';
+import 'package:nanoestatic/models/Cart.dart';
+import 'package:nanoestatic/models/CompeleteOrder.dart';
+import 'package:nanoestatic/models/product_model.dart';
+import 'package:nanoestatic/screens/complete_order/complete_order.dart';
+import 'package:nanoestatic/service/Api.dart';
 
 import '../../../helper/dphelper.dart';
 import '../../../size_config.dart';

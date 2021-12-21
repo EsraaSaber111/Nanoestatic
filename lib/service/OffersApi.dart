@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:shop_app/models/offres.dart';
+import 'package:nanoestatic/models/offres.dart';
 import 'package:http/http.dart' as http;
 import '../api_constants.dart';
 class OffersApi{

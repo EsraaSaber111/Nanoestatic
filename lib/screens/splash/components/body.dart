@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/screens/categories/categories_screen.dart';
-import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
-import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
-import 'package:shop_app/screens/sign_up/sign_up_screen.dart';
-import 'package:shop_app/size_config.dart';
+
+import 'package:nanoestatic/constants.dart';
+
+import 'package:nanoestatic/screens/sign_in/sign_in_screen.dart';
+
+import 'package:nanoestatic/size_config.dart';
 
 // This is the best practice
 import '../components/splash_content.dart';

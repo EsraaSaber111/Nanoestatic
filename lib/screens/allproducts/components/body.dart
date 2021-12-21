@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/screens/details/details_screen.dart';
+import 'package:nanoestatic/models/Product.dart';
+import 'package:nanoestatic/screens/details/details_screen.dart';
 
 
 import '../../../constants.dart';

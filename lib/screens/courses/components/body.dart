@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:shop_app/models/all_courses_model.dart';
-import 'package:shop_app/screens/course_details/CourseDetailsScreen.dart';
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/models/all_courses_model.dart';
+import 'package:nanoestatic/screens/course_details/CourseDetailsScreen.dart';
+import 'package:nanoestatic/service/Api.dart';
 import 'Coursecard.dart';
 
 class Body extends StatefulWidget {

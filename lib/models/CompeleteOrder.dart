@@ -1,5 +1,5 @@
-import 'package:shop_app/models/Cart.dart';
-import 'package:shop_app/models/product_model.dart';
+import 'package:nanoestatic/models/Cart.dart';
+import 'package:nanoestatic/models/product_model.dart';
 
 class CompeleteOrder{
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/api_constants.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/product_model.dart';
+import 'package:nanoestatic/api_constants.dart';
+import 'package:nanoestatic/models/Product.dart';
+import 'package:nanoestatic/models/product_model.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';

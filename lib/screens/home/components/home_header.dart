@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:nanoestatic/constants.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
 
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/localization/language_constants.dart';
-
-import 'package:shop_app/screens/cart/cart_screen.dart';
-import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
+import 'package:nanoestatic/screens/cart/cart_screen.dart';
+import 'package:nanoestatic/screens/mainpage/mainpagescreen.dart';
 import '../../../languages.dart';
 import '../../../main.dart';
 import '../../../size_config.dart';
 import 'icon_btn_with_counter.dart';
-import 'search_field.dart';
+
 
 class HomeHeader extends StatelessWidget {
 int length;

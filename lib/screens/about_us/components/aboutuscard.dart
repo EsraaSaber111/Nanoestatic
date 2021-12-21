@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/ContactItems.dart';
-import 'package:shop_app/screens/contact_us/items.dart';
+import 'package:nanoestatic/models/ContactItems.dart';
+import 'package:nanoestatic/screens/contact_us/items.dart';
 
 class AboutUsCard extends StatelessWidget {
   double width;

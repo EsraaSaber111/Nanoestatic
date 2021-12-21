@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/Provider/provider.dart';
-import 'package:shop_app/api_constants.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/all_categories_model.dart';
-import 'package:shop_app/screens/categories/categories_screen.dart';
-import 'package:shop_app/screens/specific_products/SpecificScreen.dart';
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/Provider/provider.dart';
+import 'package:nanoestatic/api_constants.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/Product.dart';
+import 'package:nanoestatic/models/all_categories_model.dart';
+import 'package:nanoestatic/screens/categories/categories_screen.dart';
+import 'package:nanoestatic/screens/specific_products/SpecificScreen.dart';
+import 'package:nanoestatic/service/Api.dart';
 
 import '../../../size_config.dart';
 import 'section_title.dart';

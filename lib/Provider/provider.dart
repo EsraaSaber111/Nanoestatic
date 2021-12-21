@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/all_categories_model.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/all_categories_model.dart';
 import 'package:http/http.dart' as http ;
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/service/Api.dart';
 import '../api_constants.dart';
 
 class Provider_control with ChangeNotifier {

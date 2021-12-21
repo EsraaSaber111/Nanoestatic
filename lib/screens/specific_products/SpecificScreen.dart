@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/components/product_card.dart';
-import 'package:shop_app/components/drawer.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/all_products_model.dart';
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/components/product_card.dart';
+import 'package:nanoestatic/components/drawer.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/all_products_model.dart';
+import 'package:nanoestatic/service/Api.dart';
 
 class SpecificScreen extends StatelessWidget {
   static String routeName = "/specific";

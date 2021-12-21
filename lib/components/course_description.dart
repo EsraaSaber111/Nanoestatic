@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:html/parser.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/course_model.dart';
-import 'package:shop_app/models/product_model.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/Product.dart';
+import 'package:nanoestatic/models/course_model.dart';
+import 'package:nanoestatic/models/product_model.dart';
 import '../size_config.dart';
 
 

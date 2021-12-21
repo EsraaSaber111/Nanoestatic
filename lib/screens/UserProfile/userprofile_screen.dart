@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/login.dart';
-import 'package:shop_app/screens/UserProfile/components/ProfileBody.dart';
+import 'package:nanoestatic/models/login.dart';
+import 'package:nanoestatic/screens/UserProfile/components/ProfileBody.dart';
 
 class UserProfileScreen extends StatelessWidget {
 // User user;

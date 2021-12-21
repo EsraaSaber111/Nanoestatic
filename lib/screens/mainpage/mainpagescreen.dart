@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/drawer.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/login.dart';
-import 'package:shop_app/screens/UserProfile/userprofile_screen.dart';
-import 'package:shop_app/screens/home/components/bottombar.dart';
-import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/screens/profile/profile_screen.dart';
-import 'package:shop_app/screens/wishlist/wishlist_screen.dart';
+import 'package:nanoestatic/components/drawer.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/login.dart';
+import 'package:nanoestatic/screens/UserProfile/userprofile_screen.dart';
+import 'package:nanoestatic/screens/home/components/bottombar.dart';
+import 'package:nanoestatic/screens/home/home_screen.dart';
+import 'package:nanoestatic/screens/profile/profile_screen.dart';
+import 'package:nanoestatic/screens/wishlist/wishlist_screen.dart';
 
 import '../../size_config.dart';
 class MainPage extends StatefulWidget {

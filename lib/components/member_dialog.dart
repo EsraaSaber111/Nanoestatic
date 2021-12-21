@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/member.dart';
+import 'package:nanoestatic/models/member.dart';
 import '../api_constants.dart';
 import '../size_config.dart';
 
@@ -70,7 +70,7 @@ class _State extends State<MemberDialog> {
                   Container(
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
-                        radius: getProportionateScreenWidth(40),
+                        radius: getProportionateScreenWidth(60),
                         child: ClipRRect(
                           child: Image.network(
                             '${imageURl + widget.memberModel.member.mainImage}',
@@ -82,18 +82,24 @@ class _State extends State<MemberDialog> {
                         // backgroundImage: AssetImage('assets/doc1.jpg'),
                       )),
 
-                  Center(
-                    child: Text(
-                      'Member Name',
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20,color: Colors.black),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    //crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '${widget.memberModel.member.name}',
+                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18,color: Colors.black),
+                        ),
+                      ),
+                    ],
                   ),
-                  Center(
-                    child: Text(
-                      '${widget.memberModel.member.name}',
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-                    ),
-                  ),
+                  // Center(
+                  //   child: Text(
+                  //     '${widget.memberModel.member.name}',
+                  //     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: getProportionateScreenHeight(20),
                   ),

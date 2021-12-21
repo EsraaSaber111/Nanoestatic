@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/course_model.dart';
-import 'package:shop_app/screens/complete_order2/components/complete_form.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/course_model.dart';
+import 'package:nanoestatic/screens/complete_order2/components/complete_form.dart';
 import 'package:http/http.dart' as http;
 import '../api_constants.dart';
-import 'package:shop_app/models/user_courses.dart';
+import 'package:nanoestatic/models/user_courses.dart';
 
 class CoursesApi{
 

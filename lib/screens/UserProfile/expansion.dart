@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/all_courses_model.dart';
-import 'package:shop_app/models/orders.dart';
-import 'package:shop_app/service/UserApi.dart';
+
+import 'package:nanoestatic/models/orders.dart';
+import 'package:nanoestatic/service/UserApi.dart';
 class ExPanalOrders extends StatefulWidget {
   @override
   _ExPanalState createState() => _ExPanalState();

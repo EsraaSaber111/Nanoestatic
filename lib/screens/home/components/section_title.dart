@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/localization/language_constants.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
 
 import '../../../size_config.dart';
 class SectionTitle extends StatelessWidget {

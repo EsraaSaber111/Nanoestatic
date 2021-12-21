@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/api_constants.dart';
-import 'package:shop_app/models/wishlist.dart';
-import 'package:shop_app/service/WishlistApi.dart';
+import 'package:nanoestatic/api_constants.dart';
+import 'package:nanoestatic/models/wishlist.dart';
 
 
 import '../../../constants.dart';

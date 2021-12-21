@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop_app/api_constants.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/offres.dart';
-import 'package:shop_app/screens/details/details_screen.dart';
+import 'package:nanoestatic/api_constants.dart';
+import 'package:nanoestatic/models/Product.dart';
+import 'package:nanoestatic/models/offres.dart';
+import 'package:nanoestatic/screens/details/details_screen.dart';
 
 import '../constants.dart';
 import '../size_config.dart';

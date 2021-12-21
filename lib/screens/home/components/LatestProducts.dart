@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/components/product_card.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/all_products_model.dart';
-import 'package:shop_app/models/product_model.dart';
-import 'package:shop_app/screens/home/components/section_title.dart';
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/components/product_card.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/all_products_model.dart';
+import 'package:nanoestatic/models/product_model.dart';
+import 'package:nanoestatic/screens/home/components/section_title.dart';
+import 'package:nanoestatic/service/Api.dart';
 
 class LatestProducts extends StatefulWidget {
   const LatestProducts({Key key}) : super(key: key);

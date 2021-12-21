@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/Provider/provider.dart';
+import 'package:nanoestatic/Provider/provider.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';

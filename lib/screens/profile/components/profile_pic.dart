@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop_app/size_config.dart';
+import 'package:nanoestatic/size_config.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({

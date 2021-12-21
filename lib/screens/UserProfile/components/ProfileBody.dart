@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/login.dart';
-import 'package:shop_app/screens/UserProfile/expansion.dart';
-import 'package:shop_app/screens/profile/components/profile_menu.dart';
-import 'package:shop_app/screens/splash/splash_screen.dart';
-import 'package:shop_app/service/UserApi.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/login.dart';
+import 'package:nanoestatic/screens/UserProfile/expansion.dart';
+import 'package:nanoestatic/screens/profile/components/profile_menu.dart';
+
+import 'package:nanoestatic/service/UserApi.dart';
 import '../updateprofile_screen.dart';
 import 'button_widget.dart';
 import 'expanioncourse.dart';

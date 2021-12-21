@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/custom_surfix_icon.dart';
-import 'package:shop_app/components/default_button.dart';
-import 'package:shop_app/components/form_error.dart';
+import 'package:nanoestatic/components/custom_surfix_icon.dart';
+import 'package:nanoestatic/components/default_button.dart';
+import 'package:nanoestatic/components/form_error.dart';
 
 
 import '../../../constants.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/Product.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/Product.dart';
 import 'package:html/parser.dart' show parse;
-import 'package:shop_app/models/product_model.dart';
-import 'package:shop_app/service/WishlistApi.dart';
+import 'package:nanoestatic/models/product_model.dart';
+import 'package:nanoestatic/service/WishlistApi.dart';
 import '../size_config.dart';
 
 

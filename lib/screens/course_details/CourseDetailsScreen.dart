@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/components/course_description.dart';
-import 'package:shop_app/components/default_button.dart';
-import 'package:shop_app/components/product_description.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/course_model.dart';
-import 'package:shop_app/screens/complete_order/complete_order.dart';
-import 'package:shop_app/screens/complete_order2/complete_order.dart';
-import 'package:shop_app/screens/details/components/custom_app_bar.dart';
-import 'package:shop_app/screens/details/components/top_rounded_container.dart';
-import 'package:shop_app/service/Api.dart';
-import 'package:shop_app/service/CoursesApi.dart';
-import 'package:shop_app/service/UserApi.dart';
+
+import 'package:nanoestatic/components/course_description.dart';
+import 'package:nanoestatic/components/default_button.dart';
+import 'package:nanoestatic/models/course_model.dart';
+
+import 'package:nanoestatic/screens/complete_order2/complete_order.dart';
+
+import 'package:nanoestatic/screens/details/components/top_rounded_container.dart';
+
+import 'package:nanoestatic/service/CoursesApi.dart';
 
 import '../../api_constants.dart';
 import '../../size_config.dart';

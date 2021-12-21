@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/components/default_button.dart';
-import 'package:shop_app/components/doctor_serial.dart';
-import 'package:shop_app/models/product_model.dart';
-import 'package:shop_app/service/Api.dart';
-import 'package:shop_app/size_config.dart';
+import 'package:nanoestatic/components/default_button.dart';
+import 'package:nanoestatic/components/doctor_serial.dart';
+import 'package:nanoestatic/models/product_model.dart';
+import 'package:nanoestatic/service/Api.dart';
+import 'package:nanoestatic/size_config.dart';
 import '../../../components/product_description.dart';
 import 'top_rounded_container.dart';
 import 'product_images.dart';

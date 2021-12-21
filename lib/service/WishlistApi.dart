@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:shop_app/models/wishlist.dart';
+import 'package:nanoestatic/models/wishlist.dart';
 import 'package:http/http.dart' as http;
-import 'package:shop_app/localization/language_constants.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
 import '../api_constants.dart';
 
 class WishlistApi{

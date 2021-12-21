@@ -1,4 +1,4 @@
-import 'package:shop_app/models/Product.dart';
+import 'package:nanoestatic/models/Product.dart';
 import 'package:flutter/material.dart';
 
 class CategoryModel{

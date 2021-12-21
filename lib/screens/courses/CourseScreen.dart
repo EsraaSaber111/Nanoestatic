@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/drawer.dart';
-import 'package:shop_app/localization/language_constants.dart';
+import 'package:nanoestatic/components/drawer.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
 
 import 'components/body.dart';
 class CourseScreen extends StatelessWidget {

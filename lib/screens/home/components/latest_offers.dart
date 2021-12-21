@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/offer_card.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/offres.dart';
-import 'package:shop_app/screens/mainpage/mainpagescreen.dart';
-import 'package:shop_app/screens/offers/offers_screen.dart';
-import 'package:shop_app/service/Api.dart';
-import 'package:shop_app/service/OffersApi.dart';
+import 'package:nanoestatic/components/offer_card.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+
+import 'package:nanoestatic/models/offres.dart';
+import 'package:nanoestatic/screens/mainpage/mainpagescreen.dart';
+import 'package:nanoestatic/screens/offers/offers_screen.dart';
+
+import 'package:nanoestatic/service/OffersApi.dart';
 
 import '../../../size_config.dart';
 import 'section_title.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_app/components/rounded_icon_btn.dart';
-import 'package:shop_app/models/Product.dart';
+import 'package:nanoestatic/components/rounded_icon_btn.dart';
+import 'package:nanoestatic/models/Product.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 

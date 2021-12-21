@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/Provider/provider.dart';
-import 'package:shop_app/constants.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/screens/home/components/slider.dart';
-import 'package:shop_app/screens/home/components/special_categories.dart';
-import 'package:shop_app/service/Api.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:nanoestatic/Provider/provider.dart';
+import 'package:nanoestatic/screens/home/components/slider.dart';
+import 'package:nanoestatic/screens/home/components/special_categories.dart';
+
 import '../../../size_config.dart';
 import 'LatestProducts.dart';
-import 'categories.dart';
-import 'discount_banner.dart';
+
 import 'home_header.dart';
 import 'latest_offers.dart';
 

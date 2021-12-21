@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:shop_app/components/drawer.dart';
-import 'package:shop_app/models/about_us_model.dart';
-import 'package:shop_app/screens/contact_us/items.dart';
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/components/drawer.dart';
+import 'package:nanoestatic/models/about_us_model.dart';
+import 'package:nanoestatic/screens/contact_us/items.dart';
+import 'package:nanoestatic/service/Api.dart';
 import 'package:html/parser.dart' show parse;
 
 import 'aboutuscard.dart';

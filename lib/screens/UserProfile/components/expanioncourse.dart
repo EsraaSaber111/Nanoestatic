@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/models/all_courses_model.dart';
-import 'package:shop_app/models/user_courses.dart';
-import 'package:shop_app/service/CoursesApi.dart';
-import 'package:shop_app/service/UserApi.dart';
+
+import 'package:nanoestatic/models/user_courses.dart';
+import 'package:nanoestatic/service/CoursesApi.dart';
+import 'package:nanoestatic/service/UserApi.dart';
 class ExPanalCourses extends StatefulWidget {
   @override
   _ExPanalState createState() => _ExPanalState();

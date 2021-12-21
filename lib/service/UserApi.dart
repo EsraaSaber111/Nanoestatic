@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/User.dart';
-import 'package:shop_app/models/login.dart';
-import 'package:shop_app/models/orders.dart';
-import 'package:shop_app/models/register.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/User.dart';
+import 'package:nanoestatic/models/login.dart';
+import 'package:nanoestatic/models/orders.dart';
+import 'package:nanoestatic/models/register.dart';
 import 'package:http/http.dart' as http;
 import '../api_constants.dart';
 

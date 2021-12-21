@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:shop_app/components/drawer.dart';
-import 'package:shop_app/localization/language_constants.dart';
-import 'package:shop_app/models/all_categories_model.dart';
-import 'package:shop_app/screens/home/components/special_categories.dart';
-import 'package:shop_app/screens/specific_products/SpecificScreen.dart';
-import 'package:shop_app/service/Api.dart';
+import 'package:nanoestatic/components/drawer.dart';
+import 'package:nanoestatic/localization/language_constants.dart';
+import 'package:nanoestatic/models/all_categories_model.dart';
+import 'package:nanoestatic/screens/home/components/special_categories.dart';
+import 'package:nanoestatic/screens/specific_products/SpecificScreen.dart';
+import 'package:nanoestatic/service/Api.dart';
 import '../../../api_constants.dart';
 import '../../../size_config.dart';
 

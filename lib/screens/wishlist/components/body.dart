@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:http/http.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app/api_constants.dart';
-import 'package:shop_app/models/wishlist.dart';
-import 'package:shop_app/screens/details/details_screen.dart';
-import 'package:shop_app/screens/wishlist/components/wish_card.dart';
-import 'package:shop_app/service/WishlistApi.dart';
+
+import 'package:nanoestatic/models/wishlist.dart';
+import 'package:nanoestatic/screens/details/details_screen.dart';
+import 'package:nanoestatic/screens/wishlist/components/wish_card.dart';
+import 'package:nanoestatic/service/WishlistApi.dart';
 
 import '../../../constants.dart';
 
