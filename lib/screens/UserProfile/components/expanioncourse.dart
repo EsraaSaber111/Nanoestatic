@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:nanoestatic/models/user_courses.dart';
 import 'package:nanoestatic/service/CoursesApi.dart';
 import 'package:nanoestatic/service/UserApi.dart';
