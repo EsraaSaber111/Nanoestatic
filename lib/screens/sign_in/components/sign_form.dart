@@ -107,7 +107,6 @@ class _SignFormState extends State<SignForm> {
                     // print(UserSimplePreferences.getEmail().toString());
                     // print(UserSimplePreferences.getPassword().toString());
                    Navigator.pushReplacementNamed(context, MainPage.routeName);
-
                   Scaffold.of(context).showSnackBar(SnackBar(content: Text('welcome ${value.user.name} ${value.message}')));
 
 

@@ -68,7 +68,8 @@ class OfferCard extends StatelessWidget {
                   InkWell(
                    // borderRadius: BorderRadius.only(topLeft: Radius.circular(50), bottomLeft: Radius.circular(50)),
                     onTap: () {},
-                    child: Container(
+                    child:
+                    Container(
                     //  padding: EdgeInsets.all(getProportionateScreenWidth(5)),
                       height: getProportionateScreenHeight(25),
                       width: getProportionateScreenWidth(50),

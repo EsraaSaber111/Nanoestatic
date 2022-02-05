@@ -101,7 +101,6 @@ Navigator.pushReplacementNamed(context, MainPage.routeName);
             onTap: () {
               Navigator.pop(context);
               Navigator.of(context).pushNamedAndRemoveUntil(InquiryScreen.routeName, ModalRoute.withName(MainPage.routeName));
-
             }),
         ListTile(
             leading: Icon(

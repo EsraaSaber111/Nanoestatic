@@ -5,7 +5,6 @@ import 'package:nanoestatic/models/login.dart';
 import 'package:nanoestatic/screens/UserProfile/userprofile_screen.dart';
 import 'package:nanoestatic/screens/home/components/bottombar.dart';
 import 'package:nanoestatic/screens/home/home_screen.dart';
-import 'package:nanoestatic/screens/profile/profile_screen.dart';
 import 'package:nanoestatic/screens/wishlist/wishlist_screen.dart';
 
 import '../../size_config.dart';
@@ -33,7 +32,6 @@ class _MainPageState extends State<MainPage> {
       //drawer: Drawer(child: drawer(),),
       body:tabs[_currentindex],
       bottomNavigationBar: BottomNavigationBar(
-
         currentIndex: _currentindex,
         backgroundColor: Colors.white,
         selectedItemColor: Colors.orange,

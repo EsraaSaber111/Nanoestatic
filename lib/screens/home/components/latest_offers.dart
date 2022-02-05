@@ -43,7 +43,8 @@ class _LatestOffersState extends State<LatestOffers> {
           future: offers,
           builder: (_,snapshot){
             if(snapshot.hasData){
-              return SingleChildScrollView(
+              return
+                SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
