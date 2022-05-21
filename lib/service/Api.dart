@@ -23,7 +23,7 @@ class Api {
         "${baseurl + allCatURL + "api_username=" + name + "&api_password=" +
             password + "&api_lang=" + await getLanguageCode()}");
     if (response.statusCode == 200) {
-     // print(response.body);
+      print(response.body);
       final jsondata = json.decode(response.body);
       AllCategoriesModel allCategoriesModel = AllCategoriesModel.fromJson(
           jsondata);
