@@ -27,15 +27,16 @@ class Provider_control with ChangeNotifier {
   getlocal() => local;
   getcount() => count;
 
+  setCount(int Data) async {
+    count = Data;
+    notifyListeners();
+  }
   setColor(Color themeData) async {
     _themeData = themeData;
     notifyListeners();
   }
 
-  setCount(int Data) async {
-    count = Data;
-    notifyListeners();
-  }
+
 
   setLogin(bool isLog) {
     isLogin = isLog;

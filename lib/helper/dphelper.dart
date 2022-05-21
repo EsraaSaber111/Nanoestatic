@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:path/path.dart';
 import 'package:nanoestatic/models/Cart.dart';
 import 'package:sqflite/sqflite.dart';
