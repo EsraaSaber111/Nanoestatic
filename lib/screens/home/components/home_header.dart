@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nanoestatic/constants.dart';
 import 'package:nanoestatic/localization/language_constants.dart';
-
 import 'package:nanoestatic/screens/cart/cart_screen.dart';
 import 'package:nanoestatic/screens/mainpage/mainpagescreen.dart';
 import '../../../languages.dart';
@@ -23,7 +22,7 @@ HomeHeader(this.length);
       return AppBar(
         elevation: 0,
         centerTitle: false,
-        title: Text("NANOESTATIC",
+        title: Text("NANOSTATIC",
                   style: TextStyle(
                     fontSize: getProportionateScreenWidth(20),
                     color: kPrimaryColor,
