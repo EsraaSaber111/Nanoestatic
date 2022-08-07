@@ -22,7 +22,7 @@ HomeHeader(this.length);
       return AppBar(
         elevation: 0,
         centerTitle: false,
-        title: Text("NANOSTATIC",
+        title: Text("NANOSTETIC",
                   style: TextStyle(
                     fontSize: getProportionateScreenWidth(20),
                     color: kPrimaryColor,

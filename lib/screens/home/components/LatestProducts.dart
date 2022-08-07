@@ -60,7 +60,7 @@ class _LatestProductsState extends State<LatestProducts> {
     //  snapshot.data.allProducts.length,
     (index) {
     // if (snapshot.data.allProducts[index].isOffer==1)
-    return ProductCard(product: allproducts==null? allproducts2.allProducts[index]:allproducts.allProducts[index],userid: userid,);
+    return allproducts2==null?Container():ProductCard(product:allproducts==null? allproducts2.allProducts[index]:allproducts.allProducts[index],userid: userid,);
     return SizedBox
         .shrink(); // here by default width and height is 0
     },
