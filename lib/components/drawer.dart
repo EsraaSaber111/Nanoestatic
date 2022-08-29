@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nanoestatic/models/User.dart';
+import 'package:nanoestatic/service/UserApi.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:nanoestatic/localization/language_constants.dart';
@@ -14,7 +16,23 @@ import 'package:nanoestatic/screens/product_serial/product_serial_screen.dart';
 import 'package:nanoestatic/screens/sign_in/sign_in_screen.dart';
 import 'package:nanoestatic/screens/splash/splash_screen.dart';
 
-class drawer extends StatelessWidget {
+class drawer extends StatefulWidget {
+  @override
+  State<drawer> createState() => _drawerState();
+}
+
+class _drawerState extends State<drawer> {
+  String id;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SharedPreferences.getInstance().then((prefs) {
+      setState(() {
+        id=prefs.getString('id');
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -102,6 +120,24 @@ Navigator.pushReplacementNamed(context, MainPage.routeName);
               Navigator.pop(context);
               Navigator.of(context).pushNamedAndRemoveUntil(InquiryScreen.routeName, ModalRoute.withName(MainPage.routeName));
             }),
+
+        ListTile(
+            leading: Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+            title: Text(getTranslated(context, 'delete account')),
+            onTap: () {
+              RegisterUser user=RegisterUser(name: "name",email: "email",phone: "phone",password: "password");
+              UserApi.UserUpdate(user, id).then((value) => print(value));
+              Navigator.pop(context);
+              SharedPreferences.getInstance().then((prefs) {
+                prefs.clear();
+                print(prefs.getString('user_token'));
+              });
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SignInScreen()));
+            }
+        ),
         ListTile(
             leading: Icon(
               Icons.logout,
@@ -124,6 +160,4 @@ Navigator.pushReplacementNamed(context, MainPage.routeName);
     );
 
   }
-
-
 }
